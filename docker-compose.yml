@@ -1,0 +1,19 @@
+version: '3'
+services:
+  users-service:
+    build: ./service
+    volumes:
+      - ./web_service/src:/var/www/html
+    container_name: php_web_service
+    ports:
+      - "80:80"
+    depends_on:
+      - database
+    links:
+      - database:database
+    environment:
+      - DATABASE_HOST=database
+  database:
+    build: ./mysql_db
+    ports:
+      - "3306:3306"

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import './Nav.css';
+import Brand from './Brand';
+import SearchBox from './SearchBox';
+import NavLink from './NavLink';
 
 class Nav extends Component {
   render() {
     return (
       <nav className="nav">
-        <ul className="nav-list">
-          <li>Log in</li>
-          <li>Sign up</li>
-        </ul>
-        <h1>Booooks</h1>
-        <ul className="nav-list">
-          <li>Search</li>
-          <li>Wish</li>
-          <li>Buy</li>
-        </ul>
+        <Brand />
+        <SearchBox />
+        <NavLink />
+        <NavLink />
+        <NavLink />
       </nav>
     );
   }

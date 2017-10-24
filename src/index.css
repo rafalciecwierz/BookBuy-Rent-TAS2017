@@ -1,5 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #fafafa;
+}
+
+/**
+ * Navigation Component
+ */
+.nav {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+}
+
+/**
+ * Brand Component
+ */
+.brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transform: scale(0.6);
+}
+.brand__divider {
+  height: 60px;
+  border-left: 1px #8440FF solid;
+  margin: 0 30px;
+}
+.brand__header {
+  font-family: 'Pacifico', cursive;
+  font-size: 55px;
+  display: inline-block;
+  color: #8440FF;
+  opacity: 0.8;
 }

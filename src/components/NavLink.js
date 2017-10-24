@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class NavLink extends Component {
   render() {
     return (
-      <div>
-        link
-      </div>
+      <a href="#" className="nav-link">
+        <figure className="nav-link__icon"></figure>
+      </a>
     );
   }
 }

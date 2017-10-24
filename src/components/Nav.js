@@ -9,7 +9,7 @@ class Nav extends Component {
       <nav className="nav">
         <Brand />
         <SearchBox />
-        <div>
+        <div className="nav__links">
           <NavLink />
           <NavLink />
           <NavLink />

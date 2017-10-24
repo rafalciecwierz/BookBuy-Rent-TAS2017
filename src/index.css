@@ -19,6 +19,11 @@ body {
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
 }
+.nav__links {
+  display: flex;
+  flex-direction: row;
+  margin-right: 2rem;
+}
 
 
 /**
@@ -82,3 +87,20 @@ body {
   background-position: center;
   background-size: contain;*/
 }
+
+/**
+ * NavLink Component
+ */
+.nav-link {
+  margin: 0 0.5rem;
+}
+.nav-link__icon {
+  background-image: url('./assets/img/heart.png');
+  width: 42px;
+  height: 42px;
+  background-position: center;
+  background-size: cover;
+}
+/* TODO: Diffrent navlink icons */
+/* TODO: searchbox in center */
+/* TODO: New serch icon as background */

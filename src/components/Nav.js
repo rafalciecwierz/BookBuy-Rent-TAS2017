@@ -9,9 +9,11 @@ class Nav extends Component {
       <nav className="nav">
         <Brand />
         <SearchBox />
-        <NavLink />
-        <NavLink />
-        <NavLink />
+        <div>
+          <NavLink />
+          <NavLink />
+          <NavLink />
+        </div>
       </nav>
     );
   }

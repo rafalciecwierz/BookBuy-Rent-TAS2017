@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import BookUtils from './BookUtils';
-import './Book.css'
 
 class Book extends Component {
   render() {
     return (
       <div className="book">
-        <BookUtils />
-        <div className="book_info">
-          <div className="book_info--content">
-            <h1>The littlest bird</h1>
-            <h2>Annie F. Gilbert</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-        </div>
-
+        <h5 className="book__price">{this.props.price}</h5>
+        <figure className="book__card">
+          <canvas className="book__cover"
+                  cover={this.props.cover}></canvas>
+          <figcaption className="book__details">
+            <p>{this.props.title}</p>
+            <p>by {this.props.author}</p>
+          </figcaption>
+        </figure>
+        <BookUtils tag={this.props.tag} likes={this.props.likes}/>
       </div>
     );
   }

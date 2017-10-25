@@ -83,9 +83,6 @@ body {
   width: 2rem;
   line-height: 2rem;
   padding: 0;
-  /*background-image: url('./assets/img/search.png');
-  background-position: center;
-  background-size: contain;*/
 }
 
 /**
@@ -99,17 +96,18 @@ body {
   height: 42px;
   background-position: center;
   background-size: cover;
+  display: block;
 }
 
-.nav-link__icon.user {
+.icon--user {
   background-image: url('./assets/img/user.png');
 }
-.nav-link__icon.cart {
+.icon--cart {
   background-image: url('./assets/img/cart.png');
 }
-.nav-link__icon.wish {
+.icon--wish {
   background-image: url('./assets/img/heart.png');
 }
-/* TODO: Diffrent navlink icons */
+
 /* TODO: searchbox in center */
 /* TODO: New serch icon as background */

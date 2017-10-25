@@ -5,7 +5,7 @@ class NavLink extends Component {
     const cssClass = this.props.linkType || ""  ;
     return (
       <a href="#" className="nav-link">
-        <figure className={`nav-link__icon ${cssClass}`}></figure>
+        <i className={`nav-link__icon ${'icon--'+cssClass}`}></i>
       </a>
     );
   }

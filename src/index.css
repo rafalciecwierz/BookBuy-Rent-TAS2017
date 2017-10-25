@@ -1,35 +1,49 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Pacifico');
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-color: #fafafa;
 }
+
 
 /**
  * Navigation Component
  */
+
 .nav {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  /*justify-content: space-between;*/
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
 }
+.nav__links {
+  display: flex;
+  flex-direction: row;
+  margin-right: 2rem;
+}
+
 
 /**
  * Brand Component
  */
+
 .brand {
   position: relative;
   display: flex;
   align-items: center;
   transform: scale(0.6);
+  flex-grow: 1;
 }
+
 .brand__divider {
   height: 60px;
   border-left: 1px #8440FF solid;
   margin: 0 30px;
 }
+
 .brand__header {
   font-family: 'Pacifico', cursive;
   font-size: 55px;
@@ -37,3 +51,56 @@ body {
   color: #8440FF;
   opacity: 0.8;
 }
+
+/**
+ * SearchBox Component
+ */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  flex-grow: 2;
+}
+.search-box__input {
+  font-family: 'Open Sans', sans-serif;
+  /*height: 2rem;*/
+  border: solid 1px #dbdbdb;
+  background-color: #fafafa;
+  text-align: center;
+  padding: 0 0.5rem;
+  line-height: 2rem;
+}
+.search-box__input:focus {
+  text-align: left;
+  background-color: #fff;
+}
+.search-box__submit {
+  color: #b3b3b3;
+  font-size: 15px;
+  background-color: #fafafa;
+  border: solid 1px #dbdbdb;
+  border-left: none;
+  width: 2rem;
+  line-height: 2rem;
+  padding: 0;
+  /*background-image: url('./assets/img/search.png');
+  background-position: center;
+  background-size: contain;*/
+}
+
+/**
+ * NavLink Component
+ */
+.nav-link {
+  margin: 0 0.5rem;
+}
+.nav-link__icon {
+  background-image: url('./assets/img/heart.png');
+  width: 42px;
+  height: 42px;
+  background-position: center;
+  background-size: cover;
+}
+/* TODO: Diffrent navlink icons */
+/* TODO: searchbox in center */
+/* TODO: New serch icon as background */

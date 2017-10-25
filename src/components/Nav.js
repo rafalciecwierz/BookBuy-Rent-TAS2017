@@ -10,9 +10,9 @@ class Nav extends Component {
         <Brand />
         <SearchBox />
         <div className="nav__links">
-          <NavLink />
-          <NavLink />
-          <NavLink />
+          <NavLink linkType="wish"/>
+          <NavLink linkType="cart"/>
+          <NavLink linkType="user"/>
         </div>
       </nav>
     );

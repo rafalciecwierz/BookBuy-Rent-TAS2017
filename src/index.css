@@ -95,11 +95,20 @@ body {
   margin: 0 0.5rem;
 }
 .nav-link__icon {
-  background-image: url('./assets/img/heart.png');
   width: 42px;
   height: 42px;
   background-position: center;
   background-size: cover;
+}
+
+.nav-link__icon.user {
+  background-image: url('./assets/img/user.png');
+}
+.nav-link__icon.cart {
+  background-image: url('./assets/img/cart.png');
+}
+.nav-link__icon.wish {
+  background-image: url('./assets/img/heart.png');
 }
 /* TODO: Diffrent navlink icons */
 /* TODO: searchbox in center */

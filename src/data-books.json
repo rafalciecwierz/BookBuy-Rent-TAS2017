@@ -1,0 +1,100 @@
+{
+  "trending": [
+    {
+      "title": "1984",
+      "cover": "./assets/img/1.jpg",
+      "author": "George Orwell",
+      "price": "8",
+      "tag": "horror",
+      "likes": "180"
+    },
+    {
+      "title": "The book thief",
+      "cover": "./assets/img/2.jpg",
+      "author": "Markus Zusak",
+      "price": "10",
+      "tag": "horror",
+      "likes": "20"
+    },
+    {
+      "title": "Cannibals in love",
+      "cover": "./assets/img/3.jpg",
+      "author": "Mike Roberts",
+      "price": "9",
+      "tag": "comedy",
+      "likes": "100"
+    },
+    {
+      "title": "The hobbit",
+      "cover": "./assets/img/4.jpg",
+      "author": "J.R.R. Tolkien",
+      "price": "11",
+      "tag": "adventure",
+      "likes": "99"
+    },
+    {
+      "title": "The martian",
+      "cover": "./assets/img/5.jpg",
+      "author": "Andy Weir",
+      "price": "8",
+      "tag": "adventure",
+      "likes": "11"
+    },
+    {
+      "title": "Hamlet",
+      "cover": "./assets/img/6.jpg",
+      "author": "William Shakespeare",
+      "price": "11",
+      "tag": "thriller",
+      "likes": "1"
+    },
+    {
+      "title": "Of mice and men",
+      "cover": "./assets/img/7.jpg",
+      "author": "John Steinbeck",
+      "price": "10",
+      "tag": "family",
+      "likes": "50"
+    },
+    {
+      "title": "The art of war",
+      "cover": "./assets/img/8.jpg",
+      "author": "Sun Tzu",
+      "price": "12",
+      "tag": "family",
+      "likes": "30"
+    },
+    {
+      "title": "The girl on the train",
+      "cover": "./assets/img/9.jpg",
+      "author": "Paula Hawkins",
+      "price": "5",
+      "tag": "thriller",
+      "likes": "11"
+    },
+    {
+      "title": "Animal Farm",
+      "cover": "./assets/img/10.jpg",
+      "author": "George Orwell",
+      "price": "6",
+      "tag": "fiction",
+      "likes": "1"
+    },
+    {
+      "title": "Mindful work",
+      "cover": "./assets/img/11.jpg",
+      "author": "David Gelles",
+      "price": "10",
+      "tag": "religion",
+      "likes": "3"
+    },
+    {
+      "title": "Looking dor Alaska",
+      "cover": "./assets/img/12.jpg",
+      "author": "John Green",
+      "price": "3",
+      "tag": "fiction",
+      "likes": "99"
+    }
+  ]
+}

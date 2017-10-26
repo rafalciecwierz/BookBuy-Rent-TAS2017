@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav';
-import books from '../data-books.json'
+import BookList from '../components/BookList';
+import books from '../data-books.json';
 import './App.css';
 
 
 class App extends Component {
   render() {
+    const bookList = books.trending;
+
     return (
       <div className="App">
         <Nav />
-        {JSON.stringify(books)}
-
+        <BookList books={bookList}/>
       </div>
     );
   }

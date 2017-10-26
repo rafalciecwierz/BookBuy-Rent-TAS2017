@@ -12,7 +12,9 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <BookList books={bookList}/>
+        <BookList
+          books={bookList}
+          name="Most popular"/>
       </div>
     );
   }

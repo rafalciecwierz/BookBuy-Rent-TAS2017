@@ -1,0 +1,100 @@
+{
+  "trending": [
+    {
+      "title": "1984",
+      "cover": "1",
+      "author": "George Orwell",
+      "price": "8",
+      "tag": "horror",
+      "likes": "180"
+    },
+    {
+      "title": "The book thief",
+      "cover": "2",
+      "author": "Markus Zusak",
+      "price": "10",
+      "tag": "horror",
+      "likes": "20"
+    },
+    {
+      "title": "Cannibals in love",
+      "cover": "3",
+      "author": "Mike Roberts",
+      "price": "9",
+      "tag": "comedy",
+      "likes": "100"
+    },
+    {
+      "title": "The hobbit",
+      "cover": "4",
+      "author": "J.R.R. Tolkien",
+      "price": "11",
+      "tag": "adventure",
+      "likes": "99"
+    },
+    {
+      "title": "The martian",
+      "cover": "5",
+      "author": "Andy Weir",
+      "price": "8",
+      "tag": "adventure",
+      "likes": "11"
+    },
+    {
+      "title": "Hamlet",
+      "cover": "6",
+      "author": "William Shakespeare",
+      "price": "11",
+      "tag": "thriller",
+      "likes": "1"
+    },
+    {
+      "title": "Of mice and men",
+      "cover": "7",
+      "author": "John Steinbeck",
+      "price": "10",
+      "tag": "family",
+      "likes": "50"
+    },
+    {
+      "title": "The art of war",
+      "cover": "8",
+      "author": "Sun Tzu",
+      "price": "12",
+      "tag": "family",
+      "likes": "30"
+    },
+    {
+      "title": "The girl on the train",
+      "cover": "9",
+      "author": "Paula Hawkins",
+      "price": "5",
+      "tag": "thriller",
+      "likes": "11"
+    },
+    {
+      "title": "Animal Farm",
+      "cover": "10",
+      "author": "George Orwell",
+      "price": "6",
+      "tag": "fiction",
+      "likes": "1"
+    },
+    {
+      "title": "Mindful work",
+      "cover": "11",
+      "author": "David Gelles",
+      "price": "10",
+      "tag": "religion",
+      "likes": "3"
+    },
+    {
+      "title": "Looking dor Alaska",
+      "cover": "12",
+      "author": "John Green",
+      "price": "3",
+      "tag": "fiction",
+      "likes": "99"
+    }
+  ]
+}

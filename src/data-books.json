@@ -2,7 +2,7 @@
   "trending": [
     {
       "title": "1984",
-      "cover": "./assets/img/1.jpg",
+      "cover": "1",
       "author": "George Orwell",
       "price": "8",
       "tag": "horror",
@@ -10,7 +10,7 @@
     },
     {
       "title": "The book thief",
-      "cover": "./assets/img/2.jpg",
+      "cover": "2",
       "author": "Markus Zusak",
       "price": "10",
       "tag": "horror",
@@ -18,7 +18,7 @@
     },
     {
       "title": "Cannibals in love",
-      "cover": "./assets/img/3.jpg",
+      "cover": "3",
       "author": "Mike Roberts",
       "price": "9",
       "tag": "comedy",
@@ -26,7 +26,7 @@
     },
     {
       "title": "The hobbit",
-      "cover": "./assets/img/4.jpg",
+      "cover": "4",
       "author": "J.R.R. Tolkien",
       "price": "11",
       "tag": "adventure",
@@ -34,7 +34,7 @@
     },
     {
       "title": "The martian",
-      "cover": "./assets/img/5.jpg",
+      "cover": "5",
       "author": "Andy Weir",
       "price": "8",
       "tag": "adventure",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Hamlet",
-      "cover": "./assets/img/6.jpg",
+      "cover": "6",
       "author": "William Shakespeare",
       "price": "11",
       "tag": "thriller",
@@ -50,7 +50,7 @@
     },
     {
       "title": "Of mice and men",
-      "cover": "./assets/img/7.jpg",
+      "cover": "7",
       "author": "John Steinbeck",
       "price": "10",
       "tag": "family",
@@ -58,7 +58,7 @@
     },
     {
       "title": "The art of war",
-      "cover": "./assets/img/8.jpg",
+      "cover": "8",
       "author": "Sun Tzu",
       "price": "12",
       "tag": "family",
@@ -66,7 +66,7 @@
     },
     {
       "title": "The girl on the train",
-      "cover": "./assets/img/9.jpg",
+      "cover": "9",
       "author": "Paula Hawkins",
       "price": "5",
       "tag": "thriller",
@@ -74,7 +74,7 @@
     },
     {
       "title": "Animal Farm",
-      "cover": "./assets/img/10.jpg",
+      "cover": "10",
       "author": "George Orwell",
       "price": "6",
       "tag": "fiction",
@@ -82,7 +82,7 @@
     },
     {
       "title": "Mindful work",
-      "cover": "./assets/img/11.jpg",
+      "cover": "11",
       "author": "David Gelles",
       "price": "10",
       "tag": "religion",
@@ -90,7 +90,7 @@
     },
     {
       "title": "Looking dor Alaska",
-      "cover": "./assets/img/12.jpg",
+      "cover": "12",
       "author": "John Green",
       "price": "3",
       "tag": "fiction",

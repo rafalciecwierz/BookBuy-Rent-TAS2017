@@ -3,14 +3,19 @@ import BookUtils from './BookUtils';
 
 class Book extends Component {
   render() {
+    const url = 3
+    const coverUrl = require("../assets/img/books/"+this.props.cover+".jpg");
+    const coverImg = {
+      backgroundImage: 'url("'+coverUrl+'")'
+    }
     return (
       <div className="book">
         <h5 className="book__price">{this.props.price}</h5>
         <figure className="book__card">
           <canvas className="book__cover"
-                  cover={this.props.cover}></canvas>
+                  style={coverImg}></canvas>
           <figcaption className="book__details">
-            <p>{this.props.title}</p>
+            <p className="details--title">{this.props.title}</p>
             <p>by {this.props.author}</p>
           </figcaption>
         </figure>

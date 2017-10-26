@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav';
 import BookList from '../components/BookList';
+
 import books from '../data-books.json';
-import './App.css';
 
 
 class App extends Component {

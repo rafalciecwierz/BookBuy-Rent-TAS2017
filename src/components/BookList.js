@@ -4,9 +4,8 @@ class BookList extends Component {
   render() {
     const books = this.props.books;
     const bookList = books.map((book, index) =>
-      <li>
+      <li key={index}>
         <Book
-          key={index}
           title={book.title}
           cover={book.cover}
           author={book.author}
@@ -16,8 +15,8 @@ class BookList extends Component {
       </li>
     );
     return (
-      <div>
-        <ul>
+      <div className="book-list">
+        <ul className="book-list__cards">
           {bookList}
         </ul>
       </div>

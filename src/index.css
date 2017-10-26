@@ -16,12 +16,12 @@ body {
   flex-direction: row;
   align-items: center;
   background-color: white;
+  padding: 20px 10%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
 }
 .nav__links {
   display: flex;
   flex-direction: row;
-  margin-right: 2rem;
 }
 .nav__utils {
   display: flex;
@@ -49,7 +49,8 @@ body {
   padding: 3rem 0;
   width: 100%;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, .0975);
 }
 .dropdown .search-box {
   margin: 0;
@@ -61,7 +62,7 @@ body {
 }
 .dropdown__utils .nav__links li {
   display: flex;
-  /*justify-content: space-around;*/
+  justify-content: space-around;
   align-items: center;
   color: #555;
 
@@ -81,22 +82,26 @@ body {
  */
 
 .brand {
-  position: relative;
   display: flex;
   align-items: center;
-  transform: scale(0.6);
   flex-grow: 1;
+  margin-left: 10px;
+}
+
+.brand__logo {
+  height: 50px;
+  width: auto;
 }
 
 .brand__divider {
-  height: 60px;
+  height: 30px;
   border-left: 1px #8440FF solid;
-  margin: 0 30px;
+  margin: 0 20px;
 }
 
 .brand__header {
   font-family: 'Pacifico', cursive;
-  font-size: 55px;
+  font-size: 30px;
   display: inline-block;
   color: #8440FF;
   opacity: 0.8;

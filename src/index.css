@@ -118,7 +118,6 @@ body {
 }
 .search-box__input {
   font-family: 'Open Sans', sans-serif;
-  /*height: 2rem;*/
   border: solid 1px #dbdbdb;
   background-color: #fafafa;
   text-align: center;
@@ -264,6 +263,13 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.book-list__header {
+  margin-top: 1rem;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+  color: #777;
 }
 
 

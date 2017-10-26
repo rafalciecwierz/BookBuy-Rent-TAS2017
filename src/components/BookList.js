@@ -16,6 +16,7 @@ class BookList extends Component {
     );
     return (
       <div className="book-list">
+        <h2 className="book-list__header">{this.props.name}</h2>
         <ul className="book-list__cards">
           {bookList}
         </ul>

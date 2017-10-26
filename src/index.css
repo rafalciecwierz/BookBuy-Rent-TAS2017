@@ -15,7 +15,6 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /*justify-content: space-between;*/
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
 }
@@ -23,6 +22,57 @@ body {
   display: flex;
   flex-direction: row;
   margin-right: 2rem;
+}
+.nav__utils {
+  display: flex;
+}
+
+.dropdown {
+  display: none;
+}
+.dropdown__icon {
+  background-image: url('./assets/img/brand.png');
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.5;
+}
+.dropdown__utils {
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+}
+.dropdown .search-box {
+  margin: 0;
+}
+.dropdown__utils .nav__links {
+  margin: 2rem auto 0 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+.dropdown__utils .nav__links li {
+  display: flex;
+  /*justify-content: space-around;*/
+  align-items: center;
+  color: #555;
+
+}
+@media screen and (max-width: 860px) {
+  .nav__utils {
+    display: none;
+  }
+  .dropdown {
+    display: block;
+  }
 }
 
 
@@ -59,7 +109,7 @@ body {
 .search-box {
   display: flex;
   align-items: center;
-  flex-grow: 2;
+  margin-right: 2rem;
 }
 .search-box__input {
   font-family: 'Open Sans', sans-serif;
@@ -144,7 +194,6 @@ body {
   margin: 10% auto;
   height: 80%;
   display: block;
-  /*background-image: url("./assets/img/books/2.jpg");*/
   background-position: center;
   background-size: cover;
 }
@@ -152,7 +201,7 @@ body {
   width: 75%;
   margin: 0 auto;
   font-size: 1.4rem;
-  line-height: 1.6rem;
+  line-height: 1.8rem;
   opacity: 0.5;
 }
 .book__details p {
@@ -200,6 +249,11 @@ body {
 .book-list {
   width: 80%;
   margin: auto;
+}
+@media screen and (max-width: 860px) {
+  .book-list {
+    width: 100%;
+  }
 }
 .book-list__cards {
   display: flex;

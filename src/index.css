@@ -386,10 +386,23 @@ h1, h2, h3, h4, h5, h6, p {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 2rem;
+  display: inline-block;
 }
 
 .overview__details .details__price::before {
   content: "$";
+}
+
+.overview__details .details__action {
+  background: transparent;
+  border: none;
+  display: inline;
+  margin: 0 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .overview__details .details__description {
@@ -419,7 +432,6 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .comment {
-  /*box-shadow: -2px 2px 8px 1px rgba(0, 0, 0, 0.15);*/
   display: flex;
   flex-direction: row;
   border-bottom: 2px #eee solid;

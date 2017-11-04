@@ -4,6 +4,11 @@ body {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
   background-color: #F2F2F2;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -18,6 +23,7 @@ body {
   background-color: white;
   padding: 20px 10%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  z-index: 200;
 }
 .nav__links {
   display: flex;
@@ -31,7 +37,7 @@ body {
   display: none;
 }
 .dropdown__icon {
-  background-image: url('./assets/img/brand.png');
+  background-image: url('./assets/img/menu.png');
   width: 40px;
   height: 40px;
   display: block;
@@ -51,6 +57,14 @@ body {
   align-items: center;
   margin-top: 20px;
   border: 1px solid rgba(0, 0, 0, .0975);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.dropdown__utils.utils--visible {
+  opacity: 1;
+  pointer-events: all;
 }
 .dropdown .search-box {
   margin: 0;
@@ -273,5 +287,73 @@ body {
 }
 
 
-/* TODO: searchbox in center */
-/* TODO: New serch icon as background */
+.book-overview {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.overview__thumbnails .thumb {
+  background-color: #eee;
+  height: 900px;
+  width: 600px;
+  display: block;
+  background-image: url('./assets/img/books/3.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.overview__details {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 800px;
+  background-color: #fff;
+  padding: 50px;
+}
+.overview__details .details--title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  opacity: 0.6;
+  line-height: 3rem;
+  margin-bottom: 0.5rem;
+}
+.overview__details .details--author {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.5;
+  line-height: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.overview__details .details--author::before {
+  content: "BY ";
+  opacity: 0.8;
+}
+.overview__details .details--description {
+  line-height: 1.58rem;
+  margin-bottom: 2rem;
+}
+.overview__details .details--tags {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-weight: 600;
+  opacity: 0.3;
+}
+.overview__details .details--tags li {
+  margin-right: 1rem;
+}
+.overview__details .details--tags li::before {
+  content: "#";
+  margin-right: 1px;
+}
+
+.overview__details .details--comments {
+
+}

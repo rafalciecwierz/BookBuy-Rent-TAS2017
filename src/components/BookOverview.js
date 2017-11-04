@@ -8,16 +8,61 @@ class BookOverview extends Component {
           <canvas className="thumb"></canvas>
         </figure>
         <div className="overview__details" >
-          <h2 className="details--title">Cannibals in love</h2>
-          <h3 className="details--author">Mike Roberts</h3>
-          <p className="details--description">
+          <h2 className="details__title">Cannibals in love</h2>
+          <h3 className="details__author">Mike Roberts</h3>
+          <h5 className="details__price">10</h5>
+          <p className="details__description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
-          <ul className="details--tags">
+          <ul className="details__tags">
             <li>comedy</li>
             <li>action</li>
           </ul>
-          <div className="details--comments"></div>
+          <div className="details__comments">
+            <div className="comment">
+              <canvas className="comment__avatar"></canvas>
+              <div>
+                <div className="comment__header">
+                  <h6 className="header__user">Mike R.</h6>
+                  <span>&#128717;</span>
+                  <span>&#128154;</span>
+                  <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+                <p className="comment__content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
+                </p>
+              </div>
+            </div>
+            <div className="comment">
+              <canvas className="comment__avatar"></canvas>
+              <div>
+                <div className="comment__header">
+                  <h6 className="header__user">Mike R.</h6>
+                  <span>&#128717;</span>
+                  <span>&#128154;</span>
+                  <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+                <p className="comment__content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
+                </p>
+              </div>
+            </div>
+            <div className="comment">
+              <canvas className="comment__avatar"></canvas>
+              <div>
+                <div className="comment__header">
+                  <h6 className="header__user">Mike R.</h6>
+                  <span>&#128717;</span>
+                  <span>&#128154;</span>
+                  <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+                <p className="comment__content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     );

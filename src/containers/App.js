@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Nav from '../components/Nav';
 import BookList from '../components/BookList';
 import BookOverview from '../components/BookOverview';
-
+import Register from '../components/Register';
 import books from '../data-books.json';
 
 
@@ -13,12 +13,18 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <BookList
-          books={bookList}
-          name="Most popular"/>
-        <BookOverview />
+        <Register />
       </div>
     );
+    // return (
+    //   <div className="App">
+    //     <Nav />
+    //     <BookList
+    //       books={bookList}
+    //       name="Most popular"/>
+    //     <BookOverview />
+    //   </div>
+    // );
   }
 }
 

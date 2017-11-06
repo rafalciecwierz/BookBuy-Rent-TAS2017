@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import BookList from '../components/BookList';
 import BookOverview from '../components/BookOverview';
 import Register from '../components/Register';
+import Login from '../components/Login';
 import books from '../data-books.json';
 
 
@@ -22,6 +23,7 @@ class App extends Component {
         <BookList
           books={bookList}
           name="Most popular"/>
+          <Login />
       </div>
     );
   }

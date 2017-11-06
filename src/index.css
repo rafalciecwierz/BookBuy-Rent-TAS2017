@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,600|Pacifico');
 body {
+  position: relative;
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
   background-color: #F2F2F2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, input{
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -12,17 +17,20 @@ body {
  */
 
 .nav {
+  z-index: 200;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  background-color: white;
   padding: 20px 10%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  background-color: white;
+  align-items: center;
 }
+
 .nav__links {
   display: flex;
   flex-direction: row;
 }
+
 .nav__utils {
   display: flex;
 }
@@ -30,43 +38,56 @@ body {
 .dropdown {
   display: none;
 }
+
 .dropdown__icon {
-  background-image: url('./assets/img/brand.png');
+  display: block;
   width: 40px;
   height: 40px;
-  display: block;
+  opacity: 0.5;
+  background-image: url('./assets/img/menu.png');
   background-position: center;
   background-size: cover;
-  opacity: 0.5;
 }
+
 .dropdown__utils {
   position: absolute;
-  right: 0;
   z-index: 100;
-  background: #fff;
+  right: 0;
   display: flex;
   flex-direction: column;
-  padding: 3rem 0;
   width: 100%;
-  align-items: center;
   margin-top: 20px;
+  padding: 3rem 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+  opacity: 0;
   border: 1px solid rgba(0, 0, 0, .0975);
+  background: #fff;
+  align-items: center;
 }
+
+.dropdown__utils.utils--visible {
+  pointer-events: all;
+  opacity: 1;
+}
+
 .dropdown .search-box {
   margin: 0;
 }
+
 .dropdown__utils .nav__links {
-  margin: 2rem auto 0 auto;
   flex-direction: column;
+  margin: 2rem auto 0 auto;
   justify-content: center;
 }
+
 .dropdown__utils .nav__links li {
   display: flex;
+  color: #555;
   justify-content: space-around;
   align-items: center;
-  color: #555;
-
 }
+
 @media screen and (max-width: 860px) {
   .nav__utils {
     display: none;
@@ -83,29 +104,30 @@ body {
 
 .brand {
   display: flex;
+  margin-left: 10px;
   align-items: center;
   flex-grow: 1;
-  margin-left: 10px;
 }
 
 .brand__logo {
-  height: 50px;
   width: auto;
+  height: 50px;
 }
 
 .brand__divider {
   height: 30px;
-  border-left: 1px #8440FF solid;
   margin: 0 20px;
+  border-left: 1px #8440FF solid;
 }
 
 .brand__header {
+  display: inline-block;
+  opacity: 0.8;
+  color: #8440FF;
   font-family: 'Pacifico', cursive;
   font-size: 30px;
-  display: inline-block;
-  color: #8440FF;
-  opacity: 0.8;
 }
+
 
 /**
  * SearchBox Component
@@ -113,139 +135,163 @@ body {
 
 .search-box {
   display: flex;
-  align-items: center;
   margin-right: 2rem;
+  align-items: center;
 }
+
 .search-box__input {
-  font-family: 'Open Sans', sans-serif;
+  padding: 0 0.5rem;
+  text-align: center;
   border: solid 1px #dbdbdb;
   background-color: #fafafa;
-  text-align: center;
-  padding: 0 0.5rem;
+  font-family: 'Open Sans', sans-serif;
   line-height: 2rem;
 }
+
 .search-box__input:focus {
   text-align: left;
   background-color: #fff;
 }
+
 .search-box__submit {
+  width: 2rem;
+  padding: 0;
   color: #b3b3b3;
-  font-size: 15px;
-  background-color: #fafafa;
   border: solid 1px #dbdbdb;
   border-left: none;
-  width: 2rem;
+  background-color: #fafafa;
+  font-size: 15px;
   line-height: 2rem;
-  padding: 0;
 }
+
 
 /**
  * NavLink Component
  */
+
 .nav-link {
   margin: 0 0.5rem;
 }
+
 .nav-link__icon {
+  display: block;
   width: 42px;
   height: 42px;
   background-position: center;
   background-size: cover;
-  display: block;
 }
 
 .icon--user {
   background-image: url('./assets/img/user.png');
 }
+
 .icon--cart {
   background-image: url('./assets/img/cart.png');
 }
+
 .icon--wish {
   background-image: url('./assets/img/heart.png');
 }
 
+
 /**
  * Book Component
  */
+
 .book {
-  background-color: #fff;
+  position: relative;
   display: inline-block;
   margin: 1rem;
+  background-color: #fff;
   box-shadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.15);
-  position: relative;
 }
+
 .book__price {
-  background-color: #9C66FF;
-  display: inline-block;
   position: absolute;
   right: 0;
+  display: inline-block;
   width: 2rem;
-  text-align: center;
-  line-height: 2rem;
-  color: white;
   padding: 0.5rem;
+  text-align: center;
+  color: white;
+  background-color: #9C66FF;
+  box-shadow: -2px 2px 8px 1px rgba(0, 0, 0, 0.15);
   font-weight: 600;
-  box-shadow: -2px 2px 8px 1px rgba(0, 0, 0, 0.15)
+  line-height: 2rem;
 }
+
 .book__price:before {
   content: "$";
 }
+
 .book__card {
-  height: 400px;
   display: inline-block;
+  height: 400px;
 }
+
 .book__cover {
-  width: 75%;
-  margin: 10% auto;
-  height: 80%;
   display: block;
+  width: 75%;
+  height: 80%;
+  margin: 10% auto;
   background-position: center;
   background-size: cover;
 }
+
 .book__details {
   width: 75%;
   margin: 0 auto;
+  opacity: 0.5;
   font-size: 1.4rem;
   line-height: 1.8rem;
-  opacity: 0.5;
 }
+
 .book__details p {
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
 .book__details .details--title {
   font-weight: 600;
 }
 
 .book-utils {
   display: flex;
-  justify-content: space-between;
-  padding: 1rem;
   margin-top: 1rem;
+  padding: 1rem;
+  justify-content: space-between;
 }
+
 .book-utils__tag {}
+
 .book-utils__tag::before {
   content: "# "
 }
+
 .book-utils__actions {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .book-utils__icon {
+  display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
   margin-left: 0.3rem;
   background-position: center;
   background-size: cover;
-  display: inline-block;
 }
+
 .book-utils__icon.icon--wish-small {
   background-image: url('./assets/img/heart.png');
 }
+
 .book-utils__icon.icon--buy-small {
   background-image: url('./assets/img/cart.png');
 }
+
 .book-utils__likes {
   margin: 0 0.3rem;
 }
@@ -254,24 +300,241 @@ body {
   width: 80%;
   margin: auto;
 }
+
 @media screen and (max-width: 860px) {
   .book-list {
     width: 100%;
   }
 }
+
 .book-list__cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .book-list__header {
   margin-top: 1rem;
+  color: #777;
   font-size: 30px;
   font-weight: 600;
   line-height: 50px;
-  color: #777;
+}
+
+.book-overview {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.overview__thumbnails .thumb {
+  display: block;
+  width: 600px;
+  height: 900px;
+  background-color: #eee;
+  background-image: url('./assets/img/books/3.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.overview__details {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 800px;
+  padding: 50px;
+  background-color: #fff;
+  overflow-y:auto;
+  overflow-x: hidden;
+}
+
+.overview__details .details__title {
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+
+.overview__details .details__author {
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 2.5rem;
+}
+
+.overview__details .details__author::before {
+  content: "BY ";
+  opacity: 0.8;
+}
+
+.overview__details .details__price {
+  width: 4rem;
+  padding: 0.5rem;
+  text-align: center;
+  color: white;
+  /* TODO: merge price classes */
+  background-color: #9C66FF;
+  box-shadow: -2px 2px 8px 1px rgba(0, 0, 0, 0.15);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem;
+  display: inline-block;
+}
+
+.overview__details .details__price::before {
+  content: "$";
+}
+
+.overview__details .details__action {
+  background: transparent;
+  border: none;
+  display: inline;
+  margin: 0 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.overview__details .details__description {
+  margin: 2rem 0;
+  line-height: 1.58rem;
+}
+
+.overview__details .details__tags {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  opacity: 0.3;
+  font-weight: 600;
+}
+
+.overview__details .details__tags li {
+  margin-right: 1rem;
+}
+
+.overview__details .details__tags li::before {
+  margin-right: 1px;
+  content: "#";
+}
+
+.overview__details .details__comments {
+  margin-top: 2rem;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px #eee solid;
+  padding: 20px 0;
+}
+.comment__avatar {
+  background-color: #ffc666;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.comment__header {
+  font-weight: 600;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+.header__user {
+  display: inline;
+  margin-right: 10px;
+}
+.comment__header span {
+  margin-right: 10px;
+}
+.comment__content {
+  font-size: 0.9rem;
+  line-height: 1rem;
 }
 
 
-/* TODO: searchbox in center */
-/* TODO: New serch icon as background */
+/**
+ * Register Component
+ */
+
+.register {
+  width: 80%;
+  max-width: 900px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem;
+  padding-bottom: 6rem;
+  position: relative;
+}
+.register__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form__header {
+  font-size: 2rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
+}
+.form__label {
+  margin-top: 1rem;
+  opacity: 0.5;
+}
+.form__input {
+  background-color: #fafafa;
+  width: 40%;
+  height: 2rem;
+  padding: 0.5rem 0.8rem;
+  margin: 1rem 0;
+  border: rgba(0, 0, 0, 0.1) 1px solid;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.form__input.input--file {
+  display: none;
+}
+.form__label.label--file {
+  background-color: #ffc666;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  padding: 1rem;
+  width: 7rem;
+  opacity: 1;
+  position: relative;
+  cursor: pointer;
+  margin: 10rem 0 2rem 0;
+}
+.form__label.label--file::before {
+  content: "";
+  position: absolute;
+  top: -8rem;
+  right: 0;
+  width: 100%;
+  height: 8rem;
+  background-image: url('./assets/img/profile.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.form__input.input--submit {
+  position: absolute;
+  bottom: -1rem;
+  width: 100%;
+  border: none;
+  height: 4.5rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.4rem;
+  background-color: #b48ff9;
+}

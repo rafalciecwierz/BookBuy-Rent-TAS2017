@@ -10,21 +10,20 @@ class App extends Component {
   render() {
     const bookList = books.trending;
 
-    return (
-      <div className="App">
-        <Nav />
-        <Register />
-      </div>
-    );
     // return (
     //   <div className="App">
     //     <Nav />
-    //     <BookList
-    //       books={bookList}
-    //       name="Most popular"/>
-    //     <BookOverview />
+    //     <Register />
     //   </div>
     // );
+    return (
+      <div className="App">
+        <Nav />
+        <BookList
+          books={bookList}
+          name="Most popular"/>
+      </div>
+    );
   }
 }
 

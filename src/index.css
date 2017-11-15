@@ -261,16 +261,6 @@ textarea:focus {
 /**
  * Book List view
  */
-
-/* TODO: make it disapear in that view in react component not css */
-.book-list-view .book__price {
-  display: none;
-}
-.book-list-view .book-utils {
-  display: none;
-}
-
-
 .book-list-view .book__card {
   width: 500px;
   height: auto;
@@ -313,6 +303,21 @@ textarea:focus {
 .book-list-view .action__edit-form  .edit-form__stars {
   width: 3rem;
   text-align: center;
+}
+/**
+ * Book Thumbnail view
+ */
+.book-thumbnail {
+  cursor: pointer;
+}
+.book-thumbnail .book__card {
+  width: 200px;
+  height: auto;
+}
+.book-thumbnail .book__cover {
+  height: 200px;
+  width: 140px;
+
 }
 /**
  *  Book Utilities

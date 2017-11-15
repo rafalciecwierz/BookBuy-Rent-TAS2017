@@ -12,7 +12,6 @@ class Book extends Component {
     // TODO: Make new component from it
     // return (
     //   <div className="book book-list-view">
-    //     <h5 className="book__price">{this.props.price}</h5>
     //     <figure className="book__card">
     //       <canvas className="book__cover"
     //               style={coverImg}></canvas>
@@ -36,12 +35,23 @@ class Book extends Component {
     //         </div>
     //       </figcaption>
     //     </figure>
-    //     <BookUtils tag={this.props.tag} likes={this.props.likes}/>
     //   </div>
     // );
 
 
     // Wishlist
+    return (
+      <div className="book book-thumbnail">
+        <figure className="book__card">
+          <canvas className="book__cover"
+                  style={coverImg}></canvas>
+        </figure>
+      </div>
+    );
+
+
+
+    // Default component
     // return (
     //   <div className="book">
     //     <h5 className="book__price">{this.props.price}</h5>
@@ -56,24 +66,6 @@ class Book extends Component {
     //     <BookUtils tag={this.props.tag} likes={this.props.likes}/>
     //   </div>
     // );
-
-
-
-    // Default component
-    return (
-      <div className="book">
-        <h5 className="book__price">{this.props.price}</h5>
-        <figure className="book__card">
-          <canvas className="book__cover"
-                  style={coverImg}></canvas>
-          <figcaption className="book__details">
-            <p className="details--title">{this.props.title}</p>
-            <p>by {this.props.author}</p>
-          </figcaption>
-        </figure>
-        <BookUtils tag={this.props.tag} likes={this.props.likes}/>
-      </div>
-    );
   }
 }
 

@@ -255,6 +255,51 @@ h1, h2, h3, h4, h5, h6, p, input{
 .book__details .details--title {
   font-weight: 600;
 }
+/**
+ * Book List view
+ */
+
+/* TODO: make it disapear in that view in react component not css */
+.book-list-view .book__price {
+  display: none;
+}
+.book-list-view .book-utils {
+  display: none;
+}
+
+
+.book-list-view .book__card {
+  width: 500px;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+}
+.book-list-view .book__details {
+  width: auto;
+  display: inline-block;
+}
+.book-list-view .book__cover {
+  display: inline-block;
+  margin: 0;
+  height: 200px;
+  width: 140px;
+  margin-right: 2rem;
+}
+.book-list-view .details__actions p {
+  overflow: auto;
+  white-space: normal;
+  font-size: 1rem;
+  line-height: 1.58rem;
+}
+.book-list-view .action__edit-button {
+  background-color: #eaeaea;
+  border: 1px solid #aaa;
+  padding: 5px;
+  margin-top: 1rem;
+}
+/**
+ *  Book Utilities
+ */
 
 .book-utils {
   display: flex;
@@ -320,6 +365,7 @@ h1, h2, h3, h4, h5, h6, p, input{
   font-weight: 600;
   line-height: 50px;
 }
+
 
 .book-overview {
   position: fixed;
@@ -559,8 +605,48 @@ h1, h2, h3, h4, h5, h6, p, input{
 }
 .login__form {
   width: 30%;
+  min-width: 600px;
   position: relative;
   background-color: #fff;
   padding: 3rem;
   padding-bottom: 8rem;
+}
+
+
+/**
+ *  User Profile
+ */
+
+.user-profile {
+  margin-top: 3rem;
+}
+.user-profile__header {
+  width: 60%;
+  min-width: 700px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__avatar {
+  background-image: url('./assets/img/profile.png');
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  margin-right: 2rem;
+}
+.header__name {
+  margin-bottom: 1rem;
+  opacity: 0.6;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+.header__description {
+  line-height: 1.5rem;
+  opacity: 0.7;
+}
+.user-profile .book-list__header {
+  text-align: center;
 }

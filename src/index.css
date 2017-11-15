@@ -7,8 +7,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, input{
+h1, h2, h3, h4, h5, h6, p, input, textarea{
   font-family: 'Open Sans', sans-serif;
+}
+textarea:focus {
+  outline: none;
 }
 
 
@@ -275,7 +278,7 @@ h1, h2, h3, h4, h5, h6, p, input{
   display: flex;
 }
 .book-list-view .book__details {
-  width: auto;
+  width: 100%;
   display: inline-block;
 }
 .book-list-view .book__cover {
@@ -285,6 +288,7 @@ h1, h2, h3, h4, h5, h6, p, input{
   width: 140px;
   margin-right: 2rem;
 }
+
 .book-list-view .details__actions p {
   overflow: auto;
   white-space: normal;
@@ -297,6 +301,19 @@ h1, h2, h3, h4, h5, h6, p, input{
   padding: 5px;
   margin-top: 1rem;
 }
+
+.book-list-view .action__edit-form label {
+  display: block;
+  font-size: 1rem;
+}
+.book-list-view .action__edit-form .edit-form__comment {
+  width: 90%;
+  padding: 0.5rem;
+}
+.book-list-view .action__edit-form  .edit-form__stars {
+  width: 3rem;
+  text-align: center;
+}
 /**
  *  Book Utilities
  */
@@ -306,9 +323,11 @@ h1, h2, h3, h4, h5, h6, p, input{
   margin-top: 1rem;
   padding: 1rem;
   justify-content: space-between;
+  color: rgba(0,0,0,0.6);
 }
 
-.book-utils__tag {}
+.book-utils__tag {
+}
 
 .book-utils__tag::before {
   content: "# "

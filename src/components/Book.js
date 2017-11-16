@@ -40,32 +40,32 @@ class Book extends Component {
 
 
     // Wishlist
-    return (
-      <div className="book book-thumbnail">
-        <figure className="book__card">
-          <canvas className="book__cover"
-                  style={coverImg}></canvas>
-        </figure>
-      </div>
-    );
+    // return (
+    //   <div className="book book-thumbnail">
+    //     <figure className="book__card">
+    //       <canvas className="book__cover"
+    //               style={coverImg}></canvas>
+    //     </figure>
+    //   </div>
+    // );
 
 
 
     // Default component
-    // return (
-    //   <div className="book">
-    //     <h5 className="book__price">{this.props.price}</h5>
-    //     <figure className="book__card">
-    //       <canvas className="book__cover"
-    //               style={coverImg}></canvas>
-    //       <figcaption className="book__details">
-    //         <p className="details--title">{this.props.title}</p>
-    //         <p>by {this.props.author}</p>
-    //       </figcaption>
-    //     </figure>
-    //     <BookUtils tag={this.props.tag} likes={this.props.likes}/>
-    //   </div>
-    // );
+    return (
+      <div className="book">
+        <h5 className="book__price">{this.props.price}</h5>
+        <figure className="book__card">
+          <canvas className="book__cover"
+                  style={coverImg}></canvas>
+          <figcaption className="book__details">
+            <p className="details--title">{this.props.title}</p>
+            <p>by {this.props.author}</p>
+          </figcaption>
+        </figure>
+        <BookUtils tag={this.props.tag} likes={this.props.likes}/>
+      </div>
+    );
   }
 }
 

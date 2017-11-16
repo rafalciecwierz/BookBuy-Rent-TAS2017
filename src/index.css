@@ -32,6 +32,25 @@ textarea:focus {
 .nav__links {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+.link--simple {
+  margin: 0 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  background-color: #ffc666;
+  padding: 8px 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+.link--attention {
+  background-color: #8440FF;
+}
+.link--simple:hover {
+  opacity: 1;
 }
 
 .nav__utils {

@@ -7,8 +7,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, input{
+h1, h2, h3, h4, h5, h6, p, input, textarea{
   font-family: 'Open Sans', sans-serif;
+}
+textarea:focus {
+  outline: none;
 }
 
 
@@ -255,15 +258,81 @@ h1, h2, h3, h4, h5, h6, p, input{
 .book__details .details--title {
   font-weight: 600;
 }
+/**
+ * Book List view
+ */
+.book-list-view .book__card {
+  width: 500px;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+}
+.book-list-view .book__details {
+  width: 100%;
+  display: inline-block;
+}
+.book-list-view .book__cover {
+  display: inline-block;
+  margin: 0;
+  height: 200px;
+  width: 140px;
+  margin-right: 2rem;
+}
+
+.book-list-view .details__actions p {
+  overflow: auto;
+  white-space: normal;
+  font-size: 1rem;
+  line-height: 1.58rem;
+}
+.book-list-view .action__edit-button {
+  background-color: #eaeaea;
+  border: 1px solid #aaa;
+  padding: 5px;
+  margin-top: 1rem;
+}
+
+.book-list-view .action__edit-form label {
+  display: block;
+  font-size: 1rem;
+}
+.book-list-view .action__edit-form .edit-form__comment {
+  width: 90%;
+  padding: 0.5rem;
+}
+.book-list-view .action__edit-form  .edit-form__stars {
+  width: 3rem;
+  text-align: center;
+}
+/**
+ * Book Thumbnail view
+ */
+.book-thumbnail {
+  cursor: pointer;
+}
+.book-thumbnail .book__card {
+  width: 200px;
+  height: auto;
+}
+.book-thumbnail .book__cover {
+  height: 200px;
+  width: 140px;
+
+}
+/**
+ *  Book Utilities
+ */
 
 .book-utils {
   display: flex;
   margin-top: 1rem;
   padding: 1rem;
   justify-content: space-between;
+  color: rgba(0,0,0,0.6);
 }
 
-.book-utils__tag {}
+.book-utils__tag {
+}
 
 .book-utils__tag::before {
   content: "# "
@@ -320,6 +389,7 @@ h1, h2, h3, h4, h5, h6, p, input{
   font-weight: 600;
   line-height: 50px;
 }
+
 
 .book-overview {
   position: fixed;
@@ -475,7 +545,8 @@ h1, h2, h3, h4, h5, h6, p, input{
   padding-bottom: 6rem;
   position: relative;
 }
-.register__form {
+.register__form,
+.login__form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -537,4 +608,69 @@ h1, h2, h3, h4, h5, h6, p, input{
   font-weight: 600;
   font-size: 1.4rem;
   background-color: #b48ff9;
+  cursor: pointer;
+}
+.form__text {
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+.form__text a {
+  color: #9C66FF;
+}
+.login {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+.login__form {
+  width: 30%;
+  min-width: 600px;
+  position: relative;
+  background-color: #fff;
+  padding: 3rem;
+  padding-bottom: 8rem;
+}
+
+
+/**
+ *  User Profile
+ */
+
+.user-profile {
+  margin-top: 3rem;
+}
+.user-profile__header {
+  width: 60%;
+  min-width: 700px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header__avatar {
+  background-image: url('./assets/img/profile.png');
+  width: 200px;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  margin-right: 2rem;
+}
+.header__name {
+  margin-bottom: 1rem;
+  opacity: 0.6;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+}
+.header__description {
+  line-height: 1.5rem;
+  opacity: 0.7;
+}
+.user-profile .book-list__header {
+  text-align: center;
 }

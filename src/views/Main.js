@@ -5,6 +5,7 @@ import { ModalContainer, ModalRoute } from 'react-router-modal';
 import Home from './Home';
 import UserPage from './UserPage';
 import RegisterPage from './RegisterPage';
+import BookPage from './BookPage';
 import Login from '../components/Actions/Login';
 
 class Main extends Component {
@@ -14,8 +15,10 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/user' component={UserPage}/>
+          <Route path='/book' component={BookPage}/>
           <Route exact path='/register' component={RegisterPage}/>
           <Route exact path='/login' component={Login}/>
+
         </Switch>
       </main>
     );

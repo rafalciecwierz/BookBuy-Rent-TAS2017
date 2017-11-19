@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
-import Book from "./Book"
+import axios from 'axios';
+import Book from "./Book";
 
 class BookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+    this.loadBooksFromServer = this.loadBooksFromServer.bind(this);
+  }
+
+  loadBooksFromServer() {
+    axios.get(this.props.url)
+      .then(res => {
+        this.setState({
+          data: res.data
+        });
+        console.log(this.state.data);
+      })
+  }
+  componentDidMount() {
+    this.loadBooksFromServer();
+  }
   render() {
-    const books = this.props.books;
-    const bookList = books.map((book, index) =>
+    const bookList = this.state.data.map((book, index) =>
       <li key={index}>
         <Book
           title={book.title}

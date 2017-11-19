@@ -65,6 +65,7 @@ class Book extends Component {
         </figure>
         <BookUtils tag={this.props.tag} likes={this.props.likes}/>
       </div>
+
     );
   }
 }

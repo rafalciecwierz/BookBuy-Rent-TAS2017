@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BookList from '../components/Books/BookList';
+import BookOverview from '../components/Books/BookOverview';
 
 import books from '../data-books.json';
 
@@ -8,9 +8,7 @@ class Home extends Component {
     const bookList = books.trending;
 
     return (
-      <BookList
-        name="Most popular"
-        url='http://localhost:3001/api/books'/>
+      <BookOverview/>
 
     );
   }

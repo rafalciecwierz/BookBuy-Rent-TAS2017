@@ -4,7 +4,7 @@ import BookUtils from './BookUtils';
 class Book extends Component {
   render() {
     const url = 3
-    const coverUrl = require("../assets/img/books/"+this.props.cover+".jpg");
+    const coverUrl = require("../../assets/img/books/"+this.props.cover+".jpg");
     const coverImg = {
       backgroundImage: 'url("'+coverUrl+'")'
     }

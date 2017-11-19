@@ -2,7 +2,6 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 require("dotenv").config();
-// var Comment = require('./model/books');
 
 var app = express();
 var router = express.Router();

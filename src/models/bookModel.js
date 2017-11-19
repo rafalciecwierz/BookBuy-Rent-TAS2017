@@ -5,12 +5,13 @@ var BookSchema = new Schema({
 	title: {type: String, required: true},
 	//zdjecie okladki????????
 	cover: {type: String, default: null},
-	author: {type: Schema.ObjectId, ref: "Author", required: true},
+	author: {type: String, required: true},
 	summary: {type: String, default: null},
 	price: {type: Number, required: true},
-	tag: [{type: Schema.ObjectId, ref: "Tag", required: true}],
+	tag: {type: String, required: true},
 	likes : {type: Number, default: 0},
-	count: {type: Number, required: true} 
+	count: {type: Number, required: true},
+	description: {type: String, required: true}
 });
 
 
@@ -51,13 +52,14 @@ module.exports.updateBook = function(id, book, options, callback) {
 	var update = {
 		title: Book.title,
 		//zdjecie okladki????????
-		cover: Book.cover, 
+		cover: Book.cover,
 		author: Book.author,
 		summary: Book.summary,
 		price: Book.price,
-		tag: Book.tag, 
+		tag: Book.tag,
 		likes: Book.likes,
-		count: Book.count
+		count: Book.count,
+		description: Book.description
 	};
 	Book.findOneAndUpdate(query, update, options, callback);
 };

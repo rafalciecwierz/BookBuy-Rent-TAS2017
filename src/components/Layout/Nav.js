@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import Brand from './Brand';
 import SearchBox from './SearchBox';
 import NavLink from './NavLink';
@@ -15,8 +16,12 @@ class Nav extends Component {
         <div className="nav__utils">
           <SearchBox />
           <div className="nav__links">
-            <a className="link--simple link--attention" href="#">Sign up</a>
-            <a className="link--simple" href="#">Log in</a>
+            <span className="link--simple link--attention">
+              <Link to='/register'>Sign up</Link>
+            </span>
+            <span className="link--simple">
+              <Link to='/login'>Log in</Link>
+            </span>
           </div>
         </div>
         <DropdownMenu />

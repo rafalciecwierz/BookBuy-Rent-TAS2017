@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Book from "./Book";
+import Wishlist from "./Wishlist";
+import BookListItem from "./BookListItem";
 
 class BookList extends Component {
   constructor(props) {
@@ -17,7 +20,6 @@ class BookList extends Component {
         this.setState({
           data: res.data
         });
-        console.log(this.state.data);
       })
   }
   componentDidMount() {
@@ -26,13 +28,15 @@ class BookList extends Component {
   render() {
     const bookList = this.state.data.map((book, index) =>
       <li key={index}>
-        <Book
-          title={book.title}
-          cover={book.cover}
-          author={book.author}
-          price={book.price}
-          tag={book.tag}
-          likes={book.likes}/>
+        <Link to={{pathname: `/books/${book._id}`}}>
+          <BookListItem
+            title={book.title}
+            cover={book.cover}
+            author={book.author}
+            price={book.price}
+            tag={book.tag}
+            likes={book.likes}/>
+        </Link>
       </li>
     );
     return (

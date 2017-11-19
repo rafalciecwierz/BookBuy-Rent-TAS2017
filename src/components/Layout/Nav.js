@@ -7,21 +7,22 @@ import DropdownMenu from './DropdownMenu';
 
 class Nav extends Component {
   render() {
-    if(window.innerWidth <= 860) {
-      console.log("obj");
-    }
     return (
       <nav className="nav">
         <Brand />
         <div className="nav__utils">
           <SearchBox />
           <div className="nav__links">
+          <Link to='/register'>
             <span className="link--simple link--attention">
-              <Link to='/register'>Sign up</Link>
+              Sign up
             </span>
+            </Link>
+            <Link to='/login'>
             <span className="link--simple">
-              <Link to='/login'>Log in</Link>
+              Log in
             </span>
+            </Link>
           </div>
         </div>
         <DropdownMenu />

@@ -8,8 +8,8 @@ var async = require('async');
 // Display list of all books
 exports.book_list = function(req, res, next) {
     Book.find({})
-    //.populate('author')
-	//.populate('tag')
+    .populate('author')
+	.populate('tag')
     .exec(function (err, list_books) {
       if (err) { return next(err); }
 	res.json(list_books);
@@ -34,7 +34,7 @@ exports.book_detail = function(req, res, next) {
 	}
 	}, function(err, results) {
     if (err) { return next(err); }
-	res.json(results);
+	res.json(results.book);
   });
     
 };
@@ -51,9 +51,10 @@ exports.book_create = function(req, res,next) {
 				 var book = new Book({
 					title: req.body.title, 
 					author: found_author._id, 
-					summary: req.body.summary,
+					description: req.body.description,
 					cover: req.body.cover,
 					price: req.body.price,
+					likes: req.body.likes,
 					count: req.body.count,
 					tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag
 					 }); 
@@ -74,9 +75,10 @@ exports.book_create = function(req, res,next) {
 					   var book = new Book({
 						title: req.body.title, 
 						author: added._id, 
-						summary: req.body.summary,
+						description: req.body.description,
 						cover: req.body.cover,
 						price: req.body.price,
+						likes: req.body.likes,
 						count: req.body.count,
 						tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag
 						 }); 
@@ -132,9 +134,10 @@ exports.book_update = function(req, res, next) {
 				 var book = new Book({
 					title: req.body.title, 
 					author: found_author._id, 
-					summary: req.body.summary,
+					description: req.body.description,
 					cover: req.body.cover,
 					price: req.body.price,
+					likes: req.body.likes,
 					count: req.body.count,
 					tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag,
 					_id:req.params.id
@@ -154,9 +157,10 @@ exports.book_update = function(req, res, next) {
 					   var book = new Book({
 						title: req.body.title, 
 						author: added._id, 
-						summary: req.body.summary,
+						description: req.body.description,
 						cover: req.body.cover,
 						price: req.body.price,
+						likes: req.body.likes,
 						count: req.body.count,
 						tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag,
 						_id:req.params.id

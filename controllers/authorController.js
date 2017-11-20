@@ -66,7 +66,7 @@ exports.author_delete = function(req, res, next) {
             Author.findById(req.params.id.trim()).exec(callback);
         },
         authors_books: function(callback) {
-          Book.find({ 'author': req.params.id },'title summary').exec(callback);
+          Book.find({ 'author': req.params.id },'title description').exec(callback);
         },
     }, function(err, results) {
         if (err) { return next(err); }

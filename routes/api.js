@@ -6,7 +6,7 @@ var book_controller = require('../controllers/bookController');
 var author_controller = require('../controllers/authorController');
 var tag_controller = require('../controllers/tagController');
 var comment_controller = require('../controllers/commentController');
-var search_controller = require('../controllers/search');
+var action_controller = require('../controllers/actionController');
 
 /// BOOK ROUTES ///
 
@@ -61,9 +61,13 @@ router.delete('/tags/:id', tag_controller.tag_delete);
 // update Tag
 router.put('/tags/:id', tag_controller.tag_update);
 
-/// SEARCH ///
+/// ACTION ROUTES ///
 
-router.post('/search',search_controller.search);
+router.post('/search',action_controller.search);
+
+router.post('/books/:id/wishlist',action_controller.addToWishlist);
+
+router.post('/books/:id/cart',action_controller.addToCart);
 
 /// COMMENT ROUTES ///
 

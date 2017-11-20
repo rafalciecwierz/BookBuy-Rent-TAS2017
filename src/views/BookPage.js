@@ -14,6 +14,7 @@ class BookPage extends Component {
     this.loadBookFromServer = this.loadBookFromServer.bind(this);
   }
   loadBookFromServer() {
+	  console.log(this.id);
     axios.get(`http://localhost:3001/api/books/${this.id}`)
     .then(res => {
       this.setState({
@@ -31,9 +32,9 @@ class BookPage extends Component {
       <BookOverview
       title={book.title}
       cover={book.cover}
-      author={book.author}
+      author={book.author.name}
       price={book.price}
-      tag={book.tag}
+      tag={book.tag[0].name}
       likes={book.likes}
       description={book.description}/>
 

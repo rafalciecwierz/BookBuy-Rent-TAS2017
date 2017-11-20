@@ -2,7 +2,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 require("dotenv").config();
-// var Comment = require('./model/books');
+
 var api = require('./routes/api');
 
 var app = express();
@@ -10,7 +10,6 @@ var app = express();
 
 var port = process.env.API_PORT || 3001;
 
-//var Book = require("./src/models/bookModel");
 mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds163595.mlab.com:63595/book-shop");
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,8 +24,11 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use('/api',api);
+router.get("/", function(req, res) {
+	res.json({message: "API Initialized!"});
+});
 
+app.use('/api',api);
 
 app.listen(port, function() {
 	console.log(`api running on port ${port}`);

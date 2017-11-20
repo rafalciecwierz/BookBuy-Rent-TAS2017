@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BookList from '../components/BookList';
-import books from '../data-books.json';
+import BookList from '../Books/BookList';
+import books from '../../data-books.json';
 
 class UserProfile extends Component {
   render() {

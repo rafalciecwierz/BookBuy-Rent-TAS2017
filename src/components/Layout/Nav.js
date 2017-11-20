@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import Brand from './Brand';
 import SearchBox from './SearchBox';
 import NavLink from './NavLink';
@@ -6,17 +7,22 @@ import DropdownMenu from './DropdownMenu';
 
 class Nav extends Component {
   render() {
-    if(window.innerWidth <= 860) {
-      console.log("obj");
-    }
     return (
       <nav className="nav">
         <Brand />
         <div className="nav__utils">
           <SearchBox />
           <div className="nav__links">
-            <a className="link--simple link--attention" href="#">Sign up</a>
-            <a className="link--simple" href="#">Log in</a>
+          <Link to='/register'>
+            <span className="link--simple link--attention">
+              Sign up
+            </span>
+            </Link>
+            <Link to='/login'>
+            <span className="link--simple">
+              Log in
+            </span>
+            </Link>
           </div>
         </div>
         <DropdownMenu />

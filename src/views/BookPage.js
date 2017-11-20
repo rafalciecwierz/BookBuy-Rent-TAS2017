@@ -27,7 +27,6 @@ class BookPage extends Component {
   }
   render() {
     const book = this.state.data;
-    console.log(book);
     return (
       <BookOverview
       title={book.title}

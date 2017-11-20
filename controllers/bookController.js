@@ -144,7 +144,7 @@ exports.book_update = function(req, res, next) {
 					 }); 
 				Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
 					if (err) { return next(err); }
-					res.json(thebook);
+					res.json(book);
 				});
 			}
 			 else {
@@ -168,7 +168,7 @@ exports.book_update = function(req, res, next) {
 				Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
 					if (err) { return next(err); }
 					//successful - redirect to book detail page.
-					res.json(thebook);
+					res.json(book);
 				});
 				});
 			 }

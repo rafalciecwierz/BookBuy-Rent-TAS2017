@@ -6,14 +6,16 @@ var AuthorSchema = new Schema(
   {
     first_name: {type: String, required: true},
     family_name: {type: String, required: true}
-  }
-);
+  },{
+		toObject: { virtuals: true },
+		toJSON: { virtuals: true }
+    });
 
 // Virtual for author's full name
 AuthorSchema
 .virtual('name')
 .get(function () {
-return this.family_name + ', ' + this.first_name; })
+return this.first_name + ' ' + this.family_name; })
 .set(function(value) {
 	var split = value.split(' ');
     this.first_name = split[0];

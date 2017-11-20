@@ -1,88 +1,33 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
-var flash = require("connect-flash");
-var session = require("express-session");
-require('dotenv').config()
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-var catalog = require('./routes/catalog'); 
+var express = require("express");
+var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+require("dotenv").config();
+// var Comment = require('./model/books');
+var api = require('./routes/api');
 
 var app = express();
+//var router = express.Router();
 
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@ds163595.mlab.com:63595/book-shop';
-mongoose.connect(mongoDB, {
-  useMongoClient: true
-});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var port = process.env.API_PORT || 3001;
 
-// view (template) engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//var Book = require("./src/models/bookModel");
+mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds163595.mlab.com:63595/book-shop");
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-
-// Express Session
-app.use(session({
-	secret: "secret",
-	saveUninitialized: true,
-	resave: true
-}));
-
-// Passport init
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-// Connect Flash
-app.use(flash());
-
-// Global Vars
-app.use(function (req, res, next) {
-	res.locals.success_msg = req.flash("success_msg");
-	res.locals.error_msg = req.flash("error_msg");
-	res.locals.error = req.flash("error");
-	res.locals.user = req.user || null;
+app.use(function(req, res, next) {
+	res.setHeader("Access-Control-Allow-Origin", " * ");
+	res.setHeader("Access-Control-Allow-Credentials", "true");
+	res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
+	res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+	res.setHeader("Cache-Control", "no - cache");
 	next();
 });
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/catalog', catalog);
+app.use('/api',api);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+
+app.listen(port, function() {
+	console.log(`api running on port ${port}`);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;

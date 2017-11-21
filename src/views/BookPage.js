@@ -31,9 +31,9 @@ class BookPage extends Component {
       <BookOverview
       title={book.title}
       cover={book.cover}
-      author={book.author.name}
+      author={book.author}
       price={book.price}
-      tag={book.tag[0].name}
+      tag={book.tag}
       likes={book.likes}
       description={book.description}/>
 

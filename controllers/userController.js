@@ -1,58 +1,28 @@
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+//var passport = require("passport");
+//var LocalStrategy = require("passport-local").Strategy;
 var User = require("../models/userModel");
 
-// Register
-exports.user_register_get = function(req, res, next) {
-	res.render("user_register", {title: "Register"});
+exports.user_wishlist = function(req, res, next) {
+	res.json({message: "Not implemented - user wishlist!"});
+};
+
+exports.user_cart = function(req, res, next) {
+	res.json({message: "Not implemented - user cart!"});
 };
 
 // Register User
-exports.user_register_post = function(req, res, next) {
-	var name = req.body.name;
-	var email = req.body.email;
-	var username = req.body.username;
-	var password = req.body.password;
-	var password2 = req.body.password2;
-
-
-	// Walidacja
-	req.checkBody("name", "Name is required").notEmpty();
-	req.checkBody("email", "Email is required").notEmpty();
-	req.checkBody("email", "Email is not valid").isEmail();
-	req.checkBody("username", "Username is required").notEmpty();
-	req.checkBody("password", "Password is required").notEmpty();
-	req.checkBody("password2", "Passwords do not match").equals(req.body.password);
-	
-	var user = ({
-			name: name,
-			email: email,
-			username: username
-		});
-	var errors = req.validationErrors();
-
-	if(errors){
-		res.render("user_register",{
-			title: "Register", errors:errors, user: user
-		});
-	} else {
+exports.user_register = function(req, res, next) {
 		var newUser = new User({
-			name: name,
-			email: email,
-			username: username,
-			password: password
+			email: req.body.email,
+			username: req.body.username,
+			password: req.body.password
 		});
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			console.log(user);
+			res.json(user);
 		});
-
-		//req.flash("success_msg", "You are registered and can now login");
-
-		res.redirect("/users/login");
-	}
 };
-
+/*
 passport.use(new LocalStrategy(
 	function(username, password, done) {
 		User.getUserByUsername(username, function(err, user){
@@ -100,3 +70,4 @@ exports.user_logout_get = function(req,res,next) {
 	//req.flash("success_msg", "You are logged out");
 	res.redirect("/users/login");
 };
+*/

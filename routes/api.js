@@ -7,6 +7,7 @@ var author_controller = require('../controllers/authorController');
 var tag_controller = require('../controllers/tagController');
 var comment_controller = require('../controllers/commentController');
 var action_controller = require('../controllers/actionController');
+var user_controller = require('../controllers/userController');
 
 /// BOOK ROUTES ///
 
@@ -31,7 +32,7 @@ router.put('/books/:id', book_controller.book_update);
 /* request for list of all Authors. */
 router.get('/authors', author_controller.author_list);
 
-/* request for one Author. */
+/* request for one Author and books. */
 router.get('/authors/:id', author_controller.author_detail);
 
 /* creating Author. */
@@ -40,13 +41,13 @@ router.post('/authors', author_controller.author_create);
 /* delete Author. */
 router.delete('/authors/:id', author_controller.author_delete);
 
-// update Author
+// update Author //
 router.put('/authors/:id', author_controller.author_update);
 
 
 /// TAG ROUTES ///
 
-/* GET request for one Tag. */
+/* GET Tag and books. */
 router.get('/tags/:id', tag_controller.tag_detail);
 
 /* GET request for list of all Tag. */
@@ -61,29 +62,58 @@ router.delete('/tags/:id', tag_controller.tag_delete);
 // update Tag
 router.put('/tags/:id', tag_controller.tag_update);
 
-/// ACTION ROUTES ///
-
-router.post('/search',action_controller.search);
-
-router.post('/books/:id/wishlist',action_controller.addToWishlist);
-
-router.post('/books/:id/cart',action_controller.addToCart);
-
 /// COMMENT ROUTES ///
 
-/* GET request for creating a Comment. NOTE This must come before routes that display Comment (uses id) */
-router.get('/book/:id/comment/create', comment_controller.comment_create_get);
-
 /* POST request for creating Comment. */
-router.post('/book/:id/comment/create', comment_controller.comment_create_post);
+router.post('/books/:id/comments', comment_controller.comment_create);
 
-/* GET request to delete Comment. */
-router.get('/comment/:id/delete', comment_controller.comment_delete_get);
+/* get book Comments. */
+router.get('/books/:id/comments', comment_controller.comment_detail);
 
-// POST request to delete Comment
-router.post('/comment/:id/delete', comment_controller.comment_delete_post);
+/* delete Comment. */
+router.delete('/comments/:id', comment_controller.comment_delete);
 
-/* GET request for one Comment. */
-router.get('/comment/:id', comment_controller.comment_detail);
+/* update Comment. */
+router.put('/comments/:id', comment_controller.comment_update);
+
+/// ACTION ROUTES ///
+
+// SEARCH book/author/tag //
+router.post('/search',action_controller.search);
+
+// Add Book to User wishlist //
+/* NOT WORKING */
+router.post('/books/:id/wishlist',action_controller.addToWishlist);
+
+//Add Book to User cart //
+/* NOT WORKING */
+router.post('/books/:id/cart',action_controller.addToCart);
+
+//Get books bought by User //
+/* NOT WORKING */
+router.get('/users/bought',action_controller.user_books);
+
+/// USER ROUTES ///
+
+// Register User //
+router.post("/users", user_controller.user_register);
+
+// GET User wishlist //
+/* NOT WORKING */
+router.get("/users/wishlist",user_controller.user_wishlist);
+
+//GET User cart //
+/* NOT WORKING */
+router.get("/users/cart",user_controller.user_cart);
+
+/*
+// Login User GET
+router.get("/login", user_controller.user_login_get);
+
+//Login User POST
+router.post("/login", user_controller.user_login_post);
+
+router.get("/logout", user_controller.user_logout_get);
+*/
 
 module.exports = router;

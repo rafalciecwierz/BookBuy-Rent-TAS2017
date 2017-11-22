@@ -7,74 +7,75 @@ var async = require('async');
 
 
 exports.search = function(req, res, next) {
-	async.parallel({
-    
+	var search = req.body.search.toLowerCase();
+	console.log(search);
+	async.series({	
 	books: function(callback) {
-      Book.find().regex('title', req.body.search)
-		.populate('tag')
-        .populate('author')
-        .exec(callback);
+	  Book.aggregate([{$project: {newTitle: {$toLower: '$title'}}},{$match: {newTitle : {$regex : search }}}])
+		.exec(callback);
     },
 	authors : function(callback) {
-      Author.find({})
-        .exec(callback);
+		Author.aggregate([{$project: {name: {$toLower: {$concat: ["$first_name"," ","$family_name"]}}}}, {$match: {name : {$regex : search}}}])
+		.exec(callback);
     },
 	tags: function(callback) {
-		Tag.find().regex('name',req.body.search.toLowerCase())
+		Tag.aggregate([{$project: {newName: {$toLower: '$name'}}},{$match: {newName : {$regex : search }}}])
 		.exec(callback);
 	},
 	}, function(err, results) {
+		console.log(results);
 		if (err) { return next(err); }
-			res.json(results);
-/*
-			function asyncFunc1(err,callback) {
-				if (err) { return next(err); }
-				var book_list = [];
-				if(results.books) {
-					for(i = 0; i < results.books.length; i++){
-						book_list.push(results.books[i]);
+			async.parallel({				
+				idsB : function (callback) {
+					if(results.books) {
+						var tmp = results.books.map(function (obj){ return mongoose.Types.ObjectId(obj._id)});
+						callback(null,tmp);
 					}
+					else 
+						callback(err);
+				},
+				idsA : function (callback) {
+					if(results.authors) {
+						var tmp = results.authors.map(function (obj){ return mongoose.Types.ObjectId(obj._id)});
+						callback(null,tmp);
+					}
+					else 
+						callback(err);
+				},
+				idsT : function (callback) {
+					if(results.tags) {
+						callback(null,results.tags.map(function (obj){ return mongoose.Types.ObjectId(obj._id)}));
+					}
+					else 
+						callback(err);
 				}
-				if(results.tags) {
-					for(i = 0; i < results.tags.length; i++){
-						Book.find().byTagId(results.tags[i]._id)
+			}, function(err, results2) {
+				if (err) { return next(err); }
+					async.series({	
+						books1 : function (callback) {
+							Book.find({ _id : {$in : results2.idsB}})
 							.populate('tag')
 							.populate('author')
-							.exec(function(err,found_books) {
-								//console.log(found_books);
-								for(j = 0; j <found_books.length; j++){
-									book_list.push(found_books[j]);
-								}
-						});
-					}
-				}
-				if(results.authors) {
-					for(i = 0;i  <results.authors.length; i++){
-						var name = results.authors[i].name.toLowerCase();
-						if (name.indexOf(req.body.search.toLowerCase()) > -1)
-							Book.find().byAuthorId(results.authors[i]._id)
-								.populate('tag')
-								.populate('author')
-								.exec(function(err,found_books2) {
-								//console.log(found_books2);
-								for(j = 0; j <found_books2.length; j++){
-									book_list.push(found_books2[j]);
-								}
-						});
-					}
-				}
-				callback(null, book_list);
-			}
-			
-			function asyncFunc2(function(err,data){
-				if (err) { return next(err); }
-					console.log(data);
-					res.json(data);
-			})
-			{};
-			asyncFunc1().then(asyncFunc2);
-*/
-  });	
+							.exec(callback);
+						},
+						books2 : function(callback) {
+							Book.find({ author: {$in : results2.idsA}})
+							.populate('tag')
+							.populate('author')
+							.exec(callback);
+						},
+						books3: function(callback) {
+							Book.find({ tag: {$in : results2.idsT}})
+							.populate('tag')
+							.populate('author')
+							.exec(callback);
+						},
+						}, function(err, results3) {
+							console.log(results3);
+							res.json(results3);
+					});	
+			});	
+	});	
 };
 
 exports.user_books = function(req, res, next) {

@@ -721,6 +721,10 @@ textarea:focus {
 .admin__actions .input--textarea {
   height: 5rem;
 }
+.admin__actions .input--select {
+  height: 3rem;
+  font-family: inherit;
+}
 .admin__actions .from__input {
   width: 80%;
 }

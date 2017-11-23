@@ -5,30 +5,35 @@ class AdminBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Magic of Reality',
-      first_name: 'Richard',
-      family_name: 'Dawkins',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      cover: '14',
-      price: '11',
-      count: '10',
-      tag: 'science'
+      data: {
+        title: '',
+        first_name: '',
+        family_name: '',
+        description: '',
+        cover: '',
+        price: '',
+        count: '',
+        tag: ''
+      },
+      tags: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loadTagsFromServer = this.loadTagsFromServer.bind(this);
   }
 
   handleChange(event) {
+    let data = this.state.data;
     let name = event.target.name
-    this.setState({[name]: event.target.value});
+    data[name] = event.target.value;
+    this.setState({data: data});
   }
 
   handleSubmit(event) {
-    console.log(this.state);
-    axios.post('http://localhost:3001/api/books', this.state)
+    axios.post('http://localhost:3001/api/books', this.state.data)
     .then(function (response) {
-      console.log(response);
+      // console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -36,7 +41,23 @@ class AdminBoard extends Component {
     event.preventDefault();
   }
 
+  loadTagsFromServer() {
+    axios.get("http://localhost:3001/api/tags")
+      .then(res => {
+        this.setState({
+          tags: res.data
+        });
+      })
+  }
+
+  componentDidMount() {
+    this.loadTagsFromServer();
+  }
+
   render() {
+    const tags = this.state.tags.map((el, index) =>
+                 <option value={el._id}>{el.name}</option>
+               )
     return (
       <div className="admin">
         <h1 className="admin__header">Admin board</h1>
@@ -49,7 +70,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="title">Title</label>
             <input className="form__input"
-                   value={this.state.title}
+                   value={this.state.data.title}
                    onChange={this.handleChange}
                    id="title"
                    name="title"
@@ -58,7 +79,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="first_name">Author first name</label>
             <input className="form__input"
-                   value={this.state.first_name}
+                   value={this.state.data.first_name}
                    onChange={this.handleChange}
                    id="first_name"
                    name="first_name"
@@ -67,7 +88,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="family_name">Author family name</label>
             <input className="form__input"
-                   value={this.state.family_name}
+                   value={this.state.data.family_name}
                    onChange={this.handleChange}
                    id="family_name"
                    name="family_name"
@@ -76,7 +97,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="description">Description</label>
             <textarea className="form__input input--textarea"
-                   value={this.state.description}
+                   value={this.state.data.description}
                    onChange={this.handleChange}
                    id="description"
                    name="description"
@@ -84,7 +105,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="price">Price</label>
             <input className="form__input"
-                   value={this.state.price}
+                   value={this.state.data.price}
                    onChange={this.handleChange}
                    id="price"
                    name="price"
@@ -93,7 +114,7 @@ class AdminBoard extends Component {
 
             <label className="form__label" for="count">Amount</label>
             <input className="form__input"
-                   value={this.state.count}
+                   value={this.state.data.count}
                    onChange={this.handleChange}
                    id="count"
                    name="count"
@@ -101,17 +122,18 @@ class AdminBoard extends Component {
                    required></input>
 
             <label className="form__label" for="tag">Tag</label>
-            <input className="form__input"
-                   value={this.state.tag}
+            <select className="form__input input--select"
+                   value={this.state.data.tag}
                    onChange={this.handleChange}
                    id="tag"
                    name="tag"
-                   type="text"
-                   required></input>
+                   required>
+                   {tags}
+            </select>
 
             <label className="form__label" for="cover">Cover</label>
             <input className="form__input"
-                   value={this.state.cover}
+                   value={this.state.data.cover}
                    onChange={this.handleChange}
                    id="cover"
                    name="cover"

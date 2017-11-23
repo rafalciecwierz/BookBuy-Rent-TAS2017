@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class AdminBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      first_name: '',
-      family_name: '',
-      description: '',
-      cover: '',
-      price: '',
-      count: '',
-      tag: ''
+      title: 'Magic of Reality',
+      first_name: 'Richard',
+      family_name: 'Dawkins',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      cover: '14',
+      price: '11',
+      count: '10',
+      tag: 'science'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,13 +20,19 @@ class AdminBoard extends Component {
   }
 
   handleChange(event) {
-    console.log(event.target.name);
     let name = event.target.name
     this.setState({[name]: event.target.value});
   }
 
   handleSubmit(event) {
     console.log(this.state);
+    axios.post('http://localhost:3001/api/books', this.state)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     event.preventDefault();
   }
 
@@ -46,7 +53,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="title"
                    name="title"
-                   type="text"></input>
+                   type="text"
+                   required></input>
 
             <label className="form__label" for="first_name">Author first name</label>
             <input className="form__input"
@@ -54,7 +62,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="first_name"
                    name="first_name"
-                   type="text"></input>
+                   type="text"
+                   required></input>
 
             <label className="form__label" for="family_name">Author family name</label>
             <input className="form__input"
@@ -62,15 +71,16 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="family_name"
                    name="family_name"
-                   type="text"></input>
+                   type="text"
+                   required></input>
 
             <label className="form__label" for="description">Description</label>
-            <input className="form__input"
+            <textarea className="form__input input--textarea"
                    value={this.state.description}
                    onChange={this.handleChange}
                    id="description"
                    name="description"
-                   type="text"></input>
+                   type="text"></textarea>
 
             <label className="form__label" for="price">Price</label>
             <input className="form__input"
@@ -78,7 +88,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="price"
                    name="price"
-                   type="number"></input>
+                   type="number"
+                   required></input>
 
             <label className="form__label" for="count">Amount</label>
             <input className="form__input"
@@ -86,7 +97,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="count"
                    name="count"
-                   type="number"></input>
+                   type="number"
+                   required></input>
 
             <label className="form__label" for="tag">Tag</label>
             <input className="form__input"
@@ -94,7 +106,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="tag"
                    name="tag"
-                   type="text"></input>
+                   type="text"
+                   required></input>
 
             <label className="form__label" for="cover">Cover</label>
             <input className="form__input"
@@ -102,7 +115,8 @@ class AdminBoard extends Component {
                    onChange={this.handleChange}
                    id="cover"
                    name="cover"
-                   type="text"></input>
+                   type="text"
+                   required></input>
 
             <input className="form__input input--submit" type="submit" value="Add book"></input>
           </form>

@@ -717,3 +717,10 @@ textarea:focus {
 .admin__actions .input--submit {
   background-color: #607d8b;
 }
+
+.admin__actions .input--textarea {
+  height: 5rem;
+}
+.admin__actions .from__input {
+  width: 80%;
+}

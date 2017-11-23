@@ -34,7 +34,7 @@ class BookPage extends Component {
 		  cover={book.cover}
 		  author={book.author.name}
 		  price={book.price}
-		  tag={book.tag.name}
+		  tag={book.tag[0].name}
 		  likes={book.likes}
 		  description={book.description}/>
 

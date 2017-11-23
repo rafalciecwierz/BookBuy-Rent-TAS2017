@@ -98,6 +98,9 @@ router.get('/users/bought',action_controller.user_books);
 // Register User //
 router.post("/users", user_controller.user_register);
 
+//GET Users
+router.get("/users",user_controller.user_list);
+
 // GET User wishlist //
 /* NOT WORKING */
 router.get("/users/wishlist",user_controller.user_wishlist);

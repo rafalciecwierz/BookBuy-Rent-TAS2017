@@ -24,11 +24,11 @@ return this.family_name + ', ' + this.first_name; })
     this.family_name = split[1];
 });
 
-// Virtual for author's URL
+/*// Virtual for author's URL
 AuthorSchema
 .virtual('url')
 .get(function () {
   return '/catalog/author/' + this._id;
-});
+});*/
 
 module.exports = mongoose.model('Author', AuthorSchema);

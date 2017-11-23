@@ -566,6 +566,7 @@ textarea:focus {
   padding-bottom: 6rem;
   position: relative;
 }
+.admin__form,
 .register__form,
 .login__form {
   display: flex;
@@ -695,4 +696,24 @@ textarea:focus {
 }
 .user-profile .book-list__header {
   text-align: center;
+}
+
+.admin {
+  margin: 3rem;
+  text-align: center;
+}
+.admin__header {
+  font-size: 2.5rem;
+}
+.admin__actions {
+  width: 80%;
+  max-width: 900px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem;
+  padding-bottom: 6rem;
+  position: relative;
+}
+.admin__actions .input--submit {
+  background-color: #607d8b;
 }

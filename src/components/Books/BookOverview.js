@@ -5,10 +5,15 @@ class BookOverview extends Component {
     window.history.back();
   }
   render() {
-    const coverUrl = require("../../assets/img/books/"+this.props.cover+".jpg");
-    const coverImg = {
-      backgroundImage: 'url("'+coverUrl+'")'
+    let coverImg = {
+      backgroundImage: 'url("../../assets/img/books/undefined.jpg")'
     }
+    try {
+      const coverUrl = require("../../assets/img/books/"+this.props.cover+".jpg") || "../../assets/img/books/undefined.jpg";
+      coverImg = {
+        backgroundImage: 'url("'+coverUrl+'")'
+      }
+    } catch(err) {}
     return (
       <div className="book-overview"
             onDoubleClick={this.back}>

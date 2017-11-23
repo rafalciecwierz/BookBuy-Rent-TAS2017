@@ -253,9 +253,9 @@ textarea:focus {
 
 .book__cover {
   display: block;
-  width: 75%;
-  height: 80%;
-  margin: 10% auto;
+  width: 225px;
+  height: 300px;
+  margin: 30px;
   background-position: center;
   background-size: cover;
 }
@@ -273,6 +273,7 @@ textarea:focus {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: black;
+  width: 225px;
 }
 
 .book__details .details--title {
@@ -565,6 +566,7 @@ textarea:focus {
   padding-bottom: 6rem;
   position: relative;
 }
+.admin__form,
 .register__form,
 .login__form {
   display: flex;
@@ -694,4 +696,31 @@ textarea:focus {
 }
 .user-profile .book-list__header {
   text-align: center;
+}
+
+.admin {
+  margin: 3rem;
+  text-align: center;
+}
+.admin__header {
+  font-size: 2.5rem;
+}
+.admin__actions {
+  width: 80%;
+  max-width: 900px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem;
+  padding-bottom: 6rem;
+  position: relative;
+}
+.admin__actions .input--submit {
+  background-color: #607d8b;
+}
+
+.admin__actions .input--textarea {
+  height: 5rem;
+}
+.admin__actions .from__input {
+  width: 80%;
 }

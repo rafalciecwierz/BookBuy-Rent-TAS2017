@@ -24,10 +24,6 @@ app.use(function(req, res, next) {
 	next();
 });
 
-router.get("/", function(req, res) {
-	res.json({message: "API Initialized!"});
-});
-
 app.use('/api',api);
 
 app.listen(port, function() {

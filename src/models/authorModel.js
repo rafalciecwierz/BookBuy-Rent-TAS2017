@@ -6,7 +6,11 @@ var AuthorSchema = new Schema(
   {
     first_name: {type: String, required: true},
     family_name: {type: String, required: true}
-  }
+  },{
+		toObject: { virtuals: true },
+		toJSON: { virtuals: true }
+    });
+  
 );
 
 // Virtual for author's full name

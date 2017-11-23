@@ -13,9 +13,6 @@ var UserSchema = new Schema({
 	email: {
 		type: String
 	},
-	name: {
-		type: String
-	},
 	wishlist: [{type: Schema.ObjectId, ref: 'Book'}],
 	cart: [{type: Schema.ObjectId, ref: 'Book'}]
 });
@@ -31,6 +28,7 @@ module.exports.createUser = function(newUser, callback){
 	});
 }
 
+/*
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
 	User.findOne(query, callback);
@@ -46,3 +44,4 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		callback(null, isMatch);
 	});
 }
+*/

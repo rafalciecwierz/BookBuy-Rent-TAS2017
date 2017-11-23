@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 var BookSchema = new Schema({
   title: {type: String, required: true},
   //zdjecie okladki????????
-  cover: {type: String, default: null},
+  cover: {type: String, default: 'undefined'},
   author: {type: Schema.ObjectId, ref: 'Author', required: true},
-  summary: {type: String, default: null},
+  description: {type: String, default: null},
   price: {type: Number, required: true},
   tag: [{type: Schema.ObjectId, ref: 'Tag', required: true}],
   likes : {type: Number, default: 0},

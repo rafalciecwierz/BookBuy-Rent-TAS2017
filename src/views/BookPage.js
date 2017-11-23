@@ -26,18 +26,26 @@ class BookPage extends Component {
     this.loadBookFromServer();
   }
   render() {
-    const book = this.state.data;
-    return (
-      <BookOverview
-      title={book.title}
-      cover={book.cover}
-      author={book.author}
-      price={book.price}
-      tag={book.tag}
-      likes={book.likes}
-      description={book.description}/>
+	  if(this.state.data.title){
+		const book = this.state.data;
+		return (
+		  <BookOverview
+		  title={book.title}
+		  cover={book.cover}
+		  author={book.author.name}
+		  price={book.price}
+		  tag={book.tag.name}
+		  likes={book.likes}
+		  description={book.description}/>
 
-    );
+		);
+	  }
+	  else {
+		  return (
+		  <BookOverview/>
+
+		);
+	  }
   }
 }
 

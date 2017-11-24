@@ -19,10 +19,10 @@ CommentSchema.query.byBookId = function(bookId) {
 	return this.find({ book: bookId });
 };
 
-CommentSchema
+/*CommentSchema
 .virtual('url')
 .get(function () {
   return '/catalog/comment/' + this._id;
-});
+});*/
 
 module.exports = mongoose.model('Comment', CommentSchema);

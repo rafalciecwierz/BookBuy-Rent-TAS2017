@@ -38,10 +38,10 @@ module.exports.createOrder = function(newOrder, callback){
 	});
 }
 
-OrderSchema
+/*OrderSchema
 .virtual('url')
 .get(function () {
   return '/catalog/order/' + this._id;
-});
+});*/
 
 module.exports = mongoose.model('Order', OrderSchema);

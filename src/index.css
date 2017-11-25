@@ -621,7 +621,9 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
+.form__label.label--file.input--img::before {
+  background-image: url('./assets/img/imgplaceholder.png');
+}
 .form__input.input--submit {
   position: absolute;
   bottom: -1rem;

@@ -187,6 +187,9 @@ class AdminBoard extends Component {
                    type="text"
                    required></input>
 
+            <label className="form__label label--file input--img" htmlFor="file">Upload</label>
+            <input className="form__input input--file" type="file" id="file"></input>
+
             <input className="form__input input--submit" type="submit" value="Add book"></input>
           </form>
         </div>

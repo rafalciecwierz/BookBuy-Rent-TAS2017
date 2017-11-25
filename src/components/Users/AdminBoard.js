@@ -210,7 +210,7 @@ class Find extends Component {
     this.setState({id: event.target.value});
   }
   handleSubmit(event) {
-    this.props.onFind(this.state.id)
+    if (this.state.id !== '') this.props.onFind(this.state.id)
   }
   render() {
     if (!this.props.edit) {
@@ -220,12 +220,12 @@ class Find extends Component {
       <div className="form--edit">
       <label className="form__label" htmlFor="book_id">ID</label>
       <input className="form__input"
-      id="id"
-      name="id"
-      value={this.state.id}
-      onChange={this.handleChange}
-      type="text"
-      required></input>
+            id="id"
+            name="id"
+            value={this.state.id}
+            onChange={this.handleChange}
+            type="text"
+            required></input>
       <button className="link--simple"
               onClick={this.handleSubmit}>Find</button>
       </div>

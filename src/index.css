@@ -44,7 +44,9 @@ textarea:focus {
   font-size: 0.9rem;
   opacity: 0.9;
   text-transform: uppercase;
+  border: none;
   border-radius: 3px;
+  cursor: pointer;
 }
 .link--attention {
   background-color: #8440FF;
@@ -638,6 +640,7 @@ textarea:focus {
 }
 .form__text a {
   color: #9C66FF;
+  cursor: pointer;
 }
 .login {
   /*position: fixed;
@@ -727,4 +730,15 @@ textarea:focus {
 }
 .admin__actions .from__input {
   width: 80%;
+}
+.admin .form--edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin .form--edit input {
+  height: 1rem;
+}
+.admin .form--edit label {
+  margin-right: 1rem;
 }

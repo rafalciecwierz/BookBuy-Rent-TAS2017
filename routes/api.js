@@ -38,7 +38,7 @@ router.post('/books', upload, book_controller.book_create);
 router.delete('/books/:id', book_controller.book_delete);
 
 // update Book
-router.put('/books/:id', book_controller.book_update);
+router.put('/books/:id', upload, book_controller.book_update);
 
 //add cover
 //router.put('/books/:id/cover', book_controller.book_cover);

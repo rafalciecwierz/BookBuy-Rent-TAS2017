@@ -142,8 +142,13 @@ exports.book_delete = function(req, res, next) {
 
 // Book update
 exports.book_update = function(req, res, next) {
-	
+	var bCover = "";
 	if(req.file){
+		bCover = req.file.filename;
+	}
+	else {
+		bCover = req.body.cover;
+	}
 		Author.findOne({ 'first_name': req.body.first_name, 'family_name': req.body.family_name })
 		.exec( function(err, found_author) {
 			 if (err) { return next(err); }
@@ -153,8 +158,7 @@ exports.book_update = function(req, res, next) {
 					title: req.body.title, 
 					author: found_author._id, 
 					description: req.body.description,
-					//cover: req.body.cover,
-					cover: req.file.filename,
+					cover: bCover,
 					price: req.body.price,
 					likes: req.body.likes,
 					count: req.body.count,
@@ -177,8 +181,7 @@ exports.book_update = function(req, res, next) {
 						title: req.body.title, 
 						author: added._id, 
 						description: req.body.description,
-						//cover: req.body.cover,
-						cover: req.file.filename,
+						cover: bCover,
 						price: req.body.price,
 						likes: req.body.likes,
 						count: req.body.count,
@@ -193,58 +196,5 @@ exports.book_update = function(req, res, next) {
 				});
 			 }
 		});
-	}
-	else
-	{
-	Author.findOne({ 'first_name': req.body.first_name, 'family_name': req.body.family_name })
-		.exec( function(err, found_author) {
-			 if (err) { return next(err); }
-			 
-			 if (found_author) { 
-				 var book = new Book({
-					title: req.body.title, 
-					author: found_author._id, 
-					description: req.body.description,
-					cover: req.body.cover,
-					//cover: req.file.filename,
-					price: req.body.price,
-					likes: req.body.likes,
-					count: req.body.count,
-					tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag,
-					_id:req.params.id
-					 }); 
-				Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
-					if (err) { return next(err); }
-					res.json(book);
-				});
-			}
-			 else {
-				var author = new Author({
-					first_name: req.body.first_name, 
-					family_name: req.body.family_name
-				});
-				 author.save(function (err,added) {
-					if (err) { return next(err); }
-					   var book = new Book({
-						title: req.body.title, 
-						author: added._id, 
-						description: req.body.description,
-						cover: req.body.cover,
-						//cover: req.file.filename,
-						price: req.body.price,
-						likes: req.body.likes,
-						count: req.body.count,
-						tag: (typeof req.body.tag==='undefined') ? [] : req.body.tag,
-						_id:req.params.id
-						 }); 
-				Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
-					if (err) { return next(err); }
-					//successful - redirect to book detail page.
-					res.json(book);
-				});
-				});
-			 }
-		});
-	}
 
 };

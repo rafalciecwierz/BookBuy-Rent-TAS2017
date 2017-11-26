@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import BookUtils from './BookUtils';
+import axios from 'axios';
+import fileDownload from 'js-file-download';
 
 class Book extends Component {
   render() {
@@ -7,11 +9,12 @@ class Book extends Component {
       backgroundImage: 'url("../../assets/img/books/undefined.jpg")'
     }
     try {
-      const coverUrl = require("../../assets/img/books/"+this.props.cover+".jpg") || "../../assets/img/books/undefined.jpg";
+      const coverUrl = require("../../assets/img/books/"+this.props.cover) || "../../assets/img/books/undefined.jpg";
+
       coverImg = {
-        backgroundImage: 'url("'+coverUrl+'")'
+		backgroundImage: 'url("'+coverUrl+'")'
       }
-    } catch(err) {}
+    } catch(err) {	}
     // Default component
     return (
       <div className="book">

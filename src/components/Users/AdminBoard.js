@@ -14,7 +14,7 @@ class AdminBoard extends Component {
         price: '',
         count: '',
         tag: '',
-		file: null
+      	file: null
       },
       tags: [],
       id: '',
@@ -22,7 +22,7 @@ class AdminBoard extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-	this.getImage = this.getImage.bind(this);
+  	this.getImage = this.getImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.loadTagsFromServer = this.loadTagsFromServer.bind(this);
@@ -39,24 +39,26 @@ class AdminBoard extends Component {
 
   handleSubmit(event) {
     const method = this.state.edit ? 'put' : 'post';
-    console.log(this.state);
-	let formData = new FormData();
-	formData.append('title',this.state.data.title)
-	formData.append('family_name',this.state.data.family_name)
-	formData.append('first_name',this.state.data.first_name)
-	formData.append('description',this.state.data.description)
-	formData.append('cover',this.state.data.cover)
-	formData.append('price',this.state.data.price)
-	formData.append('count',this.state.data.count)
-	formData.append('tag',this.state.data.tag)
-	formData.append('file',this.state.data.file)
+  	let formData = new FormData();
+  	formData.append('title',this.state.data.title)
+  	formData.append('family_name',this.state.data.family_name)
+  	formData.append('first_name',this.state.data.first_name)
+  	formData.append('description',this.state.data.description)
+  	formData.append('cover',this.state.data.cover)
+  	formData.append('price',this.state.data.price)
+  	formData.append('count',this.state.data.count)
+  	formData.append('tag',this.state.data.tag)
+  	formData.append('file',this.state.data.file)
+
     axios({
       method: method,
       url: 'http://localhost:3001/api/books/'+this.state.id,
       data: formData,
     })
     .then(function (response) {
-     console.log(response);
+     alert('Book sent to database!')
+     window.location= "/"
+    //  console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -96,6 +98,7 @@ class AdminBoard extends Component {
         console.log(this.state);
       })
   }
+
   loadTagsFromServer() {
     axios.get("http://localhost:3001/api/tags")
       .then(res => {
@@ -104,13 +107,13 @@ class AdminBoard extends Component {
         });
       })
   }
-  
+
   getImage(event) {
 	const file = event.target.files[0];
 	let data = this.state.data;
 	data["file"] = file;
   }
-		  
+
   componentDidMount() {
     this.loadTagsFromServer();
   }
@@ -131,7 +134,6 @@ class AdminBoard extends Component {
             </small>
 
             <Find edit={this.state.edit} onFind={this.onFind}/>
-
 
             <label className="form__label" htmlFor="title">Title</label>
             <input className="form__input"
@@ -196,19 +198,17 @@ class AdminBoard extends Component {
                    {tags}
             </select>
 
-            <label className="form__label" htmlFor="cover">Cover</label>
-            <input className="form__input"
-                   value={this.state.data.cover}
-                   onChange={this.handleChange}
-                   id="cover"
-                   name="cover"
-                   type="text"
-                   required></input>
-
             <label className="form__label label--file input--img" htmlFor="file">Upload</label>
-            <input className="form__input input--file" type="file" id="file" name = "file" onChange={this.getImage}></input>
+            <input className="form__input input--file"
+                   type="file"
+                   id="file"
+                   name = "file"
+                   accept="image/*"
+                   onChange={this.getImage}></input>
 
-            <input className="form__input input--submit" type="submit" value="Add book"></input>
+            <input className="form__input input--submit"
+                   type="submit"
+                   value="Add book"></input>
           </form>
         </div>
       </div>

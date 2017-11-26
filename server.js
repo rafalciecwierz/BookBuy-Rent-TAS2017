@@ -12,8 +12,8 @@ var port = process.env.API_PORT || 3001;
 
 mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds163595.mlab.com:63595/book-shop");
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
+app.use(bodyParser.json({limit: '5mb'}));
 
 app.use(function(req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", " * ");

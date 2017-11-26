@@ -12,7 +12,7 @@ var multer = require('multer');
 
 var Storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, "./images/");
+		callback(null, "./src/assets/img/books");
 	},
 	filename: function(req, file, callback) {
 		callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
@@ -40,8 +40,8 @@ router.delete('/books/:id', book_controller.book_delete);
 // update Book
 router.put('/books/:id', upload, book_controller.book_update);
 
-//add cover
-//router.put('/books/:id/cover', book_controller.book_cover);
+//get cover
+router.get('/books/cover/:name', book_controller.book_cover);
 
 
 /// AUTHOR ROUTES ///
@@ -108,7 +108,7 @@ router.post('/books/:id/cart',action_controller.addToCart);
 
 //Get books bought by User //
 /* NOT WORKING */
-router.get('/users/bought',action_controller.user_books);
+router.get('/users/:id/bought',action_controller.user_books);
 
 /// USER ROUTES ///
 

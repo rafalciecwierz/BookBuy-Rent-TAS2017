@@ -1,6 +1,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
+var path = require('path');
 require("dotenv").config();
 
 var api = require('./routes/api');
@@ -14,6 +15,7 @@ mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSW
 
 app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
 app.use(bodyParser.json({limit: '5mb'}));
+app.use(express.static(path.join(__dirname)));
 
 app.use(function(req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", " * ");

@@ -41,7 +41,8 @@ exports.book_detail = function(req, res, next) {
 
 // Book create
 exports.book_create = function(req, res,next) {
-
+	
+	//console.log(req.file.path);
 	Author.findOne({ 'first_name': req.body.first_name, 'family_name': req.body.family_name })
 		.exec( function(err, found_author) {
 			 if (err) { return next(err); }
@@ -52,6 +53,7 @@ exports.book_create = function(req, res,next) {
 					title: req.body.title, 
 					author: found_author._id, 
 					description: req.body.description,
+					//cover: req.file.path,
 					cover: req.body.cover,
 					price: req.body.price,
 					likes: req.body.likes,
@@ -76,6 +78,7 @@ exports.book_create = function(req, res,next) {
 						title: req.body.title, 
 						author: added._id, 
 						description: req.body.description,
+						//cover: req.file.path,
 						cover: req.body.cover,
 						price: req.body.price,
 						likes: req.body.likes,

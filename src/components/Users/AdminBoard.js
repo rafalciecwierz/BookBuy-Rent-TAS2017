@@ -13,7 +13,8 @@ class AdminBoard extends Component {
         cover: '',
         price: '',
         count: '',
-        tag: ''
+        tag: '',
+		file: null
       },
       tags: [],
       id: '',
@@ -21,6 +22,7 @@ class AdminBoard extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+	this.getImage = this.getImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.loadTagsFromServer = this.loadTagsFromServer.bind(this);
@@ -38,13 +40,23 @@ class AdminBoard extends Component {
   handleSubmit(event) {
     const method = this.state.edit ? 'put' : 'post';
     console.log(this.state);
+	let formData = new FormData();
+	formData.append('title',this.state.data.title)
+	formData.append('family_name',this.state.data.family_name)
+	formData.append('first_name',this.state.data.first_name)
+	formData.append('description',this.state.data.description)
+	formData.append('cover',this.state.data.cover)
+	formData.append('price',this.state.data.price)
+	formData.append('count',this.state.data.count)
+	formData.append('tag',this.state.data.tag)
+	formData.append('file',this.state.data.file)
     axios({
       method: method,
       url: 'http://localhost:3001/api/books/'+this.state.id,
-      data: this.state.data
+      data: formData,
     })
     .then(function (response) {
-      console.log(response);
+     console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -92,7 +104,13 @@ class AdminBoard extends Component {
         });
       })
   }
-
+  
+  getImage(event) {
+	const file = event.target.files[0];
+	let data = this.state.data;
+	data["file"] = file;
+  }
+		  
   componentDidMount() {
     this.loadTagsFromServer();
   }
@@ -105,7 +123,7 @@ class AdminBoard extends Component {
       <div className="admin">
         <h1 className="admin__header">Admin board</h1>
         <div className="admin__actions">
-          <form className="admin__form" onSubmit={this.handleSubmit}>
+          <form className="admin__form" encType="multipart/form-data" onSubmit={this.handleSubmit}>
             <h2 className="form__header">Add new book</h2>
             <small className="form__text">New book will be posted to database.</small>
             <small className="form__text">
@@ -188,7 +206,7 @@ class AdminBoard extends Component {
                    required></input>
 
             <label className="form__label label--file input--img" htmlFor="file">Upload</label>
-            <input className="form__input input--file" type="file" id="file"></input>
+            <input className="form__input input--file" type="file" id="file" name = "file" onChange={this.getImage}></input>
 
             <input className="form__input input--submit" type="submit" value="Add book"></input>
           </form>

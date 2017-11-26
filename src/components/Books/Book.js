@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BookUtils from './BookUtils';
 import axios from 'axios';
-import fileDownload from 'js-file-download';
 
 class Book extends Component {
   render() {

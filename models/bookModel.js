@@ -13,11 +13,11 @@ var BookSchema = new Schema({
   count: {type: Number, required: true} 
 });
 
-BookSchema
+/*BookSchema
 .virtual('url')
 .get(function () {
   return '/catalog/book/' + this._id;
-});
+});*/
 
 module.exports.addLike = function(bookId,cb) {
   return this.model('Book').findOneAdUpdate({ _id: bookId },{$set: { likes: likes +1 }}, cb);

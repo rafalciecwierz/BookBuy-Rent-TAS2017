@@ -9,7 +9,7 @@ class BookOverview extends Component {
       backgroundImage: 'url("../../assets/img/books/undefined.jpg")'
     }
     try {
-      const coverUrl = require("../../assets/img/books/"+this.props.cover+".jpg") || "../../assets/img/books/undefined.jpg";
+      const coverUrl = require("../../assets/img/books/"+this.props.cover) || "../../assets/img/books/undefined.jpg";
       coverImg = {
         backgroundImage: 'url("'+coverUrl+'")'
       }

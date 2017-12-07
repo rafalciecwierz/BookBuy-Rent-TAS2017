@@ -26,7 +26,6 @@ class BookList extends Component {
     this.loadBooksFromServer();
   }
   render() {
-	  console.log(this.state.data);
     const bookList = this.state.data.map((book, index) =>
       <li key={index}>
         <Link to={{pathname: `/books/${book._id}`}}>
@@ -40,6 +39,7 @@ class BookList extends Component {
         </Link>
       </li>
     );
+
     return (
       <div className="book-list">
         <h2 className="book-list__header">{this.props.name}</h2>

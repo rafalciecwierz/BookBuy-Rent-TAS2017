@@ -6,14 +6,12 @@ body {
   background-color: #F2F2F2;
   font-family: 'Open Sans', sans-serif;
 }
-
 h1, h2, h3, h4, h5, h6, p, input, textarea{
   font-family: 'Open Sans', sans-serif;
 }
 textarea:focus {
   outline: none;
 }
-
 
 /**
  * Navigation Component
@@ -28,7 +26,6 @@ textarea:focus {
   background-color: white;
   align-items: center;
 }
-
 .nav__links {
   display: flex;
   flex-direction: row;
@@ -44,7 +41,9 @@ textarea:focus {
   font-size: 0.9rem;
   opacity: 0.9;
   text-transform: uppercase;
+  border: none;
   border-radius: 3px;
+  cursor: pointer;
 }
 .link--attention {
   background-color: #8440FF;
@@ -52,15 +51,17 @@ textarea:focus {
 .link--simple:hover {
   opacity: 1;
 }
-
 .nav__utils {
   display: flex;
 }
 
+/**
+ * Dropdown
+ */
+
 .dropdown {
   display: none;
 }
-
 .dropdown__icon {
   display: block;
   width: 40px;
@@ -70,7 +71,6 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
 .dropdown__utils {
   position: absolute;
   z-index: 100;
@@ -87,29 +87,24 @@ textarea:focus {
   background: #fff;
   align-items: center;
 }
-
 .dropdown__utils.utils--visible {
   pointer-events: all;
   opacity: 1;
 }
-
 .dropdown .search-box {
   margin: 0;
 }
-
 .dropdown__utils .nav__links {
   flex-direction: column;
   margin: 2rem auto 0 auto;
   justify-content: center;
 }
-
 .dropdown__utils .nav__links li {
   display: flex;
   color: #555;
   justify-content: space-around;
   align-items: center;
 }
-
 @media screen and (max-width: 860px) {
   .nav__utils {
     display: none;
@@ -118,7 +113,6 @@ textarea:focus {
     display: block;
   }
 }
-
 
 /**
  * Brand Component
@@ -130,18 +124,15 @@ textarea:focus {
   align-items: center;
   flex-grow: 1;
 }
-
 .brand__logo {
   width: auto;
   height: 50px;
 }
-
 .brand__divider {
   height: 30px;
   margin: 0 20px;
   border-left: 1px #8440FF solid;
 }
-
 .brand__header {
   display: inline-block;
   opacity: 0.8;
@@ -149,7 +140,6 @@ textarea:focus {
   font-family: 'Pacifico', cursive;
   font-size: 30px;
 }
-
 
 /**
  * SearchBox Component
@@ -160,7 +150,6 @@ textarea:focus {
   margin-right: 2rem;
   align-items: center;
 }
-
 .search-box__input {
   padding: 0 0.5rem;
   text-align: center;
@@ -169,12 +158,10 @@ textarea:focus {
   font-family: 'Open Sans', sans-serif;
   line-height: 2rem;
 }
-
 .search-box__input:focus {
   text-align: left;
   background-color: #fff;
 }
-
 .search-box__submit {
   width: 2rem;
   padding: 0;
@@ -186,7 +173,6 @@ textarea:focus {
   line-height: 2rem;
 }
 
-
 /**
  * NavLink Component
  */
@@ -194,7 +180,6 @@ textarea:focus {
 .nav-link {
   margin: 0 0.5rem;
 }
-
 .nav-link__icon {
   display: block;
   width: 42px;
@@ -202,15 +187,12 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
 .icon--user {
   background-image: url('./assets/img/user.png');
 }
-
 .icon--cart {
   background-image: url('./assets/img/cart.png');
 }
-
 .icon--wish {
   background-image: url('./assets/img/heart.png');
 }
@@ -227,7 +209,6 @@ textarea:focus {
   background-color: #fff;
   box-shadow: 0px 3px 8px -4px rgba(0, 0, 0, 0.15);
 }
-
 .book__price {
   position: absolute;
   right: 0;
@@ -241,16 +222,13 @@ textarea:focus {
   font-weight: 600;
   line-height: 2rem;
 }
-
 .book__price:before {
   content: "$";
 }
-
 .book__card {
   display: inline-block;
   height: 400px;
 }
-
 .book__cover {
   display: block;
   width: 225px;
@@ -259,7 +237,6 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
 .book__details {
   width: 75%;
   margin: 0 auto;
@@ -267,7 +244,6 @@ textarea:focus {
   font-size: 1.4rem;
   line-height: 1.8rem;
 }
-
 .book__details p {
   overflow: hidden;
   white-space: nowrap;
@@ -275,13 +251,14 @@ textarea:focus {
   color: black;
   width: 225px;
 }
-
 .book__details .details--title {
   font-weight: 600;
 }
+
 /**
  * Book List view
  */
+
 .book-list-view .book__card {
   width: 500px;
   height: auto;
@@ -299,7 +276,6 @@ textarea:focus {
   width: 140px;
   margin-right: 2rem;
 }
-
 .book-list-view .details__actions p {
   overflow: auto;
   white-space: normal;
@@ -312,7 +288,6 @@ textarea:focus {
   padding: 5px;
   margin-top: 1rem;
 }
-
 .book-list-view .action__edit-form label {
   display: block;
   font-size: 1rem;
@@ -325,9 +300,11 @@ textarea:focus {
   width: 3rem;
   text-align: center;
 }
+
 /**
  * Book Thumbnail view
  */
+
 .book-thumbnail {
   cursor: pointer;
 }
@@ -338,8 +315,8 @@ textarea:focus {
 .book-thumbnail .book__cover {
   height: 200px;
   width: 140px;
-
 }
+
 /**
  *  Book Utilities
  */
@@ -351,20 +328,16 @@ textarea:focus {
   justify-content: space-between;
   color: rgba(0,0,0,0.6);
 }
-
 .book-utils__tag {
 }
-
 .book-utils__tag::before {
   content: "# "
 }
-
 .book-utils__actions {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .book-utils__icon {
   display: inline-block;
   width: 1.5rem;
@@ -373,36 +346,34 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
 .book-utils__icon.icon--wish-small {
   background-image: url('./assets/img/heart.png');
 }
-
 .book-utils__icon.icon--buy-small {
   background-image: url('./assets/img/cart.png');
 }
-
 .book-utils__likes {
   margin: 0 0.3rem;
 }
+
+/*
+ * Book List
+ */
 
 .book-list {
   width: 80%;
   margin: auto;
 }
-
 @media screen and (max-width: 860px) {
   .book-list {
     width: 100%;
   }
 }
-
 .book-list__cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .book-list__header {
   margin-top: 1rem;
   color: #777;
@@ -411,6 +382,9 @@ textarea:focus {
   line-height: 50px;
 }
 
+/**
+ * Book overview
+ */
 
 .book-overview {
   position: fixed;
@@ -422,7 +396,6 @@ textarea:focus {
   justify-content: center;
   align-items: center;
 }
-
 .overview__thumbnails .thumb {
   display: block;
   width: 600px;
@@ -432,7 +405,6 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
 .overview__details {
   display: flex;
   flex-direction: column;
@@ -443,7 +415,6 @@ textarea:focus {
   overflow-y:auto;
   overflow-x: hidden;
 }
-
 .overview__details .details__title {
   margin-bottom: 0.5rem;
   opacity: 0.6;
@@ -451,7 +422,6 @@ textarea:focus {
   font-weight: 600;
   line-height: 3rem;
 }
-
 .overview__details .details__author {
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -460,12 +430,10 @@ textarea:focus {
   font-weight: 600;
   line-height: 2.5rem;
 }
-
 .overview__details .details__author::before {
   content: "BY ";
   opacity: 0.8;
 }
-
 .overview__details .details__price {
   width: 4rem;
   padding: 0.5rem;
@@ -479,11 +447,9 @@ textarea:focus {
   line-height: 2rem;
   display: inline-block;
 }
-
 .overview__details .details__price::before {
   content: "$";
 }
-
 .overview__details .details__action {
   background: transparent;
   border: none;
@@ -495,12 +461,10 @@ textarea:focus {
   opacity: 0.5;
   cursor: pointer;
 }
-
 .overview__details .details__description {
   margin: 2rem 0;
   line-height: 1.58rem;
 }
-
 .overview__details .details__tags {
   display: flex;
   flex-direction: row;
@@ -508,19 +472,20 @@ textarea:focus {
   opacity: 0.3;
   font-weight: 600;
 }
-
 .overview__details .details__tags li {
   margin-right: 1rem;
 }
-
 .overview__details .details__tags li::before {
   margin-right: 1px;
   content: "#";
 }
-
 .overview__details .details__comments {
   margin-top: 2rem;
 }
+
+/**
+ * Comment component
+ */
 
 .comment {
   display: flex;
@@ -551,7 +516,6 @@ textarea:focus {
   font-size: 0.9rem;
   line-height: 1rem;
 }
-
 
 /**
  * Register Component
@@ -592,7 +556,6 @@ textarea:focus {
   border-radius: 3px;
   font-size: 1rem;
 }
-
 .form__input.input--file {
   display: none;
 }
@@ -619,7 +582,9 @@ textarea:focus {
   background-position: center;
   background-size: cover;
 }
-
+.form__label.label--file.input--img::before {
+  background-image: url('./assets/img/imgplaceholder.png');
+}
 .form__input.input--submit {
   position: absolute;
   bottom: -1rem;
@@ -638,6 +603,7 @@ textarea:focus {
 }
 .form__text a {
   color: #9C66FF;
+  cursor: pointer;
 }
 .login {
   /*position: fixed;
@@ -658,7 +624,6 @@ textarea:focus {
   padding: 3rem;
   padding-bottom: 8rem;
 }
-
 
 /**
  *  User Profile
@@ -698,6 +663,10 @@ textarea:focus {
   text-align: center;
 }
 
+/**
+ * Admin board
+ */
+
 .admin {
   margin: 3rem;
   text-align: center;
@@ -717,10 +686,24 @@ textarea:focus {
 .admin__actions .input--submit {
   background-color: #607d8b;
 }
-
 .admin__actions .input--textarea {
   height: 5rem;
 }
+.admin__actions .input--select {
+  height: 3rem;
+  font-family: inherit;
+}
 .admin__actions .from__input {
   width: 80%;
+}
+.admin .form--edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin .form--edit input {
+  height: 1rem;
+}
+.admin .form--edit label {
+  margin-right: 1rem;
 }

@@ -10,6 +10,9 @@ exports.user_cart = function(req, res, next) {
 	res.json({message: "Not implemented - user cart!"});
 };
 
+exports.user_list = function(req,res,next) {
+	res.json({message: "Not implemented - user list!"});
+};
 // Register User
 exports.user_register = function(req, res, next) {
 		var newUser = new User({

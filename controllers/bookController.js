@@ -4,6 +4,7 @@ var Tag = require('../models/tagModel');
 var Comment = require('../models/commentModel');
 var mongoose = require('mongoose');
 var async = require('async');
+var path = require('path');
 
 // Display list of all books
 exports.book_list = function(req, res, next) {
@@ -39,6 +40,20 @@ exports.book_detail = function(req, res, next) {
     
 };
 
+//Book cover
+exports.book_cover = function(req,res,next) {
+
+	var fileName = req.params.name.trim();
+	var pathToFile = __dirname + '\\..\\images\\' + fileName.substr(1) + ".jpg";
+	res.sendFile(path.resolve(pathToFile), function (err) {
+    if (err) {
+      next(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+};
+
 // Book create
 exports.book_create = function(req, res,next) {
 
@@ -52,7 +67,8 @@ exports.book_create = function(req, res,next) {
 					title: req.body.title, 
 					author: found_author._id, 
 					description: req.body.description,
-					cover: req.body.cover,
+					cover: req.file.filename,
+					//cover: req.body.cover,
 					price: req.body.price,
 					likes: req.body.likes,
 					count: req.body.count,
@@ -76,7 +92,8 @@ exports.book_create = function(req, res,next) {
 						title: req.body.title, 
 						author: added._id, 
 						description: req.body.description,
-						cover: req.body.cover,
+						cover: req.file.filename,
+						//cover: req.body.cover,
 						price: req.body.price,
 						likes: req.body.likes,
 						count: req.body.count,
@@ -125,8 +142,14 @@ exports.book_delete = function(req, res, next) {
 
 // Book update
 exports.book_update = function(req, res, next) {
-
-	Author.findOne({ 'first_name': req.body.first_name, 'family_name': req.body.family_name })
+	var bCover = "";
+	if(req.file){
+		bCover = req.file.filename;
+	}
+	else {
+		bCover = req.body.cover;
+	}
+		Author.findOne({ 'first_name': req.body.first_name, 'family_name': req.body.family_name })
 		.exec( function(err, found_author) {
 			 if (err) { return next(err); }
 			 
@@ -135,7 +158,7 @@ exports.book_update = function(req, res, next) {
 					title: req.body.title, 
 					author: found_author._id, 
 					description: req.body.description,
-					cover: req.body.cover,
+					cover: bCover,
 					price: req.body.price,
 					likes: req.body.likes,
 					count: req.body.count,
@@ -158,7 +181,7 @@ exports.book_update = function(req, res, next) {
 						title: req.body.title, 
 						author: added._id, 
 						description: req.body.description,
-						cover: req.body.cover,
+						cover: bCover,
 						price: req.body.price,
 						likes: req.body.likes,
 						count: req.body.count,

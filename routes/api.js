@@ -8,6 +8,20 @@ var tag_controller = require('../controllers/tagController');
 var comment_controller = require('../controllers/commentController');
 var action_controller = require('../controllers/actionController');
 var user_controller = require('../controllers/userController');
+var multer = require('multer');
+
+var Storage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		callback(null, "./src/assets/img/books");
+	},
+	filename: function(req, file, callback) {
+		callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+	}
+});
+
+var upload = multer({
+	storage: Storage
+}).single("file");
 
 /// BOOK ROUTES ///
 
@@ -18,13 +32,16 @@ router.get('/books', book_controller.book_list);
 router.get('/books/:id', book_controller.book_detail);
 
 /* creating Book. */
-router.post('/books', book_controller.book_create);
+router.post('/books', upload, book_controller.book_create);
 
 // delete Book
 router.delete('/books/:id', book_controller.book_delete);
 
 // update Book
-router.put('/books/:id', book_controller.book_update);
+router.put('/books/:id', upload, book_controller.book_update);
+
+//get cover
+router.get('/books/cover/:name', book_controller.book_cover);
 
 
 /// AUTHOR ROUTES ///
@@ -91,12 +108,15 @@ router.post('/books/:id/cart',action_controller.addToCart);
 
 //Get books bought by User //
 /* NOT WORKING */
-router.get('/users/bought',action_controller.user_books);
+router.get('/users/:id/bought',action_controller.user_books);
 
 /// USER ROUTES ///
 
 // Register User //
 router.post("/users", user_controller.user_register);
+
+//GET Users
+router.get("/users",user_controller.user_list);
 
 // GET User wishlist //
 /* NOT WORKING */

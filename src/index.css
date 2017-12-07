@@ -6,7 +6,7 @@ body {
   background-color: #F2F2F2;
   font-family: 'Open Sans', sans-serif;
 }
-h1, h2, h3, h4, h5, h6, p, input, textarea{
+h1, h2, h3, h4, h5, h6, p, input, textarea, button{
   font-family: 'Open Sans', sans-serif;
 }
 textarea:focus {
@@ -675,11 +675,12 @@ textarea:focus {
   font-size: 2.5rem;
 }
 .admin__actions {
-  width: 80%;
-  max-width: 900px;
+  width: 85%;
+  max-width: 1000px;
   margin: 3rem auto;
+  margin-top: 0;
   background: #fff;
-  padding: 2rem;
+  padding: 2rem 0;
   padding-bottom: 6rem;
   position: relative;
 }
@@ -706,4 +707,33 @@ textarea:focus {
 }
 .admin .form--edit label {
   margin-right: 1rem;
+}
+
+
+.tabs-menu {
+  margin: 3rem auto 0 auto;
+  width: 85%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: row;
+}
+.tabs-menu__tab {
+  width: 100%;
+  background-color: #ffc666;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1rem;
+  cursor: pointer;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.1s ease-in;
+}
+.tab--active {
+  opacity: 1;
+}
+.tabs-menu__tab:hover {
+  opacity: 0.9;
 }

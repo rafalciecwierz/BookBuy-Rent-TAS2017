@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-class AdminBoard extends Component {
+class AdminBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,8 +123,7 @@ class AdminBoard extends Component {
                  <option key={index} value={el._id}>{el.name}</option>
                )
     return (
-      <div className="admin">
-        <h1 className="admin__header">Admin board</h1>
+      <div className="admin-books">
         <div className="admin__actions">
           <form className="admin__form" encType="multipart/form-data" onSubmit={this.handleSubmit}>
             <h2 className="form__header">Add new book</h2>
@@ -254,4 +253,4 @@ class Find extends Component {
   }
 }
 
-export default AdminBoard;
+export default AdminBooks;

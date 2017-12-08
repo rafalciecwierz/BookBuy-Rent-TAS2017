@@ -21,7 +21,6 @@ class Main extends Component {
           <Route exact path='/register' component={RegisterPage}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/admin' component={Admin}/>
-
         </Switch>
       </main>
     );

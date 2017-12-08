@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class BookOverview extends Component {
-  back() {
-    window.history.back();
-  }
   render() {
     let coverImg = {
       backgroundImage: 'url("../../assets/img/books/undefined.jpg")'
@@ -14,14 +11,16 @@ class BookOverview extends Component {
         backgroundImage: 'url("'+coverUrl+'")'
       }
     } catch(err) {}
+    const back = () => {window.history.back()}
     return (
-      <div className="book-overview"
-            onDoubleClick={this.back}>
+      <div className="book-overview">
         <figure className="overview__thumbnails">
           <canvas className="thumb"
                   style={coverImg}></canvas>
         </figure>
         <div className="overview__details" >
+          <button className="button-back"
+            onClick={back}><i></i></button>
           <h2 className="details__title">{this.props.title}</h2>
           <h3 className="details__author">{this.props.author}</h3>
 

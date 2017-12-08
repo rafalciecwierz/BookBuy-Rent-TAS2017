@@ -737,3 +737,39 @@ textarea:focus {
 .tabs-menu__tab:hover {
   opacity: 0.9;
 }
+
+.admin-card {
+  display: flex;
+  margin: 1rem auto;
+  justify-content: space-between;
+  width: 80%;
+  padding: 20px 0;
+  border-bottom: 1px solid #b0b0b0;
+}
+.card__text {
+  font-size: 1.2rem;
+  opacity:
+}
+.card__text .text--id {
+
+}
+.card__status {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  color: white;
+}
+.admin-card.card--confirm .card__status {
+  cursor: pointer;
+  background-color: #ff0000;
+}
+.admin-card.card--finished .card__status {
+  background-color: #5dcd00;
+  cursor: not-allowed;
+}
+.admin-card.card--finished {
+  opacity: 0.5;
+}

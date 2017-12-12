@@ -1,14 +1,14 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // Require controller modules
-var book_controller = require('../controllers/bookController');
-var author_controller = require('../controllers/authorController');
-var tag_controller = require('../controllers/tagController');
-var comment_controller = require('../controllers/commentController');
-var action_controller = require('../controllers/actionController');
-var user_controller = require('../controllers/userController');
-var multer = require('multer');
+var book_controller = require("../controllers/bookController");
+var author_controller = require("../controllers/authorController");
+var tag_controller = require("../controllers/tagController");
+var comment_controller = require("../controllers/commentController");
+var action_controller = require("../controllers/actionController");
+var user_controller = require("../controllers/userController");
+var multer = require("multer");
 
 var Storage = multer.diskStorage({
 	destination: function(req, file, callback) {
@@ -26,89 +26,89 @@ var upload = multer({
 /// BOOK ROUTES ///
 
 /* request for list of all Book items. */
-router.get('/books', book_controller.book_list);
+router.get("/books", book_controller.book_list);
 
 /* request for one Book. */
-router.get('/books/:id', book_controller.book_detail);
+router.get("/books/:id", book_controller.book_detail);
 
 /* creating Book. */
-router.post('/books', upload, book_controller.book_create);
+router.post("/books", upload, book_controller.book_create);
 
 // delete Book
-router.delete('/books/:id', book_controller.book_delete);
+router.delete("/books/:id", book_controller.book_delete);
 
 // update Book
-router.put('/books/:id', upload, book_controller.book_update);
+router.put("/books/:id", upload, book_controller.book_update);
 
 //get cover
-router.get('/books/cover/:name', book_controller.book_cover);
+router.get("/books/cover/:name", book_controller.book_cover);
 
 
 /// AUTHOR ROUTES ///
 
 /* request for list of all Authors. */
-router.get('/authors', author_controller.author_list);
+router.get("/authors", author_controller.author_list);
 
 /* request for one Author and books. */
-router.get('/authors/:id', author_controller.author_detail);
+router.get("/authors/:id", author_controller.author_detail);
 
 /* creating Author. */
-router.post('/authors', author_controller.author_create);
+router.post("/authors", author_controller.author_create);
 
 /* delete Author. */
-router.delete('/authors/:id', author_controller.author_delete);
+router.delete("/authors/:id", author_controller.author_delete);
 
 // update Author //
-router.put('/authors/:id', author_controller.author_update);
+router.put("/authors/:id", author_controller.author_update);
 
 
 /// TAG ROUTES ///
 
 /* GET Tag and books. */
-router.get('/tags/:id', tag_controller.tag_detail);
+router.get("/tags/:id", tag_controller.tag_detail);
 
 /* GET request for list of all Tag. */
-router.get('/tags', tag_controller.tag_list);
+router.get("/tags", tag_controller.tag_list);
 
 /* creating Tag. */
-router.post('/tags', tag_controller.tag_create);
+router.post("/tags", tag_controller.tag_create);
 
 /* delete Tag. */
-router.delete('/tags/:id', tag_controller.tag_delete);
+router.delete("/tags/:id", tag_controller.tag_delete);
 
 // update Tag
-router.put('/tags/:id', tag_controller.tag_update);
+router.put("/tags/:id", tag_controller.tag_update);
 
 /// COMMENT ROUTES ///
 
 /* POST request for creating Comment. */
-router.post('/books/:id/comments', comment_controller.comment_create);
+router.post("/books/:id/comments", comment_controller.comment_create);
 
 /* get book Comments. */
-router.get('/books/:id/comments', comment_controller.comment_detail);
+router.get("/books/:id/comments", comment_controller.comment_detail);
 
 /* delete Comment. */
-router.delete('/comments/:id', comment_controller.comment_delete);
+router.delete("/comments/:id", comment_controller.comment_delete);
 
 /* update Comment. */
-router.put('/comments/:id', comment_controller.comment_update);
+router.put("/comments/:id", comment_controller.comment_update);
 
 /// ACTION ROUTES ///
 
 // SEARCH book/author/tag //
-router.post('/search',action_controller.search);
+router.post("/search",action_controller.search);
 
 // Add Book to User wishlist //
 /* NOT WORKING */
-router.post('/books/:id/wishlist',action_controller.addToWishlist);
+router.post("/books/:id/wishlist",action_controller.addToWishlist);
 
 //Add Book to User cart //
 /* NOT WORKING */
-router.post('/books/:id/cart',action_controller.addToCart);
+router.post("/books/:id/cart",action_controller.addToCart);
 
 //Get books bought by User //
 /* NOT WORKING */
-router.get('/users/:id/bought',action_controller.user_books);
+router.get("/users/:id/bought",action_controller.user_books);
 
 /// USER ROUTES ///
 
@@ -126,7 +126,7 @@ router.get("/users/wishlist",user_controller.user_wishlist);
 /* NOT WORKING */
 router.get("/users/cart",user_controller.user_cart);
 
-/*
+
 // Login User GET
 router.get("/login", user_controller.user_login_get);
 
@@ -134,6 +134,7 @@ router.get("/login", user_controller.user_login_get);
 router.post("/login", user_controller.user_login_post);
 
 router.get("/logout", user_controller.user_logout_get);
-*/
+
 
 module.exports = router;
+

@@ -25,6 +25,7 @@ class AdminBooks extends Component {
   	this.getImage = this.getImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.validate = this.validate.bind(this);
     this.loadTagsFromServer = this.loadTagsFromServer.bind(this);
     this.loadBookFromServer = this.loadBookFromServer.bind(this);
     this.onFind = this.onFind.bind(this);
@@ -38,32 +39,61 @@ class AdminBooks extends Component {
   }
 
   handleSubmit(event) {
-    const method = this.state.edit ? 'put' : 'post';
-  	let formData = new FormData();
-  	formData.append('title',this.state.data.title)
-  	formData.append('family_name',this.state.data.family_name)
-  	formData.append('first_name',this.state.data.first_name)
-  	formData.append('description',this.state.data.description)
-  	formData.append('cover',this.state.data.cover)
-  	formData.append('price',this.state.data.price)
-  	formData.append('count',this.state.data.count)
-  	formData.append('tag',this.state.data.tag)
-  	formData.append('file',this.state.data.file)
-
-    axios({
-      method: method,
-      url: 'http://localhost:3001/api/books/'+this.state.id,
-      data: formData,
-    })
-    .then(function (response) {
-     alert('Book sent to database!')
-     window.location= "/"
-    //  console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
     event.preventDefault();
+    let data = this.state.data;
+    data.title = this.state.data.title.trim();
+    data.family_name = this.state.data.family_name.trim();
+    data.first_name = this.state.data.first_name.trim();
+    this.setState({data: data});
+
+    if (
+      this.state.data.title &&
+      this.state.data.family_name &&
+      this.state.data.first_name &&
+      this.state.data.price >= 0 &&
+      this.state.data.count >= 0 &&
+      this.state.data.tag
+    ) {
+      const method = this.state.edit ? 'put' : 'post';
+
+      let formData = new FormData();
+      formData.append('title',this.state.data.title)
+      formData.append('family_name',this.state.data.family_name)
+      formData.append('first_name',this.state.data.first_name)
+      formData.append('description',this.state.data.description)
+      formData.append('cover',this.state.data.cover)
+      formData.append('price',this.state.data.price)
+      formData.append('count',this.state.data.count)
+      formData.append('tag',this.state.data.tag)
+      formData.append('file',this.state.data.file)
+
+      axios({
+        method: method,
+        url: 'http://localhost:3001/api/books/'+this.state.id,
+        data: formData,
+      })
+      .then(function (response) {
+       alert('Book sent to database!')
+       window.location= "/"
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } else {
+      alert('error in form')
+    }
+  }
+
+  validate(event) {
+    const type = event.target.type;
+    const css = event.target.className.split(" ");
+
+    if ((type === 'text' && !event.target.value) ||
+        (type === 'number' && event.target.value < 0)) {
+      event.target.className = css[0] + " input--error"
+    } else {
+      event.target.className = css[0];
+    }
   }
 
   handleToggle() {
@@ -109,9 +139,9 @@ class AdminBooks extends Component {
   }
 
   getImage(event) {
-	const file = event.target.files[0];
-	let data = this.state.data;
-	data["file"] = file;
+  	const file = event.target.files[0];
+  	let data = this.state.data;
+  	data["file"] = file;
   }
 
   componentDidMount() {
@@ -141,6 +171,7 @@ class AdminBooks extends Component {
                    id="title"
                    name="title"
                    type="text"
+                   onBlur={this.validate}
                    required></input>
 
             <label className="form__label" htmlFor="first_name">Author first name</label>
@@ -150,6 +181,7 @@ class AdminBooks extends Component {
                    id="first_name"
                    name="first_name"
                    type="text"
+                   onBlur={this.validate}
                    required></input>
 
             <label className="form__label" htmlFor="family_name">Author family name</label>
@@ -159,6 +191,7 @@ class AdminBooks extends Component {
                    id="family_name"
                    name="family_name"
                    type="text"
+                   onBlur={this.validate}
                    required></input>
 
             <label className="form__label" htmlFor="description">Description</label>
@@ -176,6 +209,8 @@ class AdminBooks extends Component {
                    id="price"
                    name="price"
                    type="number"
+                   min="0"
+                   onBlur={this.validate}
                    required></input>
 
             <label className="form__label" htmlFor="count">Amount</label>
@@ -185,6 +220,8 @@ class AdminBooks extends Component {
                    id="count"
                    name="count"
                    type="number"
+                   min="0"
+                   onBlur={this.validate}
                    required></input>
 
             <label className="form__label" htmlFor="tag">Tag</label>
@@ -194,6 +231,7 @@ class AdminBooks extends Component {
                    id="tag"
                    name="tag"
                    required>
+                    <option value="" defaultValue disabled hidden>Choose tag</option>
                    {tags}
             </select>
 

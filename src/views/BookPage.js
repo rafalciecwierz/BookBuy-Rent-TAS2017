@@ -14,7 +14,6 @@ class BookPage extends Component {
     this.loadBookFromServer = this.loadBookFromServer.bind(this);
   }
   loadBookFromServer() {
-	  console.log(this.id);
     axios.get(`http://localhost:3001/api/books/${this.id}`)
     .then(res => {
       this.setState({

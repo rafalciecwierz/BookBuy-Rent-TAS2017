@@ -99,7 +99,9 @@ textarea:focus {
 .dropdown__utils .nav__links {
   flex-direction: column;
   margin: 2rem auto 0 auto;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px;
 }
 .dropdown__utils .nav__links li {
   display: flex;

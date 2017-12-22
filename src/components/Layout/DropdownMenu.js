@@ -9,7 +9,8 @@ class DropdownMenu extends Component {
     super(props);
     this.state = {
       visible: false,
-      style: "utils--visible"
+      style: "utils--visible",
+      logged: this.props.logged
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,15 +26,13 @@ class DropdownMenu extends Component {
       style = this.state.style
     }
 
-    const logged = false;
-
     return (
       <menu className="dropdown">
         <i className="dropdown__icon"
           onClick={this.handleClick}></i>
         <div className={`dropdown__utils ${style}`}>
           <SearchBox />
-          { logged ? <NavUser /> : <NavUnknown />}
+          { this.state.logged ? <NavUser /> : <NavUnknown />}
         </div>
       </menu>
     );

@@ -5,17 +5,14 @@ import SearchBox from './SearchBox';
 import NavLink from './NavLink';
 import DropdownMenu from './DropdownMenu';
 
-class Nav extends Component {
-  render() {
-    const loggedin = true;
-    return (
-      <nav className="nav">
-        <Brand />
-        { loggedin ? <NavUser /> : <NavUnknown /> }
-        <DropdownMenu />
-      </nav>
+function Nav(props) {
+  return (
+    <nav className="nav">
+      <Brand />
+      { props.logged ? <NavUser /> : <NavUnknown /> }
+      <DropdownMenu logged={props.logged}/>
+    </nav>
     );
-  }
 }
 
 function NavUnknown(props) {

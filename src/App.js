@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Nav from './components/Layout/Nav';
-import Main from './views/Main';
+import Main from './containers/Main';
 
 class App extends Component {
   constructor(props) {

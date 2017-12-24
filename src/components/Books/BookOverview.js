@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-function BookOverview(props) {
+const BookOverview = props => {
   let coverImg = {
     backgroundImage: 'url("../../assets/img/books/undefined.jpg")'
   }
-
   try {
-    const coverUrl = require("../../assets/img/books/"+props.cover) || "../../assets/img/books/undefined.jpg";
+    const coverUrl = require("../../assets/img/books/" + props.cover) || "../../assets/img/books/undefined.jpg";
     coverImg = {
-      backgroundImage: 'url("'+coverUrl+'")'
+      backgroundImage: 'url("' + coverUrl + '")'
     }
   } catch(err) {}
 

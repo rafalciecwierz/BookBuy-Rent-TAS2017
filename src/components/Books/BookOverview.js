@@ -25,7 +25,7 @@ const BookOverview = props => {
         <h2 className="details__title">{props.title}</h2>
         <h3 className="details__author">{props.author}</h3>
 
-        <div>
+        <div className="details__list">
           <h5 className="details__price">{props.price}</h5>
           <span className="details__action">Buy now</span>
           <span className="details__action">Add to wishlist &#128154;</span>

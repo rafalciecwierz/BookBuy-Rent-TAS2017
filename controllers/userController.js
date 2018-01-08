@@ -47,36 +47,59 @@ exports.user_list = function(req,res,next) {
 	res.json({message: "Not implemented - user list!"});
 };
 // Register User
-//var urlRegister = "http://localhost:3000/register";
 exports.user_register = function(req, res, next) {
-	
+	console.log(req.body);
 	req.checkBody("username", "Username field cannot be empty").notEmpty();
 	req.checkBody("username", "Username must be between 4-15 characters long").len(4, 15);
 	req.checkBody("email", "The email you entered is invalid, please try again").isEmail();
 	req.checkBody("email", "Email must be between 4-100 characters long").len(4, 100);
 	req.checkBody("password", "Password must be between 8-100 characters long").len(8, 100);
 	req.checkBody("password","Password must include one lowercase character, one uppercase character, a number, and a special character").matches(/^(?=.*\d)(?=.*[a-z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
-	
-	
+	req.checkBody("username", "username already exists").custom(function(name, req){
+		return new Promise((resolve, reject) => {
+			User.findOne({ username: username }, (err, user) => {
+				if (err) throw err;
+				if(user == null) {
+					resolve();
+				} else {
+					console.log("rejecting");
+					reject();
+				}
+			});
+		});
+	});
+	req.checkBody("email", "email already exist").custom(function(name, req){
+		return new Promise((resolve, reject) => {
+			User.findOne({ email: email }, (err, email) => {
+				
+				if (err) throw err;
+				if(email == null) {
+					resolve();
+				} else {
+					console.log("rejecting");
+					reject();
+				}
+			});
+		});
+	});
 	var errors = req.validationErrors();
-	if(User.getUserByUsername(req.body.username))
-
+	console.log(errors);
 	if(errors){
-		//		res.render("",{
-		//			errors:errors
-		//		});
+		res.json(errors);
 	} else {
 		var newUser = new User({
 			email: req.body.email,
 			username: req.body.username,
 			password: req.body.password
 		});
+		console.log(newUser);
+
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			res.json(user);
+			console.log(user);
+			res.redirect("http://localhost:3000/");
 		});
 	}
-	
 };
 
 

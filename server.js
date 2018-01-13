@@ -1,48 +1,62 @@
-var express = require("express");
-var mongoose = require("mongoose");
-var bodyParser = require("body-parser");
-var expressValidator = require("express-validator");
-var path = require("path");
+const express = require("express");
+const session = require("express-session");
+const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo")(session);
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const promisify = require("es6-promisify");
+const flash = require("connect-flash");
+const expressValidator = require("express-validator");
+const errorHandlers = require("./handlers/errorHandlers");
+require("./handlers/passport");
 require("dotenv").config();
-var passport = require("passport");
-var session = require('express-session');
 var api = require("./routes/api");
 
 var app = express();
-//var router = express.Router();
 
+var port = process.env.API_PORT || 3001;
 
-// Passport init
+mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds163595.mlab.com:63595/book-shop");
+mongoose.Promise = global.Promise; 
+mongoose.connection.on("error", (err) => {
+	console.error(`${err.message}`);
+});
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use(session({ secret: "cats" }));
+// body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// userController.validateRegister
+app.use(expressValidator());
+
+// cookie-parser
+app.use(cookieParser());
+
+// Sessions
+app.use(session({
+	secret: process.env.SECRET,
+	resave: false,
+	saveUninitialized: false,
+	store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+// // Passport JS
 app.use(passport.initialize());
 app.use(passport.session());
 
-var port = process.env.API_PORT || 3001;
-// view engine setup
-//app.set("views", path.join(__dirname, "views"));
-//app.set("view engine", "js");
+//flash
+app.use(flash());
 
-mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds163595.mlab.com:63595/book-shop");
 
-app.use(express.static(path.join(__dirname)));
-app.use(bodyParser.urlencoded({extended: true, limit: "5mb"}));
-app.use(bodyParser.json({limit: "5mb"}));
-app.use(expressValidator({
-	errorFormatter: function(param, msg, value) {
-		var namespace = param.split("."), 
-			root    = namespace.shift(), 
-			formParam = root;
-		while(namespace.length) {
-			formParam += "[" + namespace.shift() + "]";
-		}
-		return {
-			param : formParam,
-			msg   : msg,
-			value : value
-		};
-	}
-}));
+
+// promisify
+app.use((req, res, next) => {
+	req.login = promisify(req.login, req);
+	next();
+});
 
 app.use(function(req, res, next) {
 	res.setHeader("Access-Control-Allow-Origin", "*");
@@ -53,7 +67,18 @@ app.use(function(req, res, next) {
 	next();
 });
 
-app.use("/api",api);
+app.use("/api", api);
+
+app.use(errorHandlers.notFound);
+
+app.use(errorHandlers.flashValidationErrors);
+
+if (app.get("env") === "development") {
+	app.use(errorHandlers.developmentErrors);
+}
+
+app.use(errorHandlers.productionErrors);
+
 
 app.listen(port, function() {
 	console.log(`api running on port ${port}`);

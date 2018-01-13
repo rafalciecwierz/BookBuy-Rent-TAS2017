@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
-
+var passport = require("passport");
 // Require controller modules
+const auth_controller = require("../controllers/authenticationController");
 var book_controller = require("../controllers/bookController");
 var author_controller = require("../controllers/authorController");
 var tag_controller = require("../controllers/tagController");
@@ -9,7 +10,6 @@ var comment_controller = require("../controllers/commentController");
 var action_controller = require("../controllers/actionController");
 var user_controller = require("../controllers/userController");
 var multer = require("multer");
-
 var Storage = multer.diskStorage({
 	destination: function(req, file, callback) {
 		callback(null, "./src/assets/img/books");
@@ -113,7 +113,17 @@ router.get("/users/:id/bought",action_controller.user_books);
 /// USER ROUTES ///
 
 // Register User //
-router.post("/users", user_controller.user_register);
+router.post("/users",
+	user_controller.validateRegister,
+	user_controller.register,
+	passport.authenticate("local"),
+	(req,res)=>{
+		console.log(res);
+		res.json(
+			{redirectURL:"/"   
+			});
+	}
+);
 
 //GET Users
 router.get("/users",user_controller.user_list);
@@ -131,10 +141,16 @@ router.get("/users/cart",user_controller.user_cart);
 router.get("/login", user_controller.user_login_get);
 
 //Login User POST
-router.post("/login", user_controller.user_login_post);
+router.post("/login", auth_controller.isLoggedIn, passport.authenticate("local"),
+	(req,res)=>{
+		console.log(res);
+		res.json(
+			{redirectURL:"/"   
+			});
+	}
+);
 
-router.get("/logout", user_controller.user_logout_get);
-
+router.get("/logout", auth_controller.logout);
 
 module.exports = router;
 

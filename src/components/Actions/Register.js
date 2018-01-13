@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Route, Redirect } from "react-router";
 
 
 class Register extends Component {
@@ -9,7 +10,8 @@ class Register extends Component {
 			username: "",
 			password: "",
 			email: "",
-			errors: []
+			errors: [],
+			redirect: false
 		};
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);		
 		this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -39,8 +41,14 @@ class Register extends Component {
 			{username: _this.state.username,
 				email: _this.state.email,
 				password: _this.state.password
-			}).then(response => {console.log(response.data);}).catch(error => {
-			console.error(error)
+			}).then(response => {
+			console.log(response);
+			if(response.data.redirectURL){
+				window.location= "/";
+			} else{	
+				this.state.errors.push(...response.data);
+				console.log(this.state.errors);}}).catch(error => {
+			console.log(error);
 		});
 	}
 	

@@ -1,39 +1,7 @@
-var User = require("../models/userModel");
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
 
-
-passport.use(new LocalStrategy(	
-	function(username, password, done) {
-		console.log("jestem w passport");
-		User.getUserByUsername(username, function(err, user){
-			if(err) throw err;
-			if(!user){
-				console.log("nieznany user");
-				return done(null, false, {message: "Unknown User"});
-			}
-			User.comparePassword(password, user.password, function(err, isMatch){
-				if(err) throw err;
-				if(isMatch){
-					console.log("przeszło");
-					return done(null, user);
-				} else {
-					console.log("złe hasło");
-					return done(null, false, {message: "Invalid password"});
-				}
-			});
-		});
-	}));
-
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	User.getUserById(id, function(err, user) {
-		done(err, user);
-	});
-});
+const User = require("../models/userModel");
+const promisify = require('es6-promisify');
+const mongoose = require("mongoose");
 
 exports.user_wishlist = function(req, res, next) {
 	res.json({message: "Not implemented - user wishlist!"});
@@ -46,77 +14,48 @@ exports.user_cart = function(req, res, next) {
 exports.user_list = function(req,res,next) {
 	res.json({message: "Not implemented - user list!"});
 };
-// Register User
-exports.user_register = function(req, res, next) {
+exports.validateRegister = (req, res, next) => {
 	console.log(req.body);
-	req.checkBody("username", "Username field cannot be empty").notEmpty();
-	req.checkBody("username", "Username must be between 4-15 characters long").len(4, 15);
-	req.checkBody("email", "The email you entered is invalid, please try again").isEmail();
-	req.checkBody("email", "Email must be between 4-100 characters long").len(4, 100);
-	req.checkBody("password", "Password must be between 8-100 characters long").len(8, 100);
-	req.checkBody("password","Password must include one lowercase character, one uppercase character, a number, and a special character").matches(/^(?=.*\d)(?=.*[a-z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
-	req.checkBody("username", "username already exists").custom(function(name, req){
-		return new Promise((resolve, reject) => {
-			User.findOne({ username: username }, (err, user) => {
-				if (err) throw err;
-				if(user == null) {
-					resolve();
-				} else {
-					console.log("rejecting");
-					reject();
-				}
-			});
-		});
+	req.sanitizeBody('username');
+	console.log(req.body.username);
+	req.checkBody('username', 'You must supply a name!').notEmpty();
+	req.checkBody('email', 'That Email is not valid!').isEmail();
+	req.sanitizeBody('email').normalizeEmail({
+	  gmail_remove_dots: false,
+	  remove_extension: false,
+	  gmail_remove_subaddress: false
 	});
-	req.checkBody("email", "email already exist").custom(function(name, req){
-		return new Promise((resolve, reject) => {
-			User.findOne({ email: email }, (err, email) => {
-				
-				if (err) throw err;
-				if(email == null) {
-					resolve();
-				} else {
-					console.log("rejecting");
-					reject();
-				}
-			});
-		});
-	});
-	var errors = req.validationErrors();
+	req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+  
+	const errors = req.validationErrors();
 	console.log(errors);
-	if(errors){
-		res.json(errors);
-	} else {
-		var newUser = new User({
-			email: req.body.email,
-			username: req.body.username,
-			password: req.body.password
-		});
-		console.log(newUser);
-
-		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			console.log(user);
-			res.redirect("http://localhost:3000/");
-		});
+	if (errors) {
+	  req.flash('error', errors.map(err => err.msg));
+	  res.json({body: req.body, flashes: req.flash() });
+	  return; // stop the fn from running
 	}
-};
-
-
+	next(); // there were no errors!
+  };
+  
+  exports.register = async (req, res, next) => { 
+	const user = new User({username: req.body.username, email: req.body.email });
+	console.log(user); 
+	const register = promisify(User.register, User);
+	console.log(register.name);
+	await register(user, req.body.password);
+	next(); // pass to authController.login
+  };
+  
 // Login GET
 exports.user_login_get = function(req, res, next) {
-	res.redirect("http://localhost:3000/");
-	//res.render("user_login", { title: "Log in"});
+	
 };
 
 //Login POST
-exports.user_login_post = passport.authenticate("local", { 	
-	successRedirect: "http://localhost:3000/user",
-	failureRedirect: "http://localhost:3000/login"});
+exports.user_login_post = function(req , res, next){
+};
 
 
 exports.user_logout_get = function(req,res,next) {
-	req.logout();
-	//req.flash("success_msg", "You are logged out");
-	res.redirect("http://localhost:3000/login");
+	
 };

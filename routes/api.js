@@ -141,11 +141,11 @@ router.get("/users/cart",user_controller.user_cart);
 router.get("/login", user_controller.user_login_get);
 
 //Login User POST
-router.post("/login", auth_controller.isLoggedIn, passport.authenticate("local"),
+router.post("/login", passport.authenticate("local"),
 	(req,res)=>{
 		console.log(res);
 		res.json(
-			{redirectURL:"/"   
+			{redirectURL:"/user"   
 			});
 	}
 );

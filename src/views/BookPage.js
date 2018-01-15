@@ -30,6 +30,7 @@ class BookPage extends Component {
 		const book = this.state.data;
 		return (
 		  <BookOverview
+      id = {this.id}
 		  title={book.title}
 		  cover={book.cover}
 		  author={book.author.name}

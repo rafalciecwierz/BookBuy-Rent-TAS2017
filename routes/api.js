@@ -104,7 +104,7 @@ router.post("/books/:id/wishlist",action_controller.addToWishlist);
 
 //Add Book to User cart //
 /* NOT WORKING */
-router.post("/books/:id/cart",action_controller.addToCart);
+router.post("/books/:id/cart", auth_controller.isLoggedIn, action_controller.addToCart);
 
 //Get books bought by User //
 /* NOT WORKING */
@@ -141,7 +141,7 @@ router.get("/users/cart",user_controller.user_cart);
 router.get("/login", user_controller.user_login_get);
 
 //Login User POST
-router.post("/login", passport.authenticate("local"),
+router.post("/login", passport.authenticate("local", {session: true}),
 	(req,res)=>{
 		console.log(res);
 		res.json(

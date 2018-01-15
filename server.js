@@ -10,6 +10,7 @@ const promisify = require("es6-promisify");
 const flash = require("connect-flash");
 const expressValidator = require("express-validator");
 const errorHandlers = require("./handlers/errorHandlers");
+const cors = require("cors");
 require("./handlers/passport");
 require("dotenv").config();
 var api = require("./routes/api");
@@ -25,6 +26,9 @@ mongoose.connection.on("error", (err) => {
 });
 app.use(express.static(path.join(__dirname, "public")));
 
+// cookie-parser
+app.use(cookieParser(process.env.SECRET));
+
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,13 +36,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // userController.validateRegister
 app.use(expressValidator());
 
-// cookie-parser
-app.use(cookieParser());
 
 // Sessions
 app.use(session({
+	cookie: {maxAge: 10 * 60 * 1000}, // make it short for debugging reasons
 	secret: process.env.SECRET,
-	resave: false,
+	resave: true,
 	saveUninitialized: false,
 	store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
@@ -49,7 +52,6 @@ app.use(passport.session());
 
 //flash
 app.use(flash());
-
 
 
 // promisify
@@ -66,6 +68,13 @@ app.use(function(req, res, next) {
 	res.setHeader("Cache-Control", "no - cache");
 	next();
 });
+
+// cors for session
+app.use(cors({
+    origin:['http://localhost:3000'],
+    methods:['GET','POST'],
+    credentials: true // enable set cookie
+}));
 
 app.use("/api", api);
 

@@ -31,6 +31,8 @@ class Login extends Component {
 				password: _this.state.password
 			}).then(response => {
 				if(response.data.redirectURL){
+					sessionStorage.setItem('isLogged', true);
+					// TODO: add saving user name / user id (or do it by state?)
 					console.log('redirect url to: ' + response.data.redirectURL);
 					window.location=response.data.redirectURL;
 				}

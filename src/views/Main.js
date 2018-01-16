@@ -8,6 +8,7 @@ import RegisterPage from './RegisterPage';
 import BookPage from './BookPage';
 import BookOverview from '../components/Books/BookOverview';
 import Login from '../components/Actions/Login';
+import Logout from '../components/Actions/Logout';
 import Admin from '../components/Users/Admin';
 
 class Main extends Component {
@@ -20,6 +21,7 @@ class Main extends Component {
           <Route path='/books/:id' component={BookPage}/>
           <Route exact path='/register' component={RegisterPage}/>
           <Route exact path='/login' component={Login}/>
+          <Route exact path='/logout' component={Logout}/>
           <Route exact path='/admin' component={Admin}/>
         </Switch>
       </main>

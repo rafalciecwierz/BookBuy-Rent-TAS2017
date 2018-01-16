@@ -19,7 +19,7 @@ OrderSchema.query.byBookId = function(bookId) {
 	return this.find({ book: bookId });
 };
 
-OrderSchema.methods.setValue = function(books,cb) {
+OrderSchema.methods.setValue = function(books,cb) { // change this to use Cart or derived values
 	var Book = require('./bookModel');
 	var price = 0;
 	for(i = 0; i < books.length; i++) {

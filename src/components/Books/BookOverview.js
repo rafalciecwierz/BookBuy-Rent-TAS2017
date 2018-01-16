@@ -5,16 +5,40 @@ class BookOverview extends Component {
   constructor(props){
     super(props)
     this.props = props;
-    this.handleAddToCart = this.handleAddToCart.bind(this);
+    // this.state = { // TODO: add this while rendering something nicer than alert
+    //   isMessageReceived: false, 
+    //   message: "You must be logged in!"
+    // };
   }
 
-  handleAddToCart(){
+  handleAddToCart = () => {
     console.log(this.props.id);
     axios.post("http://localhost:3001/api/books/" + this.props.id + "/cart",
     { bookId: this.props.id
-    }).then(response =>{
-      console.log(response)
+    }).then(res => {
+      console.log(res.data.message);
+      // this.setState({
+      //   isMessageReceived: true,
+      //   message: res.data.message
+      // });
+      if(res.data.totalQty){ // checks if it was okey
+        alert(res.data.message +" You have added " + res.data.totalQty + " books, total price = " + res.data.totalPrice);
+      } else { // if it couldn't be done for some reason, show message
+        alert(res.data.message)
+      }
+    }).catch(error => {
+      console.log(error);
     });
+  }
+
+  returnMessage = () => {
+    if(this.state.isMessageReceived){
+      // return <h5>{ this.message }</h5> // TODO: add something nicer here
+      window.alert(this.message);
+    }
+    else{
+      return
+    }
   }
 
   render() {
@@ -33,7 +57,6 @@ class BookOverview extends Component {
     const back = () => {window.history.back()}
 
 
-
     return (
       <div className="book-overview">
         <figure className="overview__thumbnails">
@@ -45,7 +68,6 @@ class BookOverview extends Component {
             onClick={back}><i></i></button>
           <h2 className="details__title">{this.props.title}</h2>
           <h3 className="details__author">{this.props.author}</h3>
-
           <div>
             <h5 className="details__price">{this.props.price}</h5>
             <span className="details__action">Buy now</span>

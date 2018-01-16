@@ -94,16 +94,17 @@ exports.addToWishlist = function(req, res, next) {
 exports.addToCart = function(req, res, next) {
 	console.log("Adding to cart.")
 	var bookId = req.body.bookId;
-	var cart = new Cart(req.session.cart ? req.session.cart : {});
+	var cart = new Cart(req.session.cart || {});
 	Book.findById(bookId, function(err, book) {
 		if(err){
 			console.log("\n Book doesn't exist. \n");
-			res.json({message: "Couldn't find the book."});
+			res.json({bookFound: false, message: "Couldn't find the book."});
 		}
 		cart.add(book, bookId);
 		req.session.cart = cart;
 		console.log(req.session.cart);
 		req.session.save();
-		res.json({message : "Added to cart."})
+		res.json({message: "Added to cart.", totalQty: cart.qty, totalPrice: cart.totalPrice});
+		res.send();
 	});
 };

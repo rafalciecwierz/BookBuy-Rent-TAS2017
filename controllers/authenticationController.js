@@ -3,7 +3,7 @@
 exports.logout = (req, res) => {
 	req.logout();
 	req.flash("success", "You are now logged out!");
-	res.json({redirectURL:"/"});
+	res.json({message: "Logged out succesfully."});
 };
 
 exports.isLoggedIn = (req, res, next) => {

@@ -800,3 +800,22 @@ textarea:focus {
 .admin-card.card--finished {
   opacity: 0.5;
 }
+
+
+/*
+ * Logout component
+ *
+ * na szybko wziąłem kolory itp. z innych komponentów, żeby pasowało.
+ */
+
+.logout {
+  margin: 3rem;
+  text-align: center;
+}
+
+.logout__text {
+  padding: 3rem 1rem;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #777;
+}

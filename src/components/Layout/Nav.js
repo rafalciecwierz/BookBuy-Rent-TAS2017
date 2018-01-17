@@ -6,16 +6,28 @@ import NavLink from './NavLink';
 import DropdownMenu from './DropdownMenu';
 
 class Nav extends Component {
+  constructor(props){
+    super(props);
+    console.log(props);
+    const isLoggedSes = localStorage.getItem('isLogged');
+    this.state = {isLogged: isLoggedSes == 'true'};
+  }
 
   logout = () => { // to jest tu dlatego, żeby po przejściu na stronę logout przycisk był dobrze ustawiony
-    sessionStorage.isLogged = false;
+    localStorage.setItem('isLogged', false);
+    this.setState({isLogged: false}); // maybe this is unnecessary
+  }
+
+  componentWillMount(){ // set state according to local storage
+    const isLoggedSes = localStorage.getItem('isLogged');
+    this.setState({isLogged: isLoggedSes == 'true'});
+    console.log('Nav-willMount: logged state', isLoggedSes);
   }
 
   userNav = () => {
-    const isLogged = sessionStorage.getItem('isLogged');
-    if(isLogged && isLogged == 'true'){
+    if(this.state.isLogged){
       return (
-        <Link to='/logout' onClick={ this.logout() }>
+        <Link to='/logout' onClick={ this.logout }>
         <span className="link--simple">
           Log out
         </span>

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import BookOverview from '../components/Books/BookOverview';
 
-
-class BookPage extends Component {
+class BookOverviewContainer extends Component {
   constructor(props) {
     super(props);
     this.id = props.match.params.id;
@@ -13,8 +11,8 @@ class BookPage extends Component {
     };
     this.loadBookFromServer = this.loadBookFromServer.bind(this);
   }
+
   loadBookFromServer() {
-	  console.log(this.id);
     axios.get(`http://localhost:3001/api/books/${this.id}`)
     .then(res => {
       this.setState({
@@ -22,6 +20,7 @@ class BookPage extends Component {
       });
     })
   }
+
   componentDidMount() {
     this.loadBookFromServer();
   }
@@ -43,11 +42,10 @@ class BookPage extends Component {
 	  }
 	  else {
 		  return (
-		  <BookOverview/>
-
-		);
+  		  <BookOverview />
+  		);
 	  }
   }
 }
 
-export default BookPage;
+export default BookOverviewContainer;

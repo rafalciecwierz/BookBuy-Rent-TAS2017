@@ -21,7 +21,7 @@ textarea:focus {
   z-index: 200;
   display: flex;
   flex-direction: row;
-  padding: 20px 10%;
+  padding: 20px 8%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
   background-color: white;
   align-items: center;
@@ -85,9 +85,10 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 0;
   margin-top: 20px;
   padding: 3rem 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.4s ease-in, height 0.4s ease-in;
   pointer-events: none;
   opacity: 0;
   border: 1px solid rgba(0, 0, 0, .0975);
@@ -97,6 +98,7 @@ textarea:focus {
 .dropdown__utils.utils--visible {
   pointer-events: all;
   opacity: 1;
+  height: 200px;
 }
 .dropdown .search-box {
   margin: 0;
@@ -104,7 +106,9 @@ textarea:focus {
 .dropdown__utils .nav__links {
   flex-direction: column;
   margin: 2rem auto 0 auto;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px;
 }
 .dropdown__utils .nav__links li {
   display: flex;
@@ -376,6 +380,9 @@ textarea:focus {
   .book-list {
     width: 100%;
   }
+  .book-list__header {
+    text-align: center;
+  }
 }
 .book-list__cards {
   display: flex;
@@ -517,6 +524,50 @@ textarea:focus {
   opacity: 1;
 }
 
+@media screen and (max-width: 1200px) {
+  .details__list {
+    display: flex;
+    flex-direction: column;
+  }
+  .details__list .details__action,
+  .details__list .details__price {
+    margin: 0.5rem;
+    display: block;
+  }
+
+  .book-overview {
+    flex-direction: column;
+    margin-top: 5%;
+  }
+
+  .overview__thumbnails .thumb {
+    width: 550px;
+  }
+
+  .overview__details {
+    width: 450px;
+    padding: 50px;
+    height: auto;
+    margin-bottom: 50px;
+  }
+
+  .button-back {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overview__thumbnails .thumb {
+    max-width: 90vw;
+    max-height: 78vh;
+  }
+
+  .overview__details {
+    max-width: 80vw;
+    padding: 5vw;
+  }
+}
+
 /**
  * Comment component
  */
@@ -590,6 +641,13 @@ textarea:focus {
   border-radius: 3px;
   font-size: 1rem;
 }
+.form__input.input--error {
+  box-shadow: 0 0 8px 0px rgba(255, 0, 0, 0.75);
+}
+/*.form__input.input--error::after {
+  content: "Invalid value";
+  width: auto;
+}*/
 .form__input.input--file {
   display: none;
 }

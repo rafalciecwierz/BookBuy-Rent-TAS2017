@@ -10,7 +10,8 @@ class CartList extends Component {
 			bookIds: {}, //TODO: throw it away since  it's totally redundant - books.book._id is the id.
 			books: [], // [{book: book, qty: Num, price: Num}]
 			totalPrice: 0,
-			qty: 0
+			qty: 0,
+			received: false
 		};
 		// by default cart has: 
 		this.loadCartFromServer = this.loadCartFromServer.bind(this);
@@ -23,7 +24,8 @@ class CartList extends Component {
 					bookIds: res.data.bookIds,
 					books: res.data.books,
 					totalPrice: res.data.totalPrice,
-					qty: res.data.totalQty
+					qty: res.data.totalQty,
+					received: true
 				});
 			});
 	}
@@ -115,7 +117,7 @@ class CartList extends Component {
 
 		console.log('books in cart: ', this.state);
 
-		if(this.state.qty === 0)
+		if(this.state.qty === 0 && this.state.received) // received - don't show before receiving books
 			return ( <h3 className="cart-list__empty-text"> Your cart is empty. </h3> )
 
 		return (

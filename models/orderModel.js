@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var OrderSchema = new Schema(
   {
 	user: {type: Schema.ObjectId, ref: 'User', required: true},
-	book: [{type: Schema.ObjectId, ref: 'Book', required: true)],
+	book: [{type: Schema.ObjectId, ref: 'Book', required: true}],
 	status: {type: String, enum: ["awaiting payment","accepted","completed"], required: true},
 	//jak obliczac?
 	value: {type: Number, default: 0}
@@ -19,24 +19,25 @@ OrderSchema.query.byBookId = function(bookId) {
 	return this.find({ book: bookId });
 };
 
-OrderSchema.methods.setValue = function(books,cb) { // change this to use Cart or derived values
-	var Book = require('./bookModel');
-	var price = 0;
-	for(i = 0; i < books.length; i++) {
-		books += Book.findById(books[i]._id, {'price'});	
-	}
-};
+// do we need this?
+// OrderSchema.methods.setValue = function(books,cb) { // TODO: change this to use Cart or derived values
+// 	var Book = require('./bookModel');
+// 	var price = 0;
+// 	for(i = 0; i < books.length; i++) {
+// 		books += Book.findById(books[i]._id, {'price'});	
+// 	}
+// };
 
-module.exports.createOrder = function(newOrder, callback){
-	var Book = require('./bookModel');
-	var price = 0;
-	for(i = 0; i < newOrder.book.length; i++) {
-		price += Book.findById(books[i]._id, {'price'});	
-	}
-	newOrder.value = price;
-	newOrder.save(callback);
+module.exports.createOrder = function(bookIds, userId, value, callback){
+	console.log("wtf"); // this is not working for me (?), so i did it in the controller - MK
+	const newOrder = new Order({
+		user: userId,
+		book: bookIds,
+		status: "awaiting payment",
+		value: value
 	});
-}
+	newOrder.save(callback);
+};
 
 /*OrderSchema
 .virtual('url')

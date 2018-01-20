@@ -9,6 +9,8 @@ var tag_controller = require("../controllers/tagController");
 var comment_controller = require("../controllers/commentController");
 var action_controller = require("../controllers/actionController");
 var user_controller = require("../controllers/userController");
+var order_controller = require("../controllers/orderController");
+
 var multer = require("multer");
 var Storage = multer.diskStorage({
 	destination: function(req, file, callback) {
@@ -102,15 +104,38 @@ router.post("/search",action_controller.search);
 /* NOT WORKING */
 router.post("/books/:id/wishlist",action_controller.addToWishlist);
 
-//Add Book to User cart //
-/* NOT WORKING */
-router.post("/books/:id/cart", auth_controller.isLoggedIn, action_controller.addToCart);
-
 //Get books bought by User //
 /* NOT WORKING */
-router.get("/users/:id/bought",action_controller.user_books);
+router.get("/users/:id/bought", action_controller.user_books);
+
+
+/// ORDER ROUTES ///
+
+
+// Add Book to cart //
+router.post("/orders/:id/cart/add", order_controller.addToCart);
+
+// Delete book from cart //
+router.post("/orders/:id/cart_del",  order_controller.deleteFromCart);
+
+// Get  cart //
+router.get("/orders/cart_get",  order_controller.getCart);
+
+// Empty (delete) cart //
+router.post("/orders/cart/del",  order_controller.emptyCart);
+
+// Create order //
+router.post("/orders/create_order", auth_controller.isLoggedIn, order_controller.createOrder);
+
+// Get user orders //
+router.get("/orders/user_orders", auth_controller.isLoggedIn, order_controller.getUserOrders);
+
+// Change state of an order //
+router.post("/orders/change_state", auth_controller.isLoggedIn, order_controller.changeOrder);
+// TODO: define req (changeStatus up or to req.data.status?)
 
 /// USER ROUTES ///
+
 
 // Register User //
 router.post("/users",
@@ -132,20 +157,19 @@ router.get("/users",user_controller.user_list);
 /* NOT WORKING */
 router.get("/users/wishlist",user_controller.user_wishlist);
 
-//GET User cart //
-/* NOT WORKING */
-router.get("/users/cart",user_controller.user_cart);
-
-
 // Login User GET
 router.get("/login", user_controller.user_login_get);
 
 //Login User POST
 router.post("/login", passport.authenticate("local", {session: true}),
 	(req,res)=>{
-		console.log(res);
+		// console.log('\n\n id \n\n\n', req.user._id);
+		// console.log('\n\n uname \n\n', req.user.username);
+		req.session.userId = req.user._id; // add to session to use it easier
 		res.json(
-			{redirectURL:"/user"   
+			{redirectURL:"/user",
+			userId: req.user._id,
+			userName: req.user.username 
 			});
 	}
 );

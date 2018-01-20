@@ -1,7 +1,6 @@
 var Book = require('../models/bookModel');
 var Author = require('../models/authorModel');
 var Tag = require('../models/tagModel');
-var Cart = require('../models/cartModel')
 var Comment = require('../models/commentModel');
 var mongoose = require('mongoose');
 var async = require('async');
@@ -89,22 +88,4 @@ exports.user_books = function(req, res, next) {
 
 exports.addToWishlist = function(req, res, next) {
 	res.json({message: "Not implemented - adding to wishlist!"});
-};
-
-exports.addToCart = function(req, res, next) {
-	console.log("Adding to cart.")
-	var bookId = req.body.bookId;
-	var cart = new Cart(req.session.cart || {});
-	Book.findById(bookId, function(err, book) {
-		if(err){
-			console.log("\n Book doesn't exist. \n");
-			res.json({bookFound: false, message: "Couldn't find the book."});
-		}
-		cart.add(book, bookId);
-		req.session.cart = cart;
-		console.log(req.session.cart);
-		req.session.save();
-		res.json({message: "Added to cart.", totalQty: cart.qty, totalPrice: cart.totalPrice});
-		res.send();
-	});
 };

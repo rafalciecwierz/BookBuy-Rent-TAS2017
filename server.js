@@ -39,7 +39,7 @@ app.use(expressValidator());
 
 // Sessions
 app.use(session({
-	cookie: {maxAge: 10 * 60 * 1000}, // make it short for debugging reasons
+	cookie: {maxAge: 10 * 60 * 60 * 1000}, // make it short for debugging reasons
 	secret: process.env.SECRET,
 	resave: true,
 	saveUninitialized: false,

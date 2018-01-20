@@ -10,6 +10,7 @@ import BookOverview from '../components/Books/BookOverview';
 import Login from '../components/Actions/Login';
 import Logout from '../components/Actions/Logout';
 import Admin from '../components/Users/Admin';
+import CartPage from '../views/CartPage';
 
 class Main extends Component {
   render() {
@@ -23,6 +24,7 @@ class Main extends Component {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/logout' component={Logout}/>
           <Route exact path='/admin' component={Admin}/>
+          <Route exact path='/cart' component={CartPage}/>
         </Switch>
       </main>
     );

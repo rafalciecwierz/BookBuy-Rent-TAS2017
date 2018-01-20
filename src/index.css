@@ -801,9 +801,14 @@ textarea:focus {
   opacity: 0.5;
 }
 
+/*
+ *
+ * Poniżej kod dodany przez MK, jak jest brzydko, to przepraszam. Można śmiało zmieniać...
+ *
+ */
 
 /*
- * Logout component
+ * Logout 
  *
  * na szybko wziąłem kolory itp. z innych komponentów, żeby pasowało.
  */
@@ -819,3 +824,283 @@ textarea:focus {
   font-weight: 600;
   color: #777;
 }
+
+
+
+
+/*
+ * CartList
+ *
+ */
+
+
+.cart-list__buttons { /* TODO: put this inside nicer container */;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4% 4% 4% 4%;
+
+  font-weight: 400;
+  opacity: .8;
+}
+
+.cart-list__clear {
+  order: 1;
+  font-size: 4vw;
+  line-height: 4vw;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cart-list__buy {
+  order: 2;
+  font-size: 4vw;
+  line-height: 4vw;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cart-list__price {
+  order: 3;
+  font-size: 4vw;
+  line-height: 4vw;
+}
+
+.cart-list__price::before{
+  content: "Price: $";
+}
+
+.cart-list__qty {
+  order: 4;
+  font-size: 4vw;
+  line-height: 4vw;
+}
+
+.cart-list__qty::before{
+  content: "Quantity: ";
+}
+
+.cart-list__empty-text {
+  font-weight: 400;
+  opacity: .7;
+  margin: 4% 4%;
+  text-align: center;
+  font-size: 5vw;
+}
+
+
+/*
+ * CartItem
+ *
+ * not responsive; okropny syf z jednostkami :/;
+ * TODO: make it rwd;
+ */
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  min-width: 90vw;
+  height: auto;
+  margin: 1% 3% 1% 3%;
+  background-color: #fff;
+}
+
+/* lewa karta */
+
+.cart-item .cart-item__brick_left {
+  flex: 0;
+  background-color: #fff;
+  margin: 2% 1% 2% 2%;
+  min-width: calc(100%/5);/*225px;*/
+  align-content: center;
+  align-items: center;
+  /*height: 90%;*/
+  /*height: 100%;/*300px;*/
+}
+
+.cart-item__brick_left .book__card {
+  height: 100%;
+  width: 75%;
+  background-color: #fff;
+  background-position: center;
+  margin: auto;
+  position: relative;
+}
+
+.cart-item__brick_left .book__cover {
+  display: block;
+  background-color: #fff;
+  height: 28vw;
+  width: 21vw;
+  margin: auto;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+
+.cart-item .cart-item__brick_mid {
+  flex: 1;
+  background-color: #fff;
+  margin: 2% 1% 2% 1%;
+  height: 90%;
+  min-width: calc(100%/3);
+}
+
+.cart-item .cart-item__brick_right {
+  flex: 2;
+  background-color: #F2B5E2;
+  margin: 2% 2% 2% 1%;
+  width: calc(100%/7);
+  height: auto;
+  /*position: relative;*/
+}
+
+/* środkowa karta */
+
+.cart-item__brick_mid .book_details {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  margin: 2vh 2vw 2vh 2vw;
+  background-color: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  font-size: 2vh;
+  font-weight: 600;
+}
+
+.cart-item__brick_mid .title {
+  margin-bottom: 2vh;
+  margin-top: 3vh;
+  min-height: 8vh;
+  opacity: 0.6;
+  font-size: 6vh;
+  font-weight: 600;
+  line-height: 6vh;
+}
+
+.cart-item__brick_mid .author {
+  margin-bottom: 2vh;
+  text-transform: uppercase;
+  opacity: 0.5;
+  min-height: 8vh;
+  font-size: 8vh;
+  font-weight: 600;
+  line-height: 2vh;
+}
+
+.cart-item__brick_mid .author::before{
+  content: "BY ";
+  opacity: 0.8;
+}
+
+.cart-item .price {
+  width: 10vw;
+  padding: 3vw;
+  margin: 10vh 1vh;
+  text-align: center;
+  color: white;
+  background-color: #d9b3f5;
+  box-shadow: -2px 2px 8px 1px rgba(0, 0, 0, 0.15);
+  font-size: 10vh;
+  font-weight: 600;
+  line-height: 2vh;
+  background-position: center;
+}
+
+.cart-item .price::before {
+  content: "$";
+}
+
+/* prawa karta */
+
+.cart-item__brick_right .details {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  margin: 5% 5% 5% 5%;
+  background-color: #F2B5E2;
+  opacity: .8;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  font-weight: 600;
+}
+
+.cart-item__brick_right .qty {
+  opacity: .8;
+  height: 6vh;
+  font-size: 6vh;
+  min-height: 6vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.cart-item__brick_right .total_price {
+  opacity: 1;
+  margin-top: 2vh;
+  margin:bottom 2vh;
+  height: 8vh;
+  font-size: 8vh;
+  min-height: 8vh;
+  font-weight: 600;
+  line-height: 6vh;
+}
+
+.cart-item__brick_right .total_price::before{
+  content: "Total: $";
+}
+
+.cart-item__brick_right .action_container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 25vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.action_container .action_add {
+  flex: 0;
+  background-color: none;
+  border: none;
+  min-width: 40%;
+  height: 18vh;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  line-height: 18vh;
+  font-size: 15vh;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.action_container .action_subtract {
+  flex: 1;
+  background-color: none;
+  border: none;
+  min-width: 40%;
+  height: 18vh;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  line-height: 18vh;
+  font-size: 15vh;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+

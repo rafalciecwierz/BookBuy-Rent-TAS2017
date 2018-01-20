@@ -5,24 +5,17 @@ class BookOverview extends Component {
   constructor(props){
     super(props)
     this.props = props;
-    // this.state = { // TODO: add this while rendering something nicer than alert
-    //   isMessageReceived: false, 
-    //   message: "You must be logged in!"
-    // };
   }
 
   handleAddToCart = () => {
     console.log(this.props.id);
-    axios.post("http://localhost:3001/api/books/" + this.props.id + "/cart",
-    { bookId: this.props.id
+    axios.post("http://localhost:3001/api/orders/" + this.props.id + "/cart/add", { 
+      bookId: this.props.id
     }).then(res => {
       console.log(res.data.message);
-      // this.setState({
-      //   isMessageReceived: true,
-      //   message: res.data.message
-      // });
       if(res.data.totalQty){ // checks if it was okey
         alert(res.data.message +" You have added " + res.data.totalQty + " books, total price = " + res.data.totalPrice);
+        // add something nicer than this alert
       } else { // if it couldn't be done for some reason, show message
         alert(res.data.message)
       }
@@ -31,14 +24,19 @@ class BookOverview extends Component {
     });
   }
 
-  returnMessage = () => {
-    if(this.state.isMessageReceived){
-      // return <h5>{ this.message }</h5> // TODO: add something nicer here
-      window.alert(this.message);
-    }
-    else{
-      return
-    }
+  handleBuyNowClick = () => {
+    // tutaj jeszcze nie wymagamy bycia zalogowanym.
+    axios.post("http://localhost:3001/api/orders/" + this.props.id + "/cart/add",
+    {
+      bookId: this.props.id
+    }).then(res => {
+      if(res.data.totalQty){
+        window.location = '/cart';
+      }
+      else {
+        alert(res.data.message);
+      }
+    }).catch(err => {console.log(err);})
   }
 
   render() {
@@ -70,7 +68,7 @@ class BookOverview extends Component {
           <h3 className="details__author">{this.props.author}</h3>
           <div>
             <h5 className="details__price">{this.props.price}</h5>
-            <span className="details__action">Buy now</span>
+            <span className="details__action" onClick={ this.handleBuyNowClick }>Buy now</span>
             <span className="details__action" onClick = {this.handleAddToCart}>Add to cart</span>
             <span className="details__action">Add to wishlist &#128154;</span>
           </div>

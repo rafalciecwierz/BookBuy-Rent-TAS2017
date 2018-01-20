@@ -38,6 +38,11 @@ class Nav extends Component {
               Log out
             </span>
           </Link>
+          <Link to='/cart'>
+            <span className="link--simple link--cart">
+              Cart
+            </span>
+          </Link>
         </div> 
         )
     } else {
@@ -53,6 +58,11 @@ class Nav extends Component {
               Log in
           </span>
         </Link>
+        <Link to='/cart'>
+            <span className="link--simple link--cart">
+              Cart
+            </span>
+          </Link>
       </div> 
         )
     }

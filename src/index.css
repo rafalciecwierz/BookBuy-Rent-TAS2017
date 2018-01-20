@@ -48,6 +48,13 @@ textarea:focus {
 .link--attention {
   background-color: #8440FF;
 }
+
+/* syf od MK */
+.link--cart {
+  background-color: #d55cd4;
+}
+/* koniec syfu */
+
 .link--simple:hover {
   opacity: 1;
 }

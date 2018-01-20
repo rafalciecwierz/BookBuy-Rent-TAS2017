@@ -9,7 +9,7 @@ class UserProfile extends Component {
     axios.get("http://localhost:3001/api/orders/user_orders")
       .then( res => {
         console.log(res);
-        alert("Last order: " + JSON.stringify(res.data.orders[res.data.orders.length - 1]));
+        // alert("Last order: " + JSON.stringify(res.data.orders[res.data.orders.length - 1]));
       }).catch(err => {console.log(err)});
   }
 

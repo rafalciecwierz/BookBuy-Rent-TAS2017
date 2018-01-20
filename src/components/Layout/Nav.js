@@ -14,7 +14,7 @@ class Nav extends Component {
   }
 
   logout = () => { // to jest tu dlatego, żeby po przejściu na stronę logout przycisk był dobrze ustawiony
-    localStorage.setItem('isLogged', false);
+    sessionStorage.setItem('isLogged', false);
     this.setState({isLogged: false}); // maybe this is unnecessary
   }
 
@@ -27,18 +27,34 @@ class Nav extends Component {
   userNav = () => {
     if(this.state.isLogged){
       return (
-        <Link to='/logout' onClick={ this.logout }>
-        <span className="link--simple">
-          Log out
-        </span>
-        </Link>)
+        <div className="nav__links">
+          <Link to='/user'>
+            <span className="link--simple link--attention">
+              Profile
+            </span>
+          </Link>
+          <Link to='/logout' onClick={ this.logout }>
+            <span className="link--simple">
+              Log out
+            </span>
+          </Link>
+        </div> 
+        )
     } else {
       return (
+        <div className="nav__links">
+          <Link to='/register'>
+            <span className="link--simple link--attention">
+                Sign up
+            </span>
+          </Link>
         <Link to='/login'>
-        <span className="link--simple">
-          Log in
-        </span>
-        </Link>)
+          <span className="link--simple">
+              Log in
+          </span>
+        </Link>
+      </div> 
+        )
     }
   }
 
@@ -48,15 +64,8 @@ class Nav extends Component {
         <Brand />
         <div className="nav__utils">
           <SearchBox />
-          <div className="nav__links">
-          <Link to='/register'>
-            <span className="link--simple link--attention">
-              Sign up
-            </span>
-            </Link>
             { this.userNav() }
-          </div>
-        </div>
+        </div> 
         <DropdownMenu />
       </nav>
     );

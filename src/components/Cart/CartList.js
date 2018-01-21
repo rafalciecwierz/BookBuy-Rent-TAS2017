@@ -31,7 +31,7 @@ class CartList extends Component {
 	}
 
 
-	componentDidMount() {
+	componentWillMount() {
 		this.loadCartFromServer();
 	}
 
@@ -92,7 +92,20 @@ class CartList extends Component {
 			})
 	}
 
-	getItemList = () => {
+
+
+	render() {
+		// TODO: display some message, that one must press sth (save bttn?) to save the changes made here
+
+		console.log('books in cart: ', this.state);
+
+		if(!this.state.received){
+			return("")
+		}
+
+		if(this.state.qty === 0 && this.state.received) // received - don't show before receiving books
+			return ( <h3 className="cart-list__empty-text"> Your cart is empty. </h3> ) //
+
 		const itemList =  this.state.books.map((item, index) =>
 			<li key={index} className="cart-list">
 					<CartItem
@@ -108,18 +121,6 @@ class CartList extends Component {
 			</li>
 		);
 
-		return itemList;
-	}
-
-
-	render() {
-		// TODO: display some message, that one must press sth (save bttn?) to save the changes made here
-
-		console.log('books in cart: ', this.state);
-
-		if(this.state.qty === 0 && this.state.received) // received - don't show before receiving books
-			return ( <h3 className="cart-list__empty-text"> Your cart is empty. </h3> )
-
 		return (
 			<div>
 				<div className="cart-list__buttons">
@@ -129,7 +130,7 @@ class CartList extends Component {
 					<div className="cart-list__qty">{ this.state.qty }</div>
 				</div>
 				<ul className="cart-list">
-					< this.getItemList />
+					{ itemList }
 				</ul>
 			</div>
 		);

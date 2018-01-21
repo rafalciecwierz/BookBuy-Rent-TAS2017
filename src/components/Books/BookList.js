@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Book from "./Book";
 import Wishlist from "./Wishlist";
@@ -22,21 +21,22 @@ class BookList extends Component {
 				});
 			});
 	}
+
 	componentDidMount() {
 		this.loadBooksFromServer();
 	}
+
 	render() {
 		const bookList = this.state.data.map((book, index) =>
 			<li key={index}>
-				<Link to={{pathname: `/books/${book._id}`}}>
-					<Book
-						title={book.title}
-						cover={book.cover}
-						author={book.author.name}
-						price={book.price}
-						tag={book.tag[0].name}
-						likes={book.likes}/>
-				</Link>
+				<Book
+					id={book._id}
+					title={book.title}
+					cover={book.cover}
+					author={book.author.name}
+					price={book.price}
+					tag={book.tag[0].name}
+					likes={book.likes}/>
 			</li>
 		);
 

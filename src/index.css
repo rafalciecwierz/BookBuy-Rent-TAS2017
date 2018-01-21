@@ -363,6 +363,7 @@ textarea:focus {
 }
 .book-utils__icon.icon--buy-small {
   background-image: url('./assets/img/cart.png');
+  cursor: pointer;
 }
 .book-utils__likes {
   margin: 0 0.3rem;

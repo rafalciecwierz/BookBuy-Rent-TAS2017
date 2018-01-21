@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 const Register = () => {
   return (
-    <div className="register">
-      <form className="register__form">
+    <div className="register form-component">
+      <form className="register__form form">
         <h2 className="form__header">Create your account</h2>
         <label className="form__label" for="user">Username</label>
         <input className="form__input" id="user" type="text"></input>

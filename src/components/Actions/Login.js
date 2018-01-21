@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 const Login = () => {
     return (
-      <div className="login">
-        <form className="login__form">
+      <div className="login form-component">
+        <form className="login__form form">
           <h2 className="form__header">Log In</h2>
           <label className="form__label" htmlFor="user">Username</label>
           <input className="form__input" id="user" type="text"></input>

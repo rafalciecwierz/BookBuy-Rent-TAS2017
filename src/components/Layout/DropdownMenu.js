@@ -7,12 +7,23 @@ import NavLink from './NavLink';
 class DropdownMenu extends Component {
   constructor(props) {
     super(props);
+    const isLoggedSes = localStorage.getItem('isLogged');
     this.state = {
       visible: false,
       style: "utils--visible",
-      logged: this.props.logged
+      logged: isLoggedSes === 'true'
     }
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  // ComponentWillMount(){
+  //   const isLoggedSes = localStorage.getItem('isLogged');
+  //   this.setState({logged: isLoggedSes === 'true'});
+  // }
+
+  logout = () => {
+    localStorage.setItem('isLogged', false);
+    this.setState({logged: false});
   }
 
   handleClick () {
@@ -32,7 +43,7 @@ class DropdownMenu extends Component {
           onClick={this.handleClick}></i>
         <div className={`dropdown__utils ${style}`}>
           <SearchBox />
-          { this.state.logged ? <NavUser /> : <NavUnknown />}
+          { this.state.logged ? <NavUser logout={this.logout}/> : <NavUnknown />}
         </div>
       </menu>
     );
@@ -53,6 +64,10 @@ function NavUser(props) {
       <li>
         <NavLink linkType="user"/>
         User Account
+      </li>
+      <li onClick={props.logout}>
+        <NavLink linkType="logout"/>
+        Logout
       </li>
     </ul>
   )

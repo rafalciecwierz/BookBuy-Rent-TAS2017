@@ -207,6 +207,9 @@ textarea:focus {
 .icon--wish {
   background-image: url('./assets/img/heart.png');
 }
+.icon--logout {
+    background-image: url('./assets/img/logout.png');
+}
 
 
 /**

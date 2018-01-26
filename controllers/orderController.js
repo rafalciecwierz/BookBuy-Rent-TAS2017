@@ -10,14 +10,16 @@ exports.addToCart = function(req, res, next) {
 	Book.findById(bookId, function(err, book) {
 		if(err){
 			console.log("\n Book doesn't exist. \n");
-			res.json({bookFound: false, message: "Couldn't find the book."});
+			res.json({message: "Couldn't find the book."});
 		}
 		cart.add(book, bookId);
-		req.session.cart = cart;
-		// console.log(req.session.cart);
+		req.session.cart = cart; 
 		req.session.save();
-		res.json({message: "Added to cart.", totalQty: cart.qty, totalPrice: cart.totalPrice});
-		res.send();
+		res.json({
+            message: "Added to cart.", 
+            totalQty: cart.qty, 
+            totalPrice: cart.totalPrice
+        });
 	});
 };
 
@@ -79,11 +81,11 @@ exports.createOrder = function(req, res, next){
 exports.getUserOrders = function(req, res, next){
 	console.log("Getting user orders.");
 	let userId = req.session.userId;
-	Order.find({user: userId})
-	.exec((err, data) => {
-		console.log(data);
-		res.json({orders: data});
-	})
+	Order.find({user: userId}, (err, data) => {
+        if(err) console.log(err);
+        console.log(data);
+        res.json({orders: data});
+    });
 }
 
 exports.changeOrder = function(req, res, next){

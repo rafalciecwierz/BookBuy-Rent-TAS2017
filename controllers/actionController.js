@@ -2,6 +2,7 @@ var Book = require('../models/bookModel');
 var Author = require('../models/authorModel');
 var Tag = require('../models/tagModel');
 var Comment = require('../models/commentModel');
+var User = require('../models/userModel');
 var mongoose = require('mongoose');
 var async = require('async');
 
@@ -9,7 +10,7 @@ var async = require('async');
 exports.search = function(req, res, next) {
 	var search = req.body.search.toLowerCase();
 
-	async.parallel({	
+	async.parallel({
 	books: function(callback) {
 	  Book.aggregate([{$project: {newTitle: {$toLower: '$title'}}},{$match: {newTitle : {$regex : search }}}])
 		.exec(callback);
@@ -24,13 +25,13 @@ exports.search = function(req, res, next) {
 	},
 	}, function(err, results) {
 		if (err) { return next(err); }
-		async.parallel({				
+		async.parallel({
 			idsB : function (callback) {
 				if(results.books) {
 					var tmp = results.books.map(function (obj){ return mongoose.Types.ObjectId(obj._id)});
 					callback(null,tmp);
 				}
-				else 
+				else
 					callback(err);
 			},
 			idsA : function (callback) {
@@ -38,19 +39,19 @@ exports.search = function(req, res, next) {
 					var tmp = results.authors.map(function (obj){ return mongoose.Types.ObjectId(obj._id)});
 					callback(null,tmp);
 				}
-				else 
+				else
 					callback(err);
 			},
 			idsT : function (callback) {
 				if(results.tags) {
 					callback(null,results.tags.map(function (obj){ return mongoose.Types.ObjectId(obj._id)}));
 				}
-				else 
+				else
 					callback(err);
 			}
 		}, function(err, results2) {
 			if (err) { return next(err); }
-			async.parallel({	
+			async.parallel({
 				books1 : function (callback) {
 					Book.find({ _id : {$in : results2.idsB}})
 					.populate('tag')
@@ -71,14 +72,14 @@ exports.search = function(req, res, next) {
 				},
 				}, function(err, results3) {
 					res.json(results3);
-			});	
-		});	
-	});	
+			});
+		});
+	});
 };
 
 exports.user_books = function(req, res, next) {
 	async.parallel({
-		
+
 	}, function(err, results) {
     if (err) { return next(err); }
 	//res.json(results);
@@ -87,9 +88,36 @@ exports.user_books = function(req, res, next) {
 };
 
 exports.addToWishlist = function(req, res, next) {
-	res.json({message: "Not implemented - adding to wishlist!"});
-};
-
-exports.addToCart = function(req, res, next) {
-	res.json({message: "Not implemented - adding to cart!"});
+	var id = mongoose.Types.ObjectId(req.params.id.trim());
+	Book.findById(id)
+		.exec( function(err, found_book) {
+			 if (err) { return next(err); }
+			 if(found_book) {
+				 userId = req.session.userId;
+				 User.findById(userId)
+				 	.exec( function(err, found_user) {
+							if(err) {return next(err);}
+							if(found_user){
+								User.find({_id: found_user._id, wishlist: found_book._id})
+									.exec( function(err,found_user2){
+											if(err) {return next(err);}
+											if(found_user2.length == 0){
+												Book.findByIdAndUpdate(found_book._id, {$inc: {likes: 1}},function (err, book) {
+												  if (err) { return next(err); }
+													  console.log(book);
+												} );
+												found_user.wishlist.push(found_book._id);
+												found_user.save(function (err,added) {
+													if (err) { return next(err); }
+													res.json({message: "Book added to wishlist!"});
+												})
+											}
+											else {
+												res.json({message: "Book already on wishlist!"});
+											}
+									});
+							}
+					});
+			}
+	});
 };

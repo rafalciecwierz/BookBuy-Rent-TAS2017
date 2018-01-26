@@ -1,9 +1,27 @@
-//var passport = require("passport");
-//var LocalStrategy = require("passport-local").Strategy;
-var User = require("../models/userModel");
+
+const User = require("../models/userModel");
+var Book = require("../models/bookModel");
+const promisify = require('es6-promisify');
+const mongoose = require("mongoose");
 
 exports.user_wishlist = function(req, res, next) {
-	res.json({message: "Not implemented - user wishlist!"});
+	userId = req.session.userId;
+	//var tmp = results.authors.map(function (obj){ return mongoose.Types.ObjectId(obj._id)});
+	User.findById(userId, 'wishlist')
+	.exec(function(err,found_user){
+			if(err) {return next(err);}
+			console.log(found_user);
+			if(found_user){
+				Book.find({_id: {$in: found_user.wishlist}})
+				.populate('author')
+				.populate('tag')
+				.exec(function(err,found_books){
+					if(err) {return next(err);}
+					res.json(found_books);
+				});
+			}
+		});
+	//res.json({message: "Not implemented - user wishlist!"});
 };
 
 exports.user_cart = function(req, res, next) {
@@ -13,64 +31,48 @@ exports.user_cart = function(req, res, next) {
 exports.user_list = function(req,res,next) {
 	res.json({message: "Not implemented - user list!"});
 };
-// Register User
-exports.user_register = function(req, res, next) {
-		var newUser = new User({
-			email: req.body.email,
-			username: req.body.username,
-			password: req.body.password
-		});
-		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			res.json(user);
-		});
-};
-/*
-passport.use(new LocalStrategy(
-	function(username, password, done) {
-		User.getUserByUsername(username, function(err, user){
-			if(err) throw err;
-			if(!user){
-				return done(null, false, {message: "Unknown User"});
-			}
-			User.comparePassword(password, user.password, function(err, isMatch){
-				if(err) throw err;
-				if(isMatch){
-					return done(null, user);
-				} else {
-					return done(null, false, {message: "Invalid password"});
-				}
-			});
-		});
-	}));
-
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	User.getUserById(id, function(err, user) {
-		done(err, user);
+exports.validateRegister = (req, res, next) => {
+	console.log(req.body);
+	req.sanitizeBody('username');
+	console.log(req.body.username);
+	req.checkBody('username', 'You must supply a name!').notEmpty();
+	req.checkBody('email', 'That Email is not valid!').isEmail();
+	req.sanitizeBody('email').normalizeEmail({
+	  gmail_remove_dots: false,
+	  remove_extension: false,
+	  gmail_remove_subaddress: false
 	});
-});
+	req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+
+	const errors = req.validationErrors();
+	console.log(errors);
+	if (errors) {
+	  req.flash('error', errors.map(err => err.msg));
+	  res.json({body: req.body, flashes: req.flash() });
+	  return; // stop the fn from running
+	}
+	next(); // there were no errors!
+  };
+
+  exports.register = async (req, res, next) => {
+	const user = new User({username: req.body.username, email: req.body.email });
+	console.log(user);
+	const register = promisify(User.register, User);
+	console.log(register.name);
+	await register(user, req.body.password);
+	next(); // pass to authController.login
+  };
 
 // Login GET
 exports.user_login_get = function(req, res, next) {
-	res.render("user_login", { title: "Log in"});
+
 };
 
 //Login POST
-exports.user_login_post = function(req, res, next) {
-	passport.authenticate("local", {successRedirect:"/", failureRedirect:"/users/login"}),//,failureFlash: true}),
-	function(req, res) {
-		console.log('success');
-		res.redirect("/");
-};
+exports.user_login_post = function(req , res, next){
 };
 
+
 exports.user_logout_get = function(req,res,next) {
-	req.logout();
-	//req.flash("success_msg", "You are logged out");
-	res.redirect("/users/login");
+
 };
-*/

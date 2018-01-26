@@ -19,6 +19,7 @@ class Login extends Component {
 		this.setState({ email: e.target.value });	
 	}
 
+
 	handlePasswordChange(e){
 		this.setState({ password: e.target.value });
 	}
@@ -55,7 +56,7 @@ class Login extends Component {
 				</form>
 			</div>
 		);
-	}
+  }
 }
 
 export default Login;

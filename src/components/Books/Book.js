@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import BookUtils from './BookUtils';
+import { Link } from "react-router-dom";
+
 
 const Book = props => {
   let coverImg = {
@@ -16,17 +18,17 @@ const Book = props => {
 
   return (
     <div className="book">
-      <h5 className="book__price">{props.price}</h5>
-
-      <figure className="book__card">
-        <canvas className="book__cover" style={coverImg}></canvas>
-        <figcaption className="book__details">
-          <p className="details--title">{props.title}</p>
-          <p>by {props.author}</p>
-        </figcaption>
-      </figure>
-
-      <BookUtils tag={props.tag} likes={props.likes}/>
+      <Link to={{pathname: `/books/${props.id}`}}>
+        <h5 className="book__price">{props.price}</h5>
+        <figure className="book__card">
+          <canvas className="book__cover" style={coverImg}></canvas>
+          <figcaption className="book__details">
+            <p className="details--title">{props.title}</p>
+            <p>by {props.author}</p>
+          </figcaption>
+        </figure>
+      </Link>
+      <BookUtils id={props.id} tag={props.tag} likes={props.likes} />
     </div>
   );
 }

@@ -89,7 +89,3 @@ exports.user_books = function(req, res, next) {
 exports.addToWishlist = function(req, res, next) {
 	res.json({message: "Not implemented - adding to wishlist!"});
 };
-
-exports.addToCart = function(req, res, next) {
-	res.json({message: "Not implemented - adding to cart!"});
-};

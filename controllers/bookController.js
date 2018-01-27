@@ -28,11 +28,11 @@ exports.book_detail = function(req, res, next) {
         .populate('author')
         .exec(callback);
     },
-	/*comments: function(callback) {
+	comments: function(callback) {
 		Comment.find().byBookId(id)
 		.populate('user')
 		.exec(callback);
-	}*/
+	}
 	}, function(err, results) {
     if (err) { return next(err); }
 	res.json(results);

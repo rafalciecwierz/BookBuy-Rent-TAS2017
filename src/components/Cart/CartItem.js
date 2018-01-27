@@ -6,7 +6,6 @@ class CartItem extends Component {
     this.state = {
       id: props.id,
       title: props.title,
-      // author: props.author,
       price: props.price,
       totalPrice: props.totalPrice,
       qty: props.qty,
@@ -51,47 +50,59 @@ class CartItem extends Component {
         console.log(err);
       }
 
-    /*
-     *  left view - book cover
-     *  center view - book details
-     *  right view - total price, qty and buttons to remove / add books
-     *  probably it could be split into three components, but only one wouldn't be static
-     *
-     */
 
-    return (
+      return (
+      <div className="book">
+        <h5 className="book__price">{this.state.price}</h5>
+        <figure className="book__card">
+          <canvas className="book__cover" style={coverImg}></canvas>
+          <figcaption className="book__details">
+            <p className="cart-item-utils__title">{this.state.title}</p>
+            <p className="cart-item-utils__qty">{this.state.qty}</p>
+            <p className="cart-item-utils__total-price">{this.state.price}</p>
+          </figcaption>
+        </figure>
+    <div className="cart-item-utils">
+        <i className="cart-item__icon icon--remove-small" onClick={this.remove}></i>
+        <i className="cart-item__icon icon--add-small" onClick={this.add}></i>
+    </div>
+    </div>
+        );
 
-      <div className="cart-item">
-        <div className="cart-item__brick_left">
-          <figure className="book__card">
-            <canvas className="book__cover"
-                  style={coverImg}></canvas>
-          </figure>
-        </div>
 
-        <div className="cart-item__brick_mid">
-          <div className="book_details">
-            <p className="title"> { this.state.title }</p> <br />
-            {/* <p className="author"> { this.state.author } </p> */} <br /><br /> 
-            <p className="price"> { this.state.price } </p>
-          </div>
-        </div>
+    // return (
 
-        <div className="cart-item__brick_right">
-          <div className="details">
-            <span className="qty">
-                 Quantity: { this.state.qty }
-            </span>
-            <div className="action_container">
-                <p className="action_add" onClick = { this.add }> + </p>
-                <p className="action_subtract" onClick={ this.remove }> - </p>
-            </div>
-            <p className="total_price">{ this.state.totalPrice }</p>
-          </div>
-        </div>
+    //   <div className="cart-item">
+    //     <div className="cart-item__brick_left">
+    //       <figure className="book__card">
+    //         <canvas className="book__cover"
+    //               style={coverImg}></canvas>
+    //       </figure>
+    //     </div>
 
-      </div>
-    );
+    //     <div className="cart-item__brick_mid">
+    //       <div className="book_details">
+    //         <p className="title"> { this.state.title }</p> <br />
+    //         {/* <p className="author"> { this.state.author } </p> */} <br /><br /> 
+    //         <p className="price"> { this.state.price } </p>
+    //       </div>
+    //     </div>
+
+    //     <div className="cart-item__brick_right">
+    //       <div className="details">
+    //         <span className="qty">
+    //              Quantity: { this.state.qty }
+    //         </span>
+    //         <div className="action_container">
+    //             <p className="action_add" onClick = { this.add }> + </p>
+    //             <p className="action_subtract" onClick={ this.remove }> - </p>
+    //         </div>
+    //         <p className="total_price">{ this.state.totalPrice }</p>
+    //       </div>
+    //     </div>
+
+    //   </div>
+    // );
   }
 }
 

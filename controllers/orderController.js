@@ -6,6 +6,7 @@ var Book = require('../models/bookModel');
 exports.addToCart = function(req, res, next) {
 	console.log('Adding to cart.');
 	var bookId = req.body.bookId;
+	console.log('bookId', bookId);
 	var cart = new Cart(req.session.cart || {});
 	Book.findById(bookId, function(err, book) {
 		if(err){
@@ -26,6 +27,7 @@ exports.addToCart = function(req, res, next) {
 exports.deleteFromCart = function(req, res, next){
 	console.log("Deleting form cart");
 	var bookId = req.body.bookId;
+	console.log('bookId', bookId);
 	var cart = new Cart(req.session.cart || {});
 	cart.remove(bookId);
 	req.session.cart = cart;

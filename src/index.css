@@ -208,7 +208,7 @@ textarea:focus {
   background-image: url('./assets/img/heart.png');
 }
 .icon--logout {
-    background-image: url('./assets/img/logout.png');
+  background-image: url('./assets/img/logout.png');
 }
 
 
@@ -368,6 +368,7 @@ textarea:focus {
   background-image: url('./assets/img/cart.png');
   cursor: pointer;
 }
+
 .book-utils__likes {
   margin: 0 0.3rem;
 }
@@ -903,40 +904,70 @@ textarea:focus {
  */
 
 
-.cart-list__buttons { /* TODO: put this inside nicer container */;
+.cart-list__actions { 
   width: 90%;
   height: auto;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4% 4% 4% 4%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 1.5rem 8% 1.5rem 8%;
 
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 1.3rem;
   opacity: .8;
+}
+
+.cart-list__actions > * {
+  margin: .5rem;
+}
+
+.cart-list__buttons {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cart-list__info {
+  width: 280px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .cart-list__clear {
   order: 1;
-  font-size: 4vw;
-  line-height: 4vw;
+  border-radius: 2px;
+  padding: 10px 4%;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  border-radius: 2px;
+  background: #b662f2;
+
+  color: #ece5d7;
   text-transform: uppercase;
   cursor: pointer;
 }
 
 .cart-list__buy {
   order: 2;
-  font-size: 4vw;
-  line-height: 4vw;
+  padding: 10px 4%;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  background: #ea58ba;
+  border-radius: 2px;
+
+  color: #e9fbf9;
   text-transform: uppercase;
   cursor: pointer;
 }
 
 .cart-list__price {
-  order: 3;
-  font-size: 4vw;
-  line-height: 4vw;
+  padding: 10px 4%;
+  order: 1;
 }
 
 .cart-list__price::before{
@@ -944,9 +975,8 @@ textarea:focus {
 }
 
 .cart-list__qty {
-  order: 4;
-  font-size: 4vw;
-  line-height: 4vw;
+  order: 2;
+  padding: 10px 4%;
 }
 
 .cart-list__qty::before{
@@ -965,11 +995,60 @@ textarea:focus {
 /*
  * CartItem
  *
- * not responsive; okropny syf z jednostkami :/;
- * TODO: make it rwd;
  */
 
-.cart-item {
+
+.cart-item-utils {
+  display: flex;
+  margin-top: 0rem;
+  padding: .5rem;
+  justify-content: space-around;
+  color: rgba(0,0,0,0.6);
+}
+.cart-item-utils__title{
+  font-weight: bolder;
+}
+.cart-item-utils__qty {
+  opacity: 0.8;
+  font-weight: bold;
+}
+.cart-item-utils__qty::before {
+  content: "Quantity: "
+}
+.cart-item-utils__total-price{
+  opacity: 0.8;
+  font-weight: bold;
+}
+.cart-item-utils__total-price::before{
+  content: "Total price: $";
+}
+
+.cart-item-utils__actions {
+  display: flex;
+  direction: row;
+  justify-content: center;
+  align-content: space-around;
+}
+.cart-item__icon {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 0.3rem;
+  background-position: center;
+  background-size: cover;
+}
+.cart-item__icon.icon--add-small {
+  background-image: url('./assets/img/add.png');
+  cursor: pointer;
+}
+.cart-item__icon.icon--remove-small {
+  background-image: url('./assets/img/remove.png');
+  cursor: pointer;
+}
+
+
+
+/*.cart-item {
   display: flex;
   flex-direction: row;
   min-width: 90vw;
@@ -980,15 +1059,14 @@ textarea:focus {
 
 /* lewa karta */
 
+/*
 .cart-item .cart-item__brick_left {
   flex: 0;
   background-color: #fff;
   margin: 2% 1% 2% 2%;
-  min-width: calc(100%/5);/*225px;*/
+  min-width: calc(100%/5);
   align-content: center;
   align-items: center;
-  /*height: 90%;*/
-  /*height: 100%;/*300px;*/
 }
 
 .cart-item__brick_left .book__card {
@@ -1025,10 +1103,9 @@ textarea:focus {
   margin: 2% 2% 2% 1%;
   width: calc(100%/7);
   height: auto;
-  /*position: relative;*/
 }
 
-/* środkowa karta */
+/* środkowa karta 
 
 .cart-item__brick_mid .book_details {
   display: flex;
@@ -1087,7 +1164,7 @@ textarea:focus {
   content: "$";
 }
 
-/* prawa karta */
+/* prawa karta 
 
 .cart-item__brick_right .details {
   display: flex;
@@ -1171,5 +1248,5 @@ textarea:focus {
   vertical-align: middle;
   text-transform: uppercase;
   cursor: pointer;
-}
+}*/
 

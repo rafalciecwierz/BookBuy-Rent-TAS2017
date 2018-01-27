@@ -58,12 +58,12 @@ function NavUser(props) {
         Wish List
       </li>
       <li>
-        <NavLink linkType="cart"/>
-        Shopping Cart
-      </li>
-      <li>
         <NavLink linkType="user"/>
         User Account
+      </li>
+      <li>
+        <NavLink linkType="cart"/>
+        Shopping Cart
       </li>
       <li onClick={props.logout}>
         <NavLink linkType="logout"/>
@@ -87,6 +87,13 @@ function NavUnknown(props) {
         <Link to='/login'>
           <span className="link--simple">
             Log in
+          </span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/cart">
+          <span className="link--simple link--cart">
+            Cart
           </span>
         </Link>
       </li>

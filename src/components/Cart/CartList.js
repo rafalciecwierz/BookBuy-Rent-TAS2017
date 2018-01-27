@@ -36,8 +36,6 @@ class CartList extends Component {
 	}
 
 	add = (id, price) => {
-		// TODO: maybe do it better: 
-		// throw this book away from books and booIds instead of doing it in child
 		axios.post("http://localhost:3001/api/orders/" + id + "/cart/add", {
 			bookId: id
 		}).then(res => {
@@ -112,7 +110,6 @@ class CartList extends Component {
 						id={item.book._id}
 						title={item.book.title}
 						cover={item.book.cover}
-						author={item.author}
 						price={item.book.price}
 						totalPrice={item.price}
 						qty={item.qty}
@@ -123,13 +120,17 @@ class CartList extends Component {
 
 		return (
 			<div>
-				<div className="cart-list__buttons">
-					<div className="cart-list__clear" onClick={ this.emptyClick }> Empty </div>
-					<div className="cart-list__buy" onClick={ this.buyClick }> buy </div>
-					<div className="cart-list__price">{ this.state.totalPrice }</div>
-					<div className="cart-list__qty">{ this.state.qty }</div>
+				<div className="cart-list__actions">
+					<div className="cart-list__buttons">
+						<div className="cart-list__clear" onClick={ this.emptyClick }> Empty </div>
+						<div className="cart-list__buy" onClick={ this.buyClick }> buy </div>
+					</div>
+					<div className="cart-list__info">
+						<div className="cart-list__price">{ this.state.totalPrice }</div>
+						<div className="cart-list__qty">{ this.state.qty }</div>
+					</div>
 				</div>
-				<ul className="cart-list">
+				<ul className="book-list__cards">
 					{ itemList }
 				</ul>
 			</div>

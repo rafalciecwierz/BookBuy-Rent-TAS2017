@@ -19,8 +19,6 @@ const BookComments = props => {
         <div>
           <div className="comment__header">
             <h6 className="header__user">{props.user}</h6>
-            <span>&#128717;</span>
-            <span>&#128154;</span>
             {mark}
           </div>
           <p className="comment__content">

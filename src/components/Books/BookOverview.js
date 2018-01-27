@@ -88,7 +88,9 @@ class BookOverview extends Component {
             {this.props.tag}
           </ul>
           <div className="comments">
-					{this.props.commentList}
+          <ul>
+            {this.props.commentList}
+            </ul>
 		    </div>
         </div>
       </div>

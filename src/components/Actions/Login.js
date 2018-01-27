@@ -8,15 +8,15 @@ class Login extends Component {
 			password: "",
 			email: "",
 			errors: []
-		};	
+		};
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		
+
 	}
-	
+
 	handleEmailChange(e){
-		this.setState({ email: e.target.value });	
+		this.setState({ email: e.target.value });
 	}
 
 	handlePasswordChange(e){
@@ -55,7 +55,7 @@ class Login extends Component {
 				</form>
 			</div>
 		);
-	}
+  }
 }
 
 export default Login;

@@ -51,10 +51,13 @@ class Purchase extends Component {
 	render() {
 		// TODO: display some message, that one must press sth (save bttn?) to save the changes made here
 
-		console.log('books in cart: ', this.state);
+		let logged = localStorage.getItem('isLogged')
 
-		let logged = localStorage.getItem('isLogged');
-		if(!this.state.received && !(logged === true)){
+		if(!(logged === true)){
+			return(<h3 className="cart-list__empty-text"> You must be logged in to view this page! </h3>);
+		} //
+
+		if(!this.state.received){
 			return("")
 		}
 

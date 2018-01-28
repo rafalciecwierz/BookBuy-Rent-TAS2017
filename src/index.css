@@ -1078,7 +1078,7 @@ textarea:focus {
 }
 
 .cart-list__buttons {
-  width: 200px;
+  width: 250px;
   display: flex;
   margin-right: 4%;
   flex-direction: row;
@@ -1099,6 +1099,7 @@ textarea:focus {
 
 .cart-list__clear {
   order: 1;
+  min-width: 4rem;
   border-radius: 2px;
   padding: 10px 4%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
@@ -1112,6 +1113,7 @@ textarea:focus {
 
 .cart-list__buy {
   order: 2;
+  min-width: 7rem;
   padding: 10px 4%;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
   background: #ea58ba;
@@ -1123,6 +1125,7 @@ textarea:focus {
 }
 
 .cart-list__price {
+  min-width: 6rem;
   padding: 10px 4%;
   order: 1;
 }
@@ -1133,6 +1136,7 @@ textarea:focus {
 
 .cart-list__qty {
   order: 2;
+  min-width: 6rem;
   padding: 10px 4%;
 }
 

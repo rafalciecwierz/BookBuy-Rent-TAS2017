@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Brand from './Brand';
 import SearchBox from './SearchBox';
 import NavLink from './NavLink';
 

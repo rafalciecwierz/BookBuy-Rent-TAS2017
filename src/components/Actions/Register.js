@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Redirect } from "react-router";
 
 
 class Register extends Component {

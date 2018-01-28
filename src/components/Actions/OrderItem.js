@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import BookList from '../Books/BookList';
+import React from 'react';
 
 const OrderItem = (props) => {
 

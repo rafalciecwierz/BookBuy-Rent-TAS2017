@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import BookUtils from './BookUtils';
+import React from 'react';
 
 const BookListItem = props => {
   const coverUrl = require("../../assets/img/books/" + props.cover + ".jpg");

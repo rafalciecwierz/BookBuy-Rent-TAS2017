@@ -51,7 +51,7 @@ exports.user_books = function(req, res, next) {
 
 exports.user_data = function(req,res,next) {
 	userId = req.session.userId;
-	User.findById(userId)
+	User.findById(userId, 'username _id email')
 	.exec(function(err,found_user){
 		if(err) {return next(err);}
 		console.log('user');

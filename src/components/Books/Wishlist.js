@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BookUtils from './BookUtils';
 
 const Wishlist = props => {
-  const coverUrl = require("../../assets/img/books/" + props.cover + ".jpg");
+  const coverUrl = require("../../assets/img/books/" + props.cover);
   const coverImg = {
     backgroundImage: 'url("' + coverUrl + '")'
   }

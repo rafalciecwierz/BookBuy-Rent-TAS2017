@@ -23,14 +23,15 @@ class UserPage extends Component {
     .then(res => {
       console.log('user');
       console.log(res.data);
-      if(res.data.username){
+      if(res.data){
       this.setState({
         user: res.data
       });
     }
     else { // if it couldn't be done for some reason, show message
     alert(res.data.message)
-    }
+  }
+    //}
     }).catch(error => {
       console.log(error);
     })
@@ -41,7 +42,7 @@ class UserPage extends Component {
     .then(res => {
       console.log('wishlist');
       console.log(res.data);
-      if(res.data[0].title){
+      if(res.data){
       this.setState({
         wishlist: res.data
       });
@@ -59,7 +60,7 @@ class UserPage extends Component {
     .then(res => {
       console.log('bought');
       console.log(res.data);
-      if(res.data[0].title){
+      if(res.data){
       this.setState({
         bought: res.data
       });
@@ -72,16 +73,16 @@ class UserPage extends Component {
     })
   }
 
-/*  componentDidMount() {
+  componentDidMount() {
     this.loadUser();
     this.loadWishlist();
     this.loadBought();
-  }*/
+  }
 
   render() {
-    this.loadUser();
-    this.loadWishlist();
-    this.loadBought();
+    //this.loadUser();
+    //this.loadWishlist();
+    //this.loadBought();
     if(this.state.user.username){ 
       const user = this.state.user;
       console.log(this.state.user);
@@ -122,7 +123,11 @@ class UserPage extends Component {
     else {
       return (
   		  <div className="UserPage">
-          <UserProfile />
+          <UserProfile 
+          user = {[]}
+          wishlist={[]}
+          bought={[]}
+          />
         </div>
   	);
     }

@@ -184,7 +184,8 @@ router.post("/login", passport.authenticate("local", {session: true}),
 		res.json(
 			{redirectURL:"/user",
 			userId: req.user._id,
-			userName: req.user.username
+			userMail: req.user.email,
+			userName: req.user.username 
 			});
 	}
 );

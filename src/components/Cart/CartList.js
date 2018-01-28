@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import CartItem from "./CartItem";
 
@@ -79,7 +78,7 @@ class CartList extends Component {
 		});
 	}
 
-	buyClick = () => {
+	checkoutClick = () => {
 		let loggedIn = localStorage.getItem('isLogged')
 		if(loggedIn === 'true'){
 			window.location = "/checkout";
@@ -122,7 +121,7 @@ class CartList extends Component {
 				<div className="cart-list__actions">
 					<div className="cart-list__buttons">
 						<div className="cart-list__clear" onClick={ this.emptyClick }> Empty </div>
-						<div className="cart-list__buy" onClick={ this.buyClick }> buy </div>
+						<div className="cart-list__buy" onClick={ this.checkoutClick }> checkout </div>
 					</div>
 					<div className="cart-list__info">
 						<div className="cart-list__price">{ this.state.totalPrice }</div>

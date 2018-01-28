@@ -149,16 +149,16 @@ class AdminOrders extends Component{
           <div>
           <ul className="admin-orders_action">
             <li className="admin-card card--confirm">
-              <h5 className="card__text">Order id: <span className="text--id">{this.state.order._id}</span></h5>
               <button className="card__status" onClick={this.accept}>Accept</button>
+              <span className="text--id">{this.state.order._id}</span>
             </li>
             <li className="admin-card card--finished">
-              <h5 className="card__text">Order id: <span className="text--id">{this.state.order._id}</span></h5>
               <button className="card__status" onClick={this.finish}>Finish</button>
+              <span className="text--id">{this.state.order._id}</span>
             </li>
             <li className="admin-card card--delete">
-              <h5 className="card__text">Order id: <span className="text--id">{this.state.order._id}</span></h5>
               <button className="card__status" onClick={this.remove}>Delete</button>
+              <h5>{this.state.order._id}</h5>
             </li>
           </ul>
           </div>

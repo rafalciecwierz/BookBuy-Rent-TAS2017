@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Redirect } from "react-router";
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -33,6 +32,7 @@ class Login extends Component {
 				if(response.data.redirectURL){ // save basic info on user in session for other components
 					localStorage.setItem('isLogged', true);
 					localStorage.setItem('userId', response.data.userId);
+					localStorage.setItem('userMail', response.data.userMail);
 					localStorage.setItem('userName', response.data.userName);
 					console.log('redirect url to: ' + response.data.redirectURL);
 					window.location=response.data.redirectURL;

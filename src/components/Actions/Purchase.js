@@ -75,7 +75,7 @@ class Purchase extends Component {
 		if(this.state.confirmed){
 			return (
 				<div className="purchase-form__text-container">
-						<div className="purchase-form_instruction"> Please transfer ${this.state.totalPrice} to the accont:  </div>
+						<div className="purchase-form_instruction"> Please transfer ${this.state.totalPrice} to the account:  </div>
 						<p className="purchase-form_account-number"> Account number: 11111111111 </p>
 						<div className="purchase-form_instruction"> With details: Client: {username}. Mail: {mail}.</div>
 						<div className="purchase-form_info"> As soon as we receive the payment we will send you your books and

@@ -20,7 +20,7 @@ var UserSchema = new Schema({
 		required: "Please Supply an email address"
 	},
 	wishlist: [{type: Schema.ObjectId, ref: "Book"}],
-	cart: [{type: Schema.ObjectId, ref: "Book"}]
+	bought: [{type: Schema.ObjectId, ref: "Book"}]
 });
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 UserSchema.plugin(mongodbErrorHandler);
@@ -56,4 +56,12 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		if(err) throw err;
 		callback(null, isMatch);
 	});
+};
+
+module.exports.addBoughtBooks = function(id, bookIds, callback){
+	User.findOne({'_id': id}, (err, data) => {
+		if(err) console.log(err);
+		data.bought = data.bought.concat(bookIds);
+		User.findOneAndUpdate({'_id': id}, data, callback);
+	})
 };

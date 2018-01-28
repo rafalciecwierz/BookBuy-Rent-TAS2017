@@ -24,6 +24,7 @@ const BookUtils = props => {
     { bookId: props.id
     }).then(res => {
         alert(res.data.message);
+        window.location= "/"
     }).catch(function (error) {
       console.log(error);
     });

@@ -84,7 +84,7 @@ router.put("/tags/:id", tag_controller.tag_update);
 /// COMMENT ROUTES ///
 
 /* POST request for creating Comment. */
-router.post("/books/:id/comments", comment_controller.comment_create);
+router.post("/books/:id/comments", auth_controller.isLoggedIn, comment_controller.comment_create);
 
 /* get book Comments. */
 router.get("/books/:id/comments", comment_controller.comment_detail);
@@ -93,7 +93,7 @@ router.get("/books/:id/comments", comment_controller.comment_detail);
 router.delete("/comments/:id", comment_controller.comment_delete);
 
 /* update Comment. */
-router.put("/comments/:id", comment_controller.comment_update);
+router.put("/comments/:id", auth_controller.isLoggedIn, comment_controller.comment_update);
 
 /// ACTION ROUTES ///
 
@@ -103,6 +103,8 @@ router.post("/search",action_controller.search);
 // Add Book to User wishlist //
 router.post("/books/:id/wishlist",auth_controller.isLoggedIn, action_controller.addToWishlist);
 
+//Get comment
+router.get("/users/:id/comment",auth_controller.isLoggedIn, action_controller.getUserComment);
 
 /// ORDER ROUTES ///
 

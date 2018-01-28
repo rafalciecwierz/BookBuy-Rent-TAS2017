@@ -6,6 +6,17 @@ var User = require('../models/userModel');
 var mongoose = require('mongoose');
 var async = require('async');
 
+exports.getUserComment = function(req,res,next){
+	userId = req.session.userId;
+	console.log('getting comment');
+	var id = mongoose.Types.ObjectId(req.params.id.trim());
+	Comment.findOne({book:id, user: userId})
+	.exec( function(err, found_comment) {
+		if(err) {return next(err);}
+		console.log(found_comment);
+		res.json(found_comment);
+	});
+};
 
 exports.search = function(req, res, next) {
 	var search = req.body.search.toLowerCase();

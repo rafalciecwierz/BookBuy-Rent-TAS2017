@@ -21,7 +21,7 @@ class UserProfile extends Component {
 
   render() {
     //const bookList = books.trending;
-    this.loadOrders();
+    //this.loadOrders();
     console.log(this.props);
     return (
       <div className="user-profile">

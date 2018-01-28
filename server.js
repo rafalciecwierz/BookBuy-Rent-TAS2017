@@ -72,7 +72,7 @@ app.use(function(req, res, next) {
 // cors for session
 app.use(cors({
     origin:['http://localhost:3000'],
-    methods:['GET','POST'],
+    methods:['GET','POST','PUT'],
     credentials: true // enable set cookie
 }));
 

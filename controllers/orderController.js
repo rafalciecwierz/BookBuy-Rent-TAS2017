@@ -58,23 +58,21 @@ exports.emptyCart = function(req, res, next){ // empties the cart
 exports.createOrder = function(req, res, next){ 
 	console.log('Creating order.');
 	var cart = new Cart(req.session.cart || {});
+	// console.log(cart);
 	let data = cart.getCart();
 	let userId = req.session.userId;
-	console.log('koszyk: ', data);
+	let qties = data.books.map(book => book.qty);
+	console.log('qties', qties);
 	const newOrder = Order({
 		user: userId,
 		book: data.bookIds,
+		qties: qties,
 		status: 'awaiting payment',
 		value: data.totalPrice
 	});
 	newOrder.save(function(err, saved){
-		// console.log('okidoki');
 		res.json({message: "Order created successfully!"});
 	})
-	// Order.createOrder(data.bookIds, userId, data.totalPrice, (err, data) => {
-	// 	console.log("cokolwiek");
-    // 	res.json({message: "Order created successfully!"});
-	// });
 };
 
 
@@ -90,7 +88,51 @@ exports.getUserOrders = function(req, res, next){
     });
 }
 
+exports.getOrderDetails = function(req, res, next){
+	console.log('Getting order details.');
+	let orderId = req.query.orderId;
+	Order.findOne({'_id': orderId})
+	.populate('user')
+	.populate('book')
+	.exec((err, data) => {
+		let arr = [];
+		for(let i = 0; i < data.book.length && i < data.qties.length; i++){
+			arr.push({book: data.book[i], qty: data.qties[i]});
+		}
+		res.json({order: data, details: arr});
+	})
+}
+
+exports.getAllOrders = function(req, res, next){
+	console.log("Getting " + req.query.status + " orders");
+	Order.find ({status: req.query.status})
+	.populate('user')
+	// .populate('book') // to można sobie zostawić na potem
+	.exec((err, data) => {
+		if(err) console.log(err);
+		res.json({orders: data});
+	})
+}
+
 exports.changeOrder = function(req, res, next){
-    Order.update({"_id": req.body.id}, {status: req.body.state});
-	res.json({message: "Ok."});
+	console.log("updating");
+	console.log(req.body.id, req.body.status);
+    Order.update({"_id": req.body.id}, {status: req.body.status}, (err, raw) => {
+    	if(err) console.log(err);
+		res.json({message: "State changed."});
+    });
 };
+
+
+exports.removeOrder = function(req, res, next){
+	console.log('removing!');
+	console.log('order id to remove: ' + req.body.id);
+	Order.find({"_id": req.body.id})
+	.remove((err, stuff) => {
+		if(err) {console.log(err);}
+		else{
+			console.log("removed");
+			res.json({message: "Removed succesfully!"});
+		}
+	})
+}

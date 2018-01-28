@@ -861,13 +861,17 @@ textarea:focus {
 }
 .admin-card.card--confirm .card__status {
   cursor: pointer;
-  background-color: #ff0000;
+  background-color: #5dcd00;
 }
 .admin-card.card--finished .card__status {
   background-color: #5dcd00;
-  cursor: not-allowed;
+  cursor: pointer;
 }
-.admin-card.card--finished {
+.admin-card.card--delete .card__status {
+  background-color: #ff0000;
+  cursor: pointer;
+}
+.admin-card.card--confirm {
   opacity: 0.5;
 }
 
@@ -877,10 +881,128 @@ textarea:focus {
  *
  */
 
+ /*
+  * Admin orders
+  *
+  */
+
+.admin-orders{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.admin-orders > * {
+  margin: .5rem;
+}
+
+.admin-orders_action {
+  min-width: 60vw;
+}
+
+.admin-orders__order-selection {
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 1.5rem 8% 1.5rem 8%;
+  font-weight: bold;
+}
+
+.admin-orders__order-selection > * {
+  margin: .2rem;
+  border-radius: 2px;
+  padding: 10px 4%;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  border-radius: 2px;
+
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.admin-orders__orders-waiting {
+  order: 1;
+  background: #b662f2;
+  color: #ece5d7;
+}
+
+.admin-orders__orders-accepted {
+  order: 2;
+  background: #ea58ba;
+  color: #e9fbf9;
+}
+
+.admin-orders__orders-finished {
+  order: 3;
+  background: #7956a4;;
+  color: #e0e9cd;
+}
+
+
+/*
+ * Scrollbar
+ */
+
+.admin-orders__orders-scrollbar {
+  max-width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+.admin-orders__scrollbar-item {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  padding: 5% 5% 5% 5%;
+  background: #fff;
+}
+
+/*
+ * OrderItem
+ */
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 3px;
+  background: #83d7f8;
+  padding: 2% 2% 2% 2%;
+  margin: 2% 1% 2% 1%;
+  cursor: pointer;
+}
+
+.order-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 3px;
+  background: #d2a5e0;
+  padding: 2% 3% 2% 3%;
+  margin: 2% 1% 2% 1%;
+}
+
+
+.order-item_id, .order-item_uid,
+.order-item_price, .order-item_status {
+  margin: .2rem;
+}
+
+
 /*
  * Logout 
  *
- * na szybko wziąłem kolory itp. z innych komponentów, żeby pasowało.
  */
 
 .logout {
@@ -896,13 +1018,10 @@ textarea:focus {
 }
 
 
-
-
 /*
  * CartList
  *
  */
-
 
 .cart-list__actions { 
   width: 90%;
@@ -926,6 +1045,7 @@ textarea:focus {
 .cart-list__buttons {
   width: 200px;
   display: flex;
+  margin-right: 4%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -934,6 +1054,8 @@ textarea:focus {
 .cart-list__info {
   width: 280px;
   display: flex;
+  margin-left: 0;
+  padding-left: 0;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -991,12 +1113,10 @@ textarea:focus {
   font-size: 5vw;
 }
 
-
 /*
  * CartItem
  *
  */
-
 
 .cart-item-utils {
   display: flex;

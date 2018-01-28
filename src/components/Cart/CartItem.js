@@ -59,7 +59,7 @@ class CartItem extends Component {
           <figcaption className="book__details">
             <p className="cart-item-utils__title">{this.state.title}</p>
             <p className="cart-item-utils__qty">{this.state.qty}</p>
-            <p className="cart-item-utils__total-price">{this.state.price}</p>
+            <p className="cart-item-utils__total-price">{this.state.totalPrice}</p>
           </figcaption>
         </figure>
     <div className="cart-item-utils">

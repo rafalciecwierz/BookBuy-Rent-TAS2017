@@ -61,7 +61,9 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 module.exports.addBoughtBooks = function(id, bookIds, callback){
 	User.findOne({'_id': id}, (err, data) => {
 		if(err) console.log(err);
-		data.bought = data.bought.concat(bookIds);
+		console.log(data.bought);
+		data.bought = data.bought.concat(bookIds.filter(function(bkid){
+		 return data.bought.indexOf(bkid)}));
 		User.findOneAndUpdate({'_id': id}, data, callback);
 	})
 };

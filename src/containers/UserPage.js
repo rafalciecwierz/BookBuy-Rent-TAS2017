@@ -30,7 +30,7 @@ class UserPage extends Component {
     }
     else { // if it couldn't be done for some reason, show message
     alert(res.data.message)
-  }
+    }
     //}
     }).catch(error => {
       console.log(error);
@@ -80,9 +80,6 @@ class UserPage extends Component {
   }
 
   render() {
-    //this.loadUser();
-    //this.loadWishlist();
-    //this.loadBought();
     if(this.state.user.username){ 
       const user = this.state.user;
       console.log(this.state.user);
@@ -91,7 +88,8 @@ class UserPage extends Component {
         wishlistList = this.state.wishlist.map((book, index) =>
         <li key={index}>
           <Wishlist
-            cover = {book.cover}/>
+            cover = {book.cover}
+            id = {book._id}/>
         </li>
         );
       }

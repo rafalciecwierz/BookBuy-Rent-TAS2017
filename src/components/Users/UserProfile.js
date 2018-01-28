@@ -33,6 +33,12 @@ class UserProfile extends Component {
           </div>
         </header>
         <div className="book-list">
+				<h2 className="book-list__header">Bought</h2>
+				<ul className="book-list__cards">
+					{this.props.bought}
+				</ul>
+			</div>
+        <div className="book-list">
 				<h2 className="book-list__header">Wishlist</h2>
 				<ul className="book-list__cards">
 					{this.props.wishlist}

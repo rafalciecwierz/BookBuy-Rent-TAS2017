@@ -17,6 +17,8 @@ exports.user_wishlist = function(req, res, next) {
 				.populate('tag')
 				.exec(function(err,found_books){
 					if(err) {return next(err);}
+					console.log('wishlist');
+					console.log(found_books);
 					res.json(found_books);
 				});
 			}
@@ -28,9 +30,37 @@ exports.user_cart = function(req, res, next) {
 	res.json({message: "Not implemented - user cart!"});
 };
 
-exports.user_list = function(req,res,next) {
-	res.json({message: "Not implemented - user list!"});
+//bought books
+exports.user_books = function(req, res, next) {
+	userId = req.session.userId;
+	User.findById(userId, 'bought')
+	.exec(function(err,found_user){
+			if(err) {return next(err);}
+			if(found_user){
+				Book.find({_id: {$in: found_user.bought}})
+				.populate('author')
+				.populate('tag')
+				.exec(function(err,found_books){
+					if(err) {return next(err);}
+					console.log('bought');
+					res.json(found_books);
+				});
+			}
+		});
 };
+
+exports.user_data = function(req,res,next) {
+	userId = req.session.userId;
+	User.findById(userId)
+	.exec(function(err,found_user){
+		if(err) {return next(err);}
+		console.log('user');
+		console.log(found_user);
+		res.json(found_user);
+	});
+	//res.json({message: "Not implemented - user list!"});
+};
+
 exports.validateRegister = (req, res, next) => {
 	console.log(req.body);
 	req.sanitizeBody('username');
@@ -75,4 +105,11 @@ exports.user_login_post = function(req , res, next){
 
 exports.user_logout_get = function(req,res,next) {
 
+};
+
+exports.addBoughtBooks = function(req, res, next){
+		User.addBoughtBooks(req.body.id, req.body.bookIds, (err, data) => {
+			if(err) console.log(err);
+			res.json({message: "Ok."})
+		})
 };

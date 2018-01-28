@@ -103,10 +103,6 @@ router.post("/search",action_controller.search);
 // Add Book to User wishlist //
 router.post("/books/:id/wishlist",auth_controller.isLoggedIn, action_controller.addToWishlist);
 
-//Get books bought by User //
-/* NOT WORKING */
-router.get("/users/:id/bought", action_controller.user_books);
-
 
 /// ORDER ROUTES ///
 
@@ -129,6 +125,17 @@ router.post("/orders/create_order", auth_controller.isLoggedIn, order_controller
 // Get user orders //
 router.get("/orders/user_orders", auth_controller.isLoggedIn, order_controller.getUserOrders);
 
+// Get all orders with given status (lol)//
+// TODO: change isLoggedIn to isAdmin
+router.get("/orders/status", auth_controller.isLoggedIn, order_controller.getAllOrders);
+
+// Get order's details // add user_id checking!
+router.get("/orders/details", auth_controller.isLoggedIn, order_controller.getOrderDetails);
+
+// Remove order // add isAdmin checking!
+router.post("/orders/remove", auth_controller.isLoggedIn, order_controller.removeOrder);
+
+
 // Change state of an order //
 router.post("/orders/change_state", auth_controller.isLoggedIn, order_controller.changeOrder);
 // TODO: define req (changeStatus up or to req.data.status?)
@@ -149,12 +156,17 @@ router.post("/users",
 	}
 );
 
-//GET Users
-router.get("/users",user_controller.user_list);
+//GET User
+router.get("/users",auth_controller.isLoggedIn,user_controller.user_data);
+
+// Add books to bought list //
+router.post("/users/add_bought",auth_controller.isLoggedIn, user_controller.addBoughtBooks);
 
 // GET User wishlist //
-/* NOT WORKING */
 router.get("/users/wishlist",auth_controller.isLoggedIn, user_controller.user_wishlist);
+
+//Get books bought by User //
+router.get("/users/bought", auth_controller.isLoggedIn,user_controller.user_books);
 
 // Login User GET
 router.get("/login", user_controller.user_login_get);

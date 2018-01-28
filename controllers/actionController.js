@@ -77,16 +77,6 @@ exports.search = function(req, res, next) {
 	});
 };
 
-exports.user_books = function(req, res, next) {
-	async.parallel({
-
-	}, function(err, results) {
-    if (err) { return next(err); }
-	//res.json(results);
-	res.json({message: "Not implemented - bought books!"});
-  });
-};
-
 exports.addToWishlist = function(req, res, next) {
 	var id = mongoose.Types.ObjectId(req.params.id.trim());
 	Book.findById(id)

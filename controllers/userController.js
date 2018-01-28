@@ -65,4 +65,4 @@ exports.addBoughtBooks = function(req, res, next){
 		if(err) console.log(err);
 		res.json({message: "Ok."})
 	})
-}
+};

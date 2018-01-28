@@ -1206,6 +1206,77 @@ textarea:focus {
 }
 
 
+/*
+ * Purchase form
+ */
+
+ .purchase-form__order-details {
+  font-weight: 400;
+  opacity: .7;
+  margin: 4% 4%;
+  text-align: center;
+  font-size: 3rem;
+ }
+
+ .purchase-form__text-container { 
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 1.5rem 8% 1.5rem 8%;
+  opacity: .8;
+}
+
+.purchase-form__text-container > div {
+  margin: .5rem;
+  font-size: 1.5rem;
+  text-align: left;
+  font-weight: 400;
+}
+
+.purchase-form_conf_msg {
+  font-size: 1.5rem;
+  padding: 1% 10px 1% 5px;
+}
+
+.purchase-form_instruction {
+  font-size: 1.2rem;
+  padding: 1% 10px 1% 5px;
+}
+
+.purchase-form_account-number {
+  align-self: center;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  text-align: center; 
+  margin: 1rem 1rem 1rem 1rem;
+  padding: 2% 2% 2% 2%;
+}
+
+.purchase-form_info {
+  font-size: 1.1rem;
+  padding: 1% 10px 1% 5px;
+}
+
+.purchase-form_confirm-button {
+  width: 7rem;
+  min-width: 4rem;
+  padding: 10px 4%;
+  margin: 1% auto;
+  align-self: center;
+
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  background: #ea58ba;
+  border-radius: 2px;
+  opacity: .7;
+
+  font-weight: 600;
+  color: #e9fbf9;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+}
 
 /*.cart-item {
   display: flex;

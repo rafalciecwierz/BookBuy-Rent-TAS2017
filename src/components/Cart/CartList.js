@@ -80,14 +80,13 @@ class CartList extends Component {
 	}
 
 	buyClick = () => {
-		axios.post("http://localhost:3001/api/orders/create_order")
-			.then(res => {
-				alert(res.data.message);
-				// TODO: dodaj przenoszenie do formularza z jakimiś danymi
-			}).catch(err => {
-				console.log(err);
-				alert("Something went wrong!");
-			})
+		let loggedIn = localStorage.getItem('isLogged')
+		if(loggedIn === 'true'){
+			window.location = "/checkout";
+		}
+		else {
+			alert("Please log in!");
+		}
 	}
 
 

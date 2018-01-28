@@ -5,6 +5,7 @@ var OrderSchema = new Schema(
   {
 	user: {type: Schema.ObjectId, ref: 'User', required: true},
 	book: [{type: Schema.ObjectId, ref: 'Book', required: true}],
+	qties: [{type: Number, default: 1}],
 	status: {type: String, enum: ["awaiting payment","accepted","completed"], required: true},
 	//jak obliczac?
 	value: {type: Number, default: 0}
@@ -28,11 +29,12 @@ OrderSchema.query.byBookId = function(bookId) {
 // 	}
 // };
 
-module.exports.createOrder = function(bookIds, userId, value, callback){
+module.exports.createOrder = function(bookIds, bookQty, userId, value, callback){
 	console.log("wtf"); // this is not working for me (?), so i did it in the controller - MK
 	const newOrder = new Order({
 		user: userId,
 		book: bookIds,
+		qties: bookQty,
 		status: "awaiting payment",
 		value: value
 	});

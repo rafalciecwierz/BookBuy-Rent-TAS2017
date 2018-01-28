@@ -32,10 +32,13 @@ class UserProfile extends Component {
             <p className="header__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris pariatur.  anim id est laborum.</p>
           </div>
         </header>
-        <BookList
-              books={this.props.wishlist}
-              name="Most popular"/>
-      </div>
+        <div className="book-list">
+				<h2 className="book-list__header">Wishlist</h2>
+				<ul className="book-list__cards">
+					{this.props.wishlist}
+				</ul>
+			</div>
+     </div> 
     );
   }
 }

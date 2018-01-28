@@ -104,12 +104,12 @@ exports.user_login_post = function(req , res, next){
 
 
 exports.user_logout_get = function(req,res,next) {
-
+	
 };
 
 exports.addBoughtBooks = function(req, res, next){
-		User.addBoughtBooks(req.body.id, req.body.bookIds, (err, data) => {
-			if(err) console.log(err);
-			res.json({message: "Ok."})
-		})
-};
+	User.addBoughtBooks(req.body.id, req.body.bookIds, (err, data) => {
+		if(err) console.log(err);
+		res.json({message: "Ok."})
+	})
+}

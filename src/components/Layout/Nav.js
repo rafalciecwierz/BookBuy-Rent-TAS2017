@@ -10,7 +10,7 @@ class Nav extends Component {
     super(props);
     console.log(props);
     const isLoggedSes = localStorage.getItem('isLogged');
-    this.state = {isLogged: isLoggedSes == 'true'};
+    this.state = {isLogged: isLoggedSes === 'true'};
   }
 
   logout = () => { // to jest tu dlatego, żeby po przejściu na stronę logout przycisk był dobrze ustawiony
@@ -20,7 +20,7 @@ class Nav extends Component {
 
   componentWillMount(){ // set state according to local storage
     const isLoggedSes = localStorage.getItem('isLogged');
-    this.setState({isLogged: isLoggedSes == 'true'});
+    this.setState({isLogged: isLoggedSes === 'true'});
     console.log('Nav-willMount: logged state', isLoggedSes);
   }
 
@@ -76,7 +76,7 @@ class Nav extends Component {
           <SearchBox />
             { this.userNav() }
         </div> 
-        <DropdownMenu />
+        <DropdownMenu logged={this.state.isLogged}/>
       </nav>
     );
   }

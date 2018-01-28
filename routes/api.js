@@ -135,7 +135,6 @@ router.get("/orders/details", auth_controller.isLoggedIn, order_controller.getOr
 // Remove order // add isAdmin checking!
 router.post("/orders/remove", auth_controller.isLoggedIn, order_controller.removeOrder);
 
-
 // Change state of an order //
 router.post("/orders/change_state", auth_controller.isLoggedIn, order_controller.changeOrder);
 // TODO: define req (changeStatus up or to req.data.status?)
@@ -158,6 +157,9 @@ router.post("/users",
 
 //GET User
 router.get("/users",auth_controller.isLoggedIn,user_controller.user_data);
+
+// Add books to bought list //
+router.post("/users/add_bought",auth_controller.isLoggedIn, user_controller.addBoughtBooks);
 
 // Add books to bought list //
 router.post("/users/add_bought",auth_controller.isLoggedIn, user_controller.addBoughtBooks);

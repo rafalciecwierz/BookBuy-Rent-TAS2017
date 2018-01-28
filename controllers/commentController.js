@@ -25,17 +25,16 @@ exports.comment_detail = function(req, res, next) {
 
 // Handle comment create on POST
 exports.comment_create = function(req, res,next) {
-	
 	var bookId = mongoose.Types.ObjectId(req.params.id.trim());
-	
+	userId = req.session.userId;
+	console.log('add comment');
 	var comment = new Comment({
-		//TYMCZASOWE
-		user: req.body.userId,
+		user: userId,
 		book: bookId,
 		mark: req.body.mark,
 		comment: req.body.comment
 	});
-	
+	console.log(req.body);
 	comment.save(function(err,added) {
 		if(err) {return next(err);}
 		res.json(added);
@@ -58,18 +57,19 @@ exports.comment_delete = function(req, res, next) {
     });
 };
 
-// Handle comment delete on POST
+// Handle comment update on PUT
 exports.comment_update = function(req, res, next) {
 	var id = mongoose.Types.ObjectId(req.params.id.trim());
+	console.log(req.body);
     var comment = new Comment(
       { user: req.body.userId,
-		book: bookId,
+		book: req.body.bookId,
 		mark: req.body.mark,
 		comment: req.body.comment,
 		_id: id
 	  });
 	 Comment.findByIdAndUpdate(id, comment, {}, function (err,thecomment) {
 		if (err) { return next(err); }
-		res.json(comment);
+		res.json(thecomment);
 	 });
 };

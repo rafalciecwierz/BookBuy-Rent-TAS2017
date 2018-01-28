@@ -20,7 +20,7 @@ var UserSchema = new Schema({
 		required: "Please Supply an email address"
 	},
 	wishlist: [{type: Schema.ObjectId, ref: "Book"}],
-	bought: [{type: Schema.ObjectId, ref: "Book"}]
+	cart: [{type: Schema.ObjectId, ref: "Book"}]
 });
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 UserSchema.plugin(mongodbErrorHandler);
@@ -34,6 +34,8 @@ module.exports.createUser = function(newUser, callback){
 		});
 	});
 };
+
+
 
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
@@ -54,14 +56,4 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		if(err) throw err;
 		callback(null, isMatch);
 	});
-};
-
-module.exports.addBoughtBooks = function(id, bookIds, callback){
-	User.findOne({'_id': id}, (err, data) => {
-		if(err) console.log(err);
-		console.log(data.bought);
-		data.bought = data.bought.concat(bookIds.filter(function(bkid){
-		 return data.bought.indexOf(bkid)}));
-		User.findOneAndUpdate({'_id': id}, data, callback);
-	})
 };

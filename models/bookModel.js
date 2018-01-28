@@ -10,7 +10,7 @@ var BookSchema = new Schema({
   price: {type: Number, required: true},
   tag: [{type: Schema.ObjectId, ref: 'Tag', required: true}],
   likes : {type: Number, default: 0},
-  count: {type: Number, required: true} 
+  count: {type: Number, required: true}
 });
 
 /*BookSchema
@@ -18,10 +18,6 @@ var BookSchema = new Schema({
 .get(function () {
   return '/catalog/book/' + this._id;
 });*/
-
-module.exports.addLike = function(bookId,cb) {
-  return this.model('Book').findOneAdUpdate({ _id: bookId },{$set: { likes: likes +1 }}, cb);
-};
 
 BookSchema.query.byTitle = function(title,cb) {
 	return this.find({ title: title },cb);

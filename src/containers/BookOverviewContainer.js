@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import BookOverview from '../components/Books/BookOverview';
+import BookComments from '../components/Books/BookComments';
 
 class BookOverviewContainer extends Component {
   constructor(props) {
@@ -24,21 +25,33 @@ class BookOverviewContainer extends Component {
   componentDidMount() {
     this.loadBookFromServer();
   }
-
   render() {
-	  if (this.state.data.title) {
-  		const book = this.state.data;
-  		return (
-  		  <BookOverview
-    		  title={book.title}
-    		  cover={book.cover}
-    		  author={book.author.name}
-    		  price={book.price}
-    		  tag={book.tag[0].name}
-    		  likes={book.likes}
-    		  description={book.description}/>
-  		);
-	  } else {
+	  if(this.state.data.book){
+      console.log(this.state.data);
+      const book = this.state.data.book;
+      const commentList = this.state.data.comments.map((comment, index) =>
+			<li key={index}>
+				<BookComments
+					user={comment.user.username}
+					comment={comment.comment}
+          mark={comment.mark}/>
+			</li>
+		);
+		return (
+		  <BookOverview
+      id = {this.id}
+		  title={book.title}
+		  cover={book.cover}
+		  author={book.author.name}
+		  price={book.price}
+		  tag={book.tag[0].name}
+		  likes={book.likes}
+		  description={book.description}
+      commentList = {commentList}/>
+
+		);
+	  }
+	  else {
 		  return (
   		  <BookOverview />
   		);

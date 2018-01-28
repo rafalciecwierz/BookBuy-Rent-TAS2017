@@ -155,7 +155,7 @@ class AdminBooks extends Component {
     return (
       <div className="admin-books">
         <div className="admin__actions">
-          <form className="admin__form form" encType="multipart/form-data" onSubmit={this.handleSubmit}>
+          <form className="admin__form" encType="multipart/form-data" onSubmit={this.handleSubmit}>
             <h2 className="form__header">Add new book</h2>
             <small className="form__text">New book will be posted to database.</small>
             <small className="form__text">

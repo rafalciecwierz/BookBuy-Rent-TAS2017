@@ -35,7 +35,7 @@ class Nav extends Component {
           </Link>
           <Link to='/logout' onClick={ this.logout }>
             <span className="link--simple">
-              Log out
+              Logout
             </span>
           </Link>
           <Link to='/cart'>

@@ -243,6 +243,14 @@ textarea:focus {
   display: inline-block;
   height: 400px;
 }
+
+@media screen and (max-width: 700px)
+{
+  .book__card
+  {
+    flex-direction: column;
+  }
+}
 .book__cover {
   display: block;
   width: 225px;
@@ -279,6 +287,12 @@ textarea:focus {
   height: auto;
   padding: 2rem;
   display: flex;
+}
+@media screen and (max-width: 700px)
+{
+  .book-list-view .book__card{
+    width: auto;
+  }
 }
 .book-list-view .book__details {
   width: 100%;
@@ -739,11 +753,18 @@ textarea:focus {
 }
 .user-profile__header {
   width: 60%;
-  min-width: 700px;
+  /* min-width: 700px; */
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 700px)
+{
+  .user-profile__header{
+    flex-direction: column;
+  }
 }
 .header__avatar {
   background-image: url('./assets/img/profile.png');

@@ -44,10 +44,12 @@ class Register extends Component {
 			}).then(response => {
 			console.log(response);
 			if(response.data.redirectURL){
-				window.location= "/";
+				window.location= response.data.redirectURL;
 			} else{	
-				this.state.errors.push(...response.data);
-				console.log(this.state.errors);}}).catch(error => {
+				_this.state.errors.push(...response.data.flashes.error);
+				console.log(_this.state.errors);
+				alert(_this.state.errors);
+			}}).catch(error => {
 			console.log(error);
 		});
 	}
@@ -64,8 +66,6 @@ class Register extends Component {
 					<input className="form__input" id="email" onChange={ this.handleEmailChange } type="email" name="email"></input>
 					<label className="form__label" htmlFor="password">Password</label>
 					<input className="form__input" id="password" type="password" onChange={ this.handlePasswordChange } name="password"></input>
-					<label className="form__label label--file" htmlFor="file">Upload</label>
-					<input className="form__input input--file" type="file" id="file"></input>
 					<input className="form__input input--submit" type="submit" value="Create account"></input>
 				</form>
 			</div>

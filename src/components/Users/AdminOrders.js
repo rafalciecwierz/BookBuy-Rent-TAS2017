@@ -108,6 +108,13 @@ class AdminOrders extends Component{
   
   
   render() {
+    let logged = localStorage.getItem('isLogged')
+
+    if(!(logged === 'true')){
+      return(<h3 className="cart-list__empty-text"> You do not have the rights to view this page! </h3>);
+    } //
+
+
     const orderList =  this.state.orders.map((order, index) =>
       <div key={index} className="admin-orders__scrollbar-item" onClick={this.selectOrder.bind(null, order)}>
           <OrderItem

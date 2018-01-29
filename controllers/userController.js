@@ -73,26 +73,36 @@ exports.validateRegister = (req, res, next) => {
 	  gmail_remove_subaddress: false
 	});
 	req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
-
+  
 	const errors = req.validationErrors();
 	console.log(errors);
 	if (errors) {
 	  req.flash('error', errors.map(err => err.msg));
 	  res.json({body: req.body, flashes: req.flash() });
-	  return; // stop the fn from running
+	  return; 
 	}
 	next(); // there were no errors!
   };
+  
+  exports.register = async (req, res, next) => { 	
+		
+		User.findOne({ $or:[
+			{username: req.body.username},
+			{email:req.body.email}]},
+			 function(err, user) {
+					if (user) {
+							req.flash('error', 'user already exist');
+	  						res.json({body: req.body, flashes: req.flash() });
+							return;
 
-  exports.register = async (req, res, next) => {
+					}
+			}
+	);
 	const user = new User({username: req.body.username, email: req.body.email });
-	console.log(user);
 	const register = promisify(User.register, User);
-	console.log(register.name);
 	await register(user, req.body.password);
-	next(); // pass to authController.login
+	next(); 
   };
-
 // Login GET
 exports.user_login_get = function(req, res, next) {
 
@@ -113,3 +123,6 @@ exports.addBoughtBooks = function(req, res, next){
 		res.json({message: "Ok."})
 	})
 };
+
+
+  
